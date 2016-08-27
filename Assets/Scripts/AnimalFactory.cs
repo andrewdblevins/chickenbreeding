@@ -5,7 +5,7 @@ public class AnimalFactory {
 
     public GameObject animalPrefab;
 
-    GameObject createWolf()
+    public GameObject createWolf()
     {
         GameObject wolf = GameObject.Instantiate(animalPrefab);
         Animal wolfAnimal = wolf.GetComponent<Animal>();
@@ -14,7 +14,7 @@ public class AnimalFactory {
         return wolf;
     }
 
-    GameObject createRabbit()
+    public GameObject createRabbit()
     {
         GameObject rabbit = GameObject.Instantiate(animalPrefab);
         Animal rabbitAnimal = rabbit.GetComponent<Animal>();
@@ -23,7 +23,7 @@ public class AnimalFactory {
         return rabbit;
     }
 
-    GameObject createChicken()
+    public GameObject createChicken()
     {
         GameObject chicken = GameObject.Instantiate(animalPrefab);
         Animal chickenAnimal = chicken.GetComponent<Animal>();

@@ -28,11 +28,14 @@ public class ExplorationEvent {
 
         public bool attempt(List<Animal> party)
         {
-            int score = Random.Range(1, 7);
+            int score = 0;
             foreach (Animal a in party)
             {
                 score += a.GetAttributeScore(attribute);
             }
+            int roll = Random.Range(1, 7);
+            Debug.Log("you have a score of " + score + " + " + roll + " and need " + passingScore + " to win");
+            score += roll;
             return score >= passingScore;
         }
     }

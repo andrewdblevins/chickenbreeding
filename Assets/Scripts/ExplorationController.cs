@@ -21,18 +21,26 @@ public class ExplorationController : MonoBehaviour
     //consume food
 
 
-    void Start()
-    {
-        //party = new List<Animal>() {
-        //    AnimalFactory.
-        //}
-    }
-
     void Update()
     {
         switch (state)
         {
             case State.Start:
+                GameObject obj = new GameObject();
+                Animal wolfAnimal = obj.AddComponent<Animal>();
+                wolfAnimal.Initialize(SpeciesFactory.createWolf(), SizeFactory.createMidsized());
+                Animal rabbitAnimal = obj.AddComponent<Animal>();
+                rabbitAnimal.Initialize(SpeciesFactory.createRabbit(), SizeFactory.createTiny());
+                Animal chickenAnimal = obj.AddComponent<Animal>();
+                chickenAnimal.Initialize(SpeciesFactory.createChicken(), SizeFactory.createTiny());
+
+                party = new List<Animal>() {
+                    wolfAnimal,
+                    rabbitAnimal,
+                    chickenAnimal
+                };
+                state = State.Continue;
+                break;
             case State.Continue:
                 currentEvent = ExplorationEventFactory.createEvent();
                 print(currentEvent.description);
@@ -76,6 +84,7 @@ public class ExplorationController : MonoBehaviour
             {
                 print("You lose");
                 int index = Random.Range(1, party.Count);
+                print("1 of your " + party.Count + " animimals will die");
                 print("Billy the " + party[index].speciesTrait.name + " has died");
                 party.RemoveAt(index);
             }

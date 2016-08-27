@@ -17,7 +17,10 @@ public class Animal : MonoBehaviour
         sizeTrait = size;
 
         Image image = GetComponent<Image>();
-        image.sprite = animals[species.spriteIndex];
+        if (image != null)
+        {
+            image.sprite = animals[species.spriteIndex];
+        }
     }
 
     // Use this for initialization
