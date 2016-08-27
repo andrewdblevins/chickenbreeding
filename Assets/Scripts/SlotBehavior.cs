@@ -18,5 +18,6 @@ public class SlotBehavior : MonoBehaviour, IDropHandler{
 			DraggableBehaviourScript.ItemBeingDragged.transform.SetParent (transform);
 			DraggableBehaviourScript.ItemBeingDragged.transform.position = transform.position;
 		}
+
 	}
 }

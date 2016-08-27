@@ -4,29 +4,8 @@ using UnityEngine.EventSystems;
 
 public class Plot : MonoBehaviour, IDropHandler{
 
-    GameObject breedLeft;
-    GameObject breedRight;
-
-    List<GameObject> babies = new List<GameObject>();
-
-	// Use this for initialization
-	void Start () {
-        // Uncomment here and the Breed call in Update to see breeding in action.
-        //breedLeft = new GameObject();
-        //Animal leftAnimal = breedLeft.AddComponent<Animal>();
-        //leftAnimal.AddTrait(TraitFactory.createLarge());
-        //leftAnimal.AddTrait(TraitFactory.createStrong());
-        //breedRight = new GameObject();
-        //Animal rightAnimal = breedRight.AddComponent<Animal>();
-        //rightAnimal.AddTrait(TraitFactory.createEnormous());
-        //rightAnimal.AddTrait(TraitFactory.createWeak());
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        // Uncomment here and the animal creation in Start to see breeding in action.
-        //Breed();
-	}
+    public GameObject breedLeft;
+    public GameObject breedRight;
 
     void Breed()
     {
@@ -41,17 +20,30 @@ public class Plot : MonoBehaviour, IDropHandler{
                     GameObject baby = leftAnimal.breedWith(rightAnimal);
                     if (baby != null)
                     {
-                        babies.Add(baby);
+						addAnimal(baby);
                     }
                 }
             }
         }
     }
-		
 
 	public void OnDrop (PointerEventData eventData)
 	{
-		DraggableBehaviourScript.ItemBeingDragged.transform.SetParent (transform);
+		GameObject animal = DraggableBehaviourScript.ItemBeingDragged;
+		this.addAnimal (animal);
+	}
+
+	public void addAnimal(GameObject animal){
+		animal.transform.SetParent (transform);
+	}
+		
+
+	public List<GameObject> getAnimalsInPlot(){
+		List<GameObject> animalsInPlot = new List<GameObject> ();
+		foreach (Transform child in transform){
+			animalsInPlot.Add (child.gameObject);
+		}
+		return animalsInPlot;
 	}
 
 }
