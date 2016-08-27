@@ -3,8 +3,15 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour
 {
-
+    SpecialTrait speciesTrait;
+    SpecialTrait sizeTrait;
     List<BaseTrait> traits = new List<BaseTrait>();
+
+    public void Initialize(SpecialTrait species, SpecialTrait size)
+    {
+        speciesTrait = species;
+        sizeTrait = size;
+    }
 
     // Use this for initialization
     void Start()
@@ -23,8 +30,17 @@ public class Animal : MonoBehaviour
         traits.Add(trait);
     }
 
+    public bool CanBreedWith(Animal mate)
+    {
+        return speciesTrait.isCompatible(mate.speciesTrait) && sizeTrait.isCompatible(mate.sizeTrait);
+    }
+
     public GameObject breedWith (Animal mate)
     {
+        if (!CanBreedWith(mate))
+        {
+            return null;
+        }
         List<BaseTrait> babyTraits = new List<BaseTrait>();
         foreach (BaseTrait trait in traits)
         {

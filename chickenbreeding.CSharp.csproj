@@ -75,6 +75,11 @@
     <Compile Include="Assets\Scripts\Plot.cs" />
     <Compile Include="Assets\Scripts\SlotBehavior.cs" />
     <Compile Include="Assets\Scripts\Traits\BaseTrait.cs" />
+    <Compile Include="Assets\Scripts\Traits\SizeFactory.cs" />
+    <Compile Include="Assets\Scripts\Traits\SizeTrait.cs" />
+    <Compile Include="Assets\Scripts\Traits\SpecialTrait.cs" />
+    <Compile Include="Assets\Scripts\Traits\SpeciesFactory.cs" />
+    <Compile Include="Assets\Scripts\Traits\SpeciesTrait.cs" />
     <Compile Include="Assets\Scripts\Traits\TraitFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

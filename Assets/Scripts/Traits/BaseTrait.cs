@@ -13,7 +13,7 @@ public class BaseTrait
 
     public Dictionary<string, float> linkageMap = new Dictionary<string, float>();
 
-    public bool isCompatible(BaseTrait other)
+    public virtual bool isCompatible(BaseTrait other)
     {
         return !(this.type == other.type || traitClass == other.traitClass);
     }

@@ -36,7 +36,14 @@ public class Plot : MonoBehaviour, IDropHandler{
             Animal rightAnimal = breedRight.GetComponent<Animal>();
             if (leftAnimal != null && rightAnimal != null)
             {
-                babies.Add(leftAnimal.breedWith(rightAnimal));
+                if (leftAnimal.CanBreedWith(rightAnimal))
+                {
+                    GameObject baby = leftAnimal.breedWith(rightAnimal);
+                    if (baby != null)
+                    {
+                        babies.Add(baby);
+                    }
+                }
             }
         }
     }
