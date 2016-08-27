@@ -5,6 +5,12 @@ public class AnimalFactory : MonoBehaviour {
 
     public GameObject animalPrefab;
 
+	public static AnimalFactory Instance;
+
+	void Awake () {
+		Instance = this;
+	}
+
     public GameObject createWolf()
     {
         GameObject wolf = GameObject.Instantiate(animalPrefab);

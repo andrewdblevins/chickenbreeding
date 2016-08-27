@@ -18,7 +18,7 @@ public class NextTurn : MonoBehaviour, IPointerClickHandler {
 
 	public void OnPointerClick (PointerEventData eventData)
 	{
-		GameState.Instance.iterateTurn ();
+		GameManager.Instance.iterateTurn ();
 	}
 
 	#endregion

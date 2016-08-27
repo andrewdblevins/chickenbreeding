@@ -7,17 +7,23 @@ public class GameManager : MonoBehaviour {
 	public GameObject panel;
 	public Plot plot;
 
-	public GameState getGameState() { return GameState.Instance; }
-
 	public static GameManager Instance;
 
 	private GameManager() {}
 
 	// Use this for initialization
 	void Start () {
-		foreach (var i in System.Linq.Enumerable.Range(0, 10))
+		//Create N plots and M animals in the first plot
+		int n = 10;
+		int m = 2;
+		foreach (var i in System.Linq.Enumerable.Range(0, n))
 		{
-			getGameState ().createPlot ();
+			createPlot ();
+		}
+		foreach (var i in System.Linq.Enumerable.Range(0, m))
+		{
+			//Get a plot
+			getSomePlot().addAnimal(AnimalFactory.Instance.createChicken());
 		}
 	  
 	}
@@ -31,43 +37,25 @@ public class GameManager : MonoBehaviour {
 //		Instantiate(plot);
 //		GameState.Instance.iterateTurn ();
 	}
-}
 
-public class GameState : MonoBehaviour {
 	private int turn = 0;
 
-	HashSet<Animal> allAnimals = new HashSet<Animal>();
-	HashSet<Plot> allPlots = new HashSet<Plot>();
+	List<Animal> allAnimals = new List<Animal>();
+	List<Plot> allPlots = new List<Plot>();
 
 	enum Season {Spring, Summer, Autumn, Winter};
 
 	Season getSeason() { return (Season)(turn % 4); }
-
-	private static GameState instance;
-
-	private GameState() {
-		//Create plots
-
-	}
-
-	public static GameState Instance
-	{
-		get 
-		{
-			if (instance == null)
-			{
-				instance = new GameState();
-			}
-			return instance;
-		}
-	}
-
 
 	public Plot createPlot() {
 		Plot p = Instantiate (GameManager.Instance.plot);
 		p.transform.SetParent(GameManager.Instance.panel.transform);
 		allPlots.Add (p);
 		return p;
+	}
+
+	public Plot getSomePlot() {
+		return allPlots [0];
 	}
 
 	public void registerAnimal(Animal a) {
@@ -80,7 +68,7 @@ public class GameState : MonoBehaviour {
 
 	void manageAnimals() {
 		foreach (Animal a in allAnimals) {
-			
+
 		}
 	}
 
@@ -102,10 +90,10 @@ public class GameState : MonoBehaviour {
 	public void iterateTurn() {
 		print ("Iterating turn");
 		if (preEndTurnChecks()) {
-		  turn += 1;
-		  managePlots ();
-		  manageAnimals ();
-		  fireRandomEvent ();
+			turn += 1;
+			managePlots ();
+			manageAnimals ();
+			fireRandomEvent ();
 		}
 	}
 }
