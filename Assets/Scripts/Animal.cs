@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Animal : MonoBehaviour
 {
@@ -7,22 +8,26 @@ public class Animal : MonoBehaviour
     SpecialTrait sizeTrait;
     List<BaseTrait> traits = new List<BaseTrait>();
 
-    public void Initialize(SpecialTrait species, SpecialTrait size)
+    public Sprite[] animals;
+    public GameObject animalPrefab;
+
+    public void Initialize(SpeciesTrait species, SizeTrait size)
     {
         speciesTrait = species;
         sizeTrait = size;
+
+        Image image = GetComponent<Image>();
+        image.sprite = animals[species.spriteIndex];
     }
 
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void AddTrait(BaseTrait trait)
@@ -42,8 +47,8 @@ public class Animal : MonoBehaviour
             return null;
         }
 
-        GameObject baby = new GameObject();
-        Animal babyAnimal = baby.AddComponent<Animal>();
+        GameObject baby = GameObject.Instantiate(animalPrefab);
+        Animal babyAnimal = baby.GetComponent<Animal>();
         babyAnimal.speciesTrait = speciesTrait;
 
         if (sizeTrait.inheritanceChance >= Random.Range(0f, 1.0f))
