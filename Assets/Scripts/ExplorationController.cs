@@ -23,7 +23,9 @@ public class ExplorationController : MonoBehaviour
 
     void Start()
     {
-        //party = List<Animal>() { }
+        //party = new List<Animal>() {
+        //    AnimalFactory.
+        //}
     }
 
     void Update()
