@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AnimalFactory {
+public class AnimalFactory : MonoBehaviour {
 
     public GameObject animalPrefab;
 
