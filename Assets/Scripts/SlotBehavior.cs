@@ -16,6 +16,8 @@ public class SlotBehavior : MonoBehaviour, IDropHandler{
 	{
 		if (!animal) {
 			DraggableBehaviourScript.ItemBeingDragged.transform.SetParent (transform);
+			DraggableBehaviourScript.ItemBeingDragged.transform.position = transform.position;
 		}
+
 	}
 }

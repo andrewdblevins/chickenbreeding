@@ -69,8 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Animal.cs" />
-    <Compile Include="Assets\Scripts\DraggableBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\ExplorationEvent.cs" />
+    <Compile Include="Assets\Scripts\AnimalFactory.cs" />
+    <Compile Include="Assets\Scripts\DraggableBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Plot.cs" />
     <Compile Include="Assets\Scripts\SlotBehavior.cs" />

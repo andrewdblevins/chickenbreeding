@@ -41,6 +41,19 @@ public class Animal : MonoBehaviour
         {
             return null;
         }
+
+        GameObject baby = new GameObject();
+        Animal babyAnimal = baby.AddComponent<Animal>();
+        babyAnimal.speciesTrait = speciesTrait;
+
+        if (sizeTrait.inheritanceChance >= Random.Range(0f, 1.0f))
+        {
+            babyAnimal.sizeTrait = sizeTrait;
+        } else
+        {
+            babyAnimal.sizeTrait = mate.sizeTrait;
+        }
+
         List<BaseTrait> babyTraits = new List<BaseTrait>();
         foreach (BaseTrait trait in traits)
         {
@@ -69,8 +82,8 @@ public class Animal : MonoBehaviour
                 babyTraits.Add(trait);
             }
         }
-        GameObject baby = new GameObject();
-        baby.AddComponent<Animal>().traits = babyTraits;
+
+        babyAnimal.traits = babyTraits;
         return baby;
     }
 

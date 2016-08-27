@@ -18,13 +18,10 @@ public class DraggableBehaviourScript : MonoBehaviour, IBeginDragHandler, IDragH
 
 	}
 		
-
 	public void OnDrag (PointerEventData eventData)
 	{
 		transform.position = Input.mousePosition;
 	}
-
-
 
 	public void OnEndDrag (PointerEventData eventData)
 	{
