@@ -7,7 +7,7 @@ public class Plot : MonoBehaviour, IDropHandler{
     public GameObject breedLeft;
     public GameObject breedRight;
 
-    void Breed()
+    public void Breed()
     {
         if (breedLeft != null && breedRight != null)
         {
