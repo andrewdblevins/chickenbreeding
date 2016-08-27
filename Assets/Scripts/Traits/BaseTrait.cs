@@ -3,10 +3,7 @@ using System.Collections.Generic;
 
 public class BaseTrait
 {
-    public int fightScore;
-    public int strengthScore;
-    public int trackingScore;
-    public int foodScore;
+    public Dictionary<string, int> attributes = new Dictionary<string, int>();
 
     public float inheritanceChance;
 

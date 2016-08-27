@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class TraitFactory {
-    Dictionary<string, BaseTrait> instantiatedTraits = new Dictionary<string, BaseTrait>();
+    static Dictionary<string, BaseTrait> instantiatedTraits = new Dictionary<string, BaseTrait>();
 
     enum Traits
     {
@@ -32,23 +32,31 @@ public class TraitFactory {
         Independent,
     }
 
+    enum Attribute
+    {
+        Fighting,
+        Strength,
+        Tracking,
+        Food,
+    }
+
     enum TraitClass
     {
         Size,
         Power,
     }
 
-    BaseTrait createTiny()
+    public static BaseTrait createTiny()
     {
         if (instantiatedTraits.ContainsKey(Traits.Tiny.ToString()))
         {
             return instantiatedTraits[Traits.Tiny.ToString()];
         }
         BaseTrait tiny = new BaseTrait();
-        tiny.fightScore = -1;
-        tiny.foodScore = 0;
-        tiny.strengthScore = 0;
-        tiny.trackingScore = 0;
+        tiny.attributes.Add(Attribute.Fighting.ToString(), -1);
+        tiny.attributes.Add(Attribute.Strength.ToString(), 0);
+        tiny.attributes.Add(Attribute.Tracking.ToString(), 0);
+        tiny.attributes.Add(Attribute.Food.ToString(), 0);
 
         tiny.inheritanceChance = 0.5f;
 
@@ -66,17 +74,18 @@ public class TraitFactory {
         return tiny;
     }
 
-    BaseTrait createSmall()
+    public static BaseTrait createSmall()
     {
         if (instantiatedTraits.ContainsKey(Traits.Small.ToString()))
         {
             return instantiatedTraits[Traits.Small.ToString()];
         }
         BaseTrait small = new BaseTrait();
-        small.fightScore = 0;
-        small.foodScore = 1;
-        small.strengthScore = 0;
-        small.trackingScore = 0;
+        small.attributes.Add(Attribute.Fighting.ToString(), 0);
+        small.attributes.Add(Attribute.Strength.ToString(), 0);
+        small.attributes.Add(Attribute.Tracking.ToString(), 0);
+        small.attributes.Add(Attribute.Food.ToString(), 1);
+
 
         small.inheritanceChance = 0.5f;
 
@@ -94,17 +103,17 @@ public class TraitFactory {
         return small;
     }
 
-    BaseTrait createMidsized()
+    public static BaseTrait createMidsized()
     {
         if (instantiatedTraits.ContainsKey(Traits.Midsized.ToString()))
         {
             return instantiatedTraits[Traits.Midsized.ToString()];
         }
         BaseTrait midsized = new BaseTrait();
-        midsized.fightScore = 1;
-        midsized.foodScore = 2;
-        midsized.strengthScore = 0;
-        midsized.trackingScore = 0;
+        midsized.attributes.Add(Attribute.Fighting.ToString(), 1);
+        midsized.attributes.Add(Attribute.Strength.ToString(), 0);
+        midsized.attributes.Add(Attribute.Tracking.ToString(), 0);
+        midsized.attributes.Add(Attribute.Food.ToString(), 2);
 
         midsized.inheritanceChance = 0.5f;
 
@@ -116,17 +125,17 @@ public class TraitFactory {
         return midsized;
     }
 
-    BaseTrait createLarge()
+    public static BaseTrait createLarge()
     {
         if (instantiatedTraits.ContainsKey(Traits.Large.ToString()))
         {
             return instantiatedTraits[Traits.Large.ToString()];
         }
         BaseTrait large = new BaseTrait();
-        large.fightScore = 1;
-        large.foodScore = 3;
-        large.strengthScore = 1;
-        large.trackingScore = 0;
+        large.attributes.Add(Attribute.Fighting.ToString(), 1);
+        large.attributes.Add(Attribute.Strength.ToString(), 1);
+        large.attributes.Add(Attribute.Tracking.ToString(), 0);
+        large.attributes.Add(Attribute.Food.ToString(), 3);
 
         large.inheritanceChance = 0.5f;
 
@@ -144,17 +153,17 @@ public class TraitFactory {
         return large;
     }
 
-    BaseTrait createHuge()
+    public static BaseTrait createHuge()
     {
         if (instantiatedTraits.ContainsKey(Traits.Huge.ToString()))
         {
             return instantiatedTraits[Traits.Huge.ToString()];
         }
         BaseTrait huge = new BaseTrait();
-        huge.fightScore = 2;
-        huge.foodScore = 4;
-        huge.strengthScore = 2;
-        huge.trackingScore = 0;
+        huge.attributes.Add(Attribute.Fighting.ToString(), 2);
+        huge.attributes.Add(Attribute.Strength.ToString(), 2);
+        huge.attributes.Add(Attribute.Tracking.ToString(), 0);
+        huge.attributes.Add(Attribute.Food.ToString(), 4);
 
         huge.inheritanceChance = 0.5f;
 
@@ -172,17 +181,17 @@ public class TraitFactory {
         return huge;
     }
 
-    BaseTrait createEnormous()
+    public static BaseTrait createEnormous()
     {
         if (instantiatedTraits.ContainsKey(Traits.Enormous.ToString()))
         {
             return instantiatedTraits[Traits.Enormous.ToString()];
         }
         BaseTrait enormous = new BaseTrait();
-        enormous.fightScore = 2;
-        enormous.foodScore = 4;
-        enormous.strengthScore = 2;
-        enormous.trackingScore = 0;
+        enormous.attributes.Add(Attribute.Fighting.ToString(), 3);
+        enormous.attributes.Add(Attribute.Strength.ToString(), 3);
+        enormous.attributes.Add(Attribute.Tracking.ToString(), 0);
+        enormous.attributes.Add(Attribute.Food.ToString(), 6);
 
         enormous.inheritanceChance = 0.5f;
 
@@ -200,17 +209,17 @@ public class TraitFactory {
         return enormous;
     }
 
-    BaseTrait createStrong()
+    public static BaseTrait createStrong()
     {
         if (instantiatedTraits.ContainsKey(Traits.Strong.ToString()))
         {
             return instantiatedTraits[Traits.Strong.ToString()];
         }
         BaseTrait strong = new BaseTrait();
-        strong.fightScore = 1;
-        strong.foodScore = 0;
-        strong.strengthScore = 2;
-        strong.trackingScore = 0;
+        strong.attributes.Add(Attribute.Fighting.ToString(), 1);
+        strong.attributes.Add(Attribute.Strength.ToString(), 2);
+        strong.attributes.Add(Attribute.Tracking.ToString(), 0);
+        strong.attributes.Add(Attribute.Food.ToString(), 0);
 
         strong.inheritanceChance = 0.5f;
 
@@ -226,17 +235,17 @@ public class TraitFactory {
         return strong;
     }
 
-    BaseTrait createWeak()
+    public static BaseTrait createWeak()
     {
         if (instantiatedTraits.ContainsKey(Traits.Weak.ToString()))
         {
             return instantiatedTraits[Traits.Weak.ToString()];
         }
         BaseTrait weak = new BaseTrait();
-        weak.fightScore = 1;
-        weak.foodScore = 0;
-        weak.strengthScore = 2;
-        weak.trackingScore = 0;
+        weak.attributes.Add(Attribute.Fighting.ToString(), -1);
+        weak.attributes.Add(Attribute.Strength.ToString(), -2);
+        weak.attributes.Add(Attribute.Tracking.ToString(), 0);
+        weak.attributes.Add(Attribute.Food.ToString(), 0);
 
         weak.inheritanceChance = 0.5f;
 
