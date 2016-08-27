@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class SizeFactory {
-    static Dictionary<string, BaseTrait> instantiatedTraits = new Dictionary<string, BaseTrait>();
+    static Dictionary<string, SizeTrait> instantiatedTraits = new Dictionary<string, SizeTrait>();
 
     enum Size : int
     {
@@ -14,7 +14,7 @@ public class SizeFactory {
         Enormous = 5,
     }
 
-    public static BaseTrait createTiny()
+    public static SizeTrait createTiny()
     {
         if (instantiatedTraits.ContainsKey(TraitFactory.Traits.Tiny.ToString()))
         {
@@ -43,7 +43,7 @@ public class SizeFactory {
         return tiny;
     }
 
-    public static BaseTrait createSmall()
+    public static SizeTrait createSmall()
     {
         if (instantiatedTraits.ContainsKey(TraitFactory.Traits.Small.ToString()))
         {
@@ -73,7 +73,7 @@ public class SizeFactory {
         return small;
     }
 
-    public static BaseTrait createMidsized()
+    public static SizeTrait createMidsized()
     {
         if (instantiatedTraits.ContainsKey(TraitFactory.Traits.Midsized.ToString()))
         {
@@ -96,7 +96,7 @@ public class SizeFactory {
         return midsized;
     }
 
-    public static BaseTrait createLarge()
+    public static SizeTrait createLarge()
     {
         if (instantiatedTraits.ContainsKey(TraitFactory.Traits.Large.ToString()))
         {
@@ -125,7 +125,7 @@ public class SizeFactory {
         return large;
     }
 
-    public static BaseTrait createHuge()
+    public static SizeTrait createHuge()
     {
         if (instantiatedTraits.ContainsKey(TraitFactory.Traits.Huge.ToString()))
         {
@@ -154,7 +154,7 @@ public class SizeFactory {
         return huge;
     }
 
-    public static BaseTrait createEnormous()
+    public static SizeTrait createEnormous()
     {
         if (instantiatedTraits.ContainsKey(TraitFactory.Traits.Enormous.ToString()))
         {

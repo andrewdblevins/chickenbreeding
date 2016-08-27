@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 public class SpeciesFactory {
-    static Dictionary<string, BaseTrait> instantiatedTraits = new Dictionary<string, BaseTrait>();
+    static Dictionary<string, SpeciesTrait> instantiatedTraits = new Dictionary<string, SpeciesTrait>();
 
     /** This should only be referenced by data classes. */
     public enum Species
@@ -13,7 +13,7 @@ public class SpeciesFactory {
 
     private static string SPECIES = "species";
 
-    public static BaseTrait createWolf()
+    public static SpeciesTrait createWolf()
     {
         if (instantiatedTraits.ContainsKey(Species.Wolf.ToString()))
         {
@@ -39,7 +39,7 @@ public class SpeciesFactory {
         return wolf;
     }
 
-    public static BaseTrait createRabbit()
+    public static SpeciesTrait createRabbit()
     {
         if (instantiatedTraits.ContainsKey(Species.Rabbit.ToString()))
         {
@@ -64,7 +64,7 @@ public class SpeciesFactory {
         return rabbit;
     }
 
-    public static BaseTrait createChicken()
+    public static SpeciesTrait createChicken()
     {
         if (instantiatedTraits.ContainsKey(Species.Chicken.ToString()))
         {
