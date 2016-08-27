@@ -20,6 +20,7 @@ public class SpeciesFactory {
             return instantiatedTraits[Species.Wolf.ToString()];
         }
         SpeciesTrait wolf = new SpeciesTrait();
+        wolf.spriteIndex = 5;
         wolf.attributes.Add(TraitFactory.Attribute.Fighting.ToString(), 1);
         wolf.attributes.Add(TraitFactory.Attribute.Strength.ToString(), 1);
         wolf.attributes.Add(TraitFactory.Attribute.Tracking.ToString(), 2);
@@ -46,6 +47,7 @@ public class SpeciesFactory {
             return instantiatedTraits[Species.Rabbit.ToString()];
         }
         SpeciesTrait rabbit = new SpeciesTrait();
+        rabbit.spriteIndex = 45;
         rabbit.attributes.Add(TraitFactory.Attribute.Fighting.ToString(), -1);
         rabbit.attributes.Add(TraitFactory.Attribute.Strength.ToString(), -1);
         rabbit.attributes.Add(TraitFactory.Attribute.Tracking.ToString(), 0);
@@ -71,6 +73,7 @@ public class SpeciesFactory {
             return instantiatedTraits[Species.Chicken.ToString()];
         }
         SpeciesTrait chicken = new SpeciesTrait();
+        chicken.spriteIndex = 35;
         chicken.attributes.Add(TraitFactory.Attribute.Fighting.ToString(), -1);
         chicken.attributes.Add(TraitFactory.Attribute.Strength.ToString(), -1);
         chicken.attributes.Add(TraitFactory.Attribute.Tracking.ToString(), 0);
