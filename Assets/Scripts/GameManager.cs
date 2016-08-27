@@ -88,7 +88,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void iterateTurn() {
-		print ("Iterating turn");
 		if (preEndTurnChecks()) {
 			turn += 1;
 			managePlots ();
