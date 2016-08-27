@@ -1,14 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-
+Project("{9639DD1F-565F-992C-A4DD-75885A64E4BF}") = "Chicken Breeding", "Assembly-CSharp.csproj", "{79E6FD48-646F-3AC9-4AEC-907CBB6EF500}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{79E6FD48-646F-3AC9-4AEC-907CBB6EF500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79E6FD48-646F-3AC9-4AEC-907CBB6EF500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79E6FD48-646F-3AC9-4AEC-907CBB6EF500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79E6FD48-646F-3AC9-4AEC-907CBB6EF500}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
