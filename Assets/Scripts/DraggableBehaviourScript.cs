@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class DraggableBehaviourScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
+public class DraggableBehaviourScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler{
 	public static GameObject ItemBeingDragged = null;
 	Vector3 StartPosition;
 	Transform StartParent;
@@ -30,5 +30,20 @@ public class DraggableBehaviourScript : MonoBehaviour, IBeginDragHandler, IDragH
 		if (transform.parent == StartParent) {
 			transform.position = StartPosition;
 		}
+	}
+
+	public void OnPointerEnter (PointerEventData eventData)
+	{
+		Animal animal;
+		if (gameObject.GetComponent<Animal>()) {
+			animal = (Animal)gameObject.GetComponent<Animal>();
+		}
+
+
+	}
+		
+	public void OnPointerExit (PointerEventData eventData)
+	{
+		Debug.Log("mouse leave");
 	}
 }
