@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour
 {
-    SpecialTrait speciesTrait;
+    public SpecialTrait speciesTrait;
     SpecialTrait sizeTrait;
     List<BaseTrait> traits = new List<BaseTrait>();
 
@@ -72,5 +72,20 @@ public class Animal : MonoBehaviour
         GameObject baby = new GameObject();
         baby.AddComponent<Animal>().traits = babyTraits;
         return baby;
+    }
+
+    public int GetAttributeScore(string attribute)
+    {
+        int score = 0;
+
+        score += speciesTrait.attributes[attribute];
+        score += sizeTrait.attributes[attribute];
+
+        foreach (BaseTrait t in traits)
+        {
+            score += t.attributes[attribute];
+        }
+
+        return score;
     }
 }
