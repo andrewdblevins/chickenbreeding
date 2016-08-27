@@ -47,6 +47,7 @@ public class TraitFactory {
     {
         Size,
         Power,
+        Speed,
     }
 
     public static BaseTrait createStrong()
@@ -97,5 +98,29 @@ public class TraitFactory {
 
         instantiatedTraits[Traits.Weak.ToString()] = weak;
         return weak;
+    }
+
+    public static BaseTrait createQuick()
+    {
+        if (instantiatedTraits.ContainsKey(Traits.Quick.ToString()))
+        {
+            return instantiatedTraits[Traits.Quick.ToString()];
+        }
+        BaseTrait quick = new BaseTrait();
+        quick.attributes.Add(Attribute.Fighting.ToString(), -1);
+        quick.attributes.Add(Attribute.Strength.ToString(), -2);
+        quick.attributes.Add(Attribute.Tracking.ToString(), 0);
+        quick.attributes.Add(Attribute.Food.ToString(), 0);
+
+        quick.inheritanceChance = 0.5f;
+
+        quick.name = Traits.Quick.ToString();
+        quick.type = Traits.Quick.ToString();
+        quick.traitClass = TraitClass.Speed.ToString();
+
+        quick.linkageMap.Add(Traits.Weak.ToString(), -0.1f);
+
+        instantiatedTraits[Traits.Quick.ToString()] = quick;
+        return quick;
     }
 }
