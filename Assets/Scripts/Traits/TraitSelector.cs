@@ -24,6 +24,10 @@ public static class TraitSelector
 	static float parentalBoost = 3.0f;
 	static float perAdditionalTraitChance = -1.0f;
 
+	public static List<BaseTrait> selectTraits(List<BaseTrait> mandatoryTraits) {
+		return selectTraits (mandatoryTraits, new List<BaseTrait> (), new List<BaseTrait> ());
+	}
+
 	public static List<BaseTrait> selectTraits(List<BaseTrait> mandatoryTraits, List<BaseTrait> firstParentTraits, List<BaseTrait> secondParentTraits) {
 		List<BaseTrait> inheritableTraits = new List<BaseTrait>();
 

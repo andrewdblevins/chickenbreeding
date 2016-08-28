@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AnimalFactory : MonoBehaviour {
 
@@ -11,30 +12,31 @@ public class AnimalFactory : MonoBehaviour {
 		Instance = this;
 	}
 
+	public GameObject createAnimal(SpeciesTrait species, SizeTrait size) {
+		GameObject pf = GameObject.Instantiate(animalPrefab);
+		Animal animal = pf.GetComponent<Animal>();
+
+		List<BaseTrait> allTraits = new List<BaseTrait> ();
+		allTraits.Add (species);
+		allTraits.Add (size);
+		List<BaseTrait> miscTraits = TraitSelector.selectTraits (allTraits);
+		animal.Initialize(species, size, miscTraits);
+
+		return pf;
+	}
+
     public GameObject createWolf()
     {
-        GameObject wolf = GameObject.Instantiate(animalPrefab);
-        Animal wolfAnimal = wolf.GetComponent<Animal>();
-        wolfAnimal.Initialize(SpeciesFactory.createWolf(), SizeFactory.createMidsized());
-        // TODO: add other traits- maybe randomized?
-        return wolf;
+        return createAnimal(SpeciesFactory.createWolf(), SizeFactory.createMidsized());
     }
 
     public GameObject createRabbit()
     {
-        GameObject rabbit = GameObject.Instantiate(animalPrefab);
-        Animal rabbitAnimal = rabbit.GetComponent<Animal>();
-        rabbitAnimal.Initialize(SpeciesFactory.createRabbit(), SizeFactory.createTiny());
-        // TODO: add other traits- maybe randomized?
-        return rabbit;
+        return createAnimal(SpeciesFactory.createRabbit(), SizeFactory.createTiny());
     }
 
     public GameObject createChicken()
     {
-        GameObject chicken = GameObject.Instantiate(animalPrefab);
-        Animal chickenAnimal = chicken.GetComponent<Animal>();
-        chickenAnimal.Initialize(SpeciesFactory.createChicken(), SizeFactory.createTiny());
-        // TODO: add other traits- maybe randomized?
-        return chicken;
+		return createAnimal(SpeciesFactory.createChicken(), SizeFactory.createTiny());
     }
 }

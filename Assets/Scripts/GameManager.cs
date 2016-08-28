@@ -19,9 +19,6 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        homeState = new HomeState();
-        homeState.Initialize();
-        activeState = homeState;
 
 		TraitFactory.createStrong ();
 		TraitFactory.createWeak ();
@@ -29,6 +26,10 @@ public class GameManager : MonoBehaviour {
 		TraitFactory.createAggressive ();
 		TraitFactory.createDocile ();
 		TraitFactory.createSpikes ();  
+
+		homeState = new HomeState();
+		homeState.Initialize();
+		activeState = homeState;
 	}
 
     internal void goExplore()

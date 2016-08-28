@@ -11,10 +11,15 @@ public class Animal : MonoBehaviour
     public Sprite[] animals;
     public GameObject animalPrefab;
 
-    public void Initialize(SpeciesTrait species, SizeTrait size)
+	public void Initialize(SpeciesTrait species, SizeTrait size) {
+		Initialize (species, size, new List<BaseTrait> ());
+	}
+
+	public void Initialize(SpeciesTrait species, SizeTrait size, List<BaseTrait> inputTraits)
     {
         speciesTrait = species;
         sizeTrait = size;
+		traits = inputTraits;
 
         Image image = GetComponent<Image>();
         if (image != null)
