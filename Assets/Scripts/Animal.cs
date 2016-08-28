@@ -147,7 +147,7 @@ public class Animal : MonoBehaviour
 
     public int GetAttributeScore(string attribute)
     {
-        int score = 0;
+        int score = 3;
 
 		score += SpeciesTrait.getAttributes(attribute);
 		score += SizeTrait.getAttributes(attribute);

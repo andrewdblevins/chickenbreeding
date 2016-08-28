@@ -34,7 +34,7 @@ public class Party
         foreach (GameObject partyMember in members)
         {
             Animal a = partyMember.GetComponent<Animal>();
-            score += a.GetAttributeScore(attribute);
+            score += Math.Max(a.GetAttributeScore(attribute), 0);
         }
         return score;
     }

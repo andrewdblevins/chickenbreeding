@@ -14,6 +14,7 @@ public class ExplorationEventFactory
         explorationEvents.Add(lost());
         explorationEvents.Add(bearCub());
         explorationEvents.Add(keenEyes());
+        explorationEvents.Add(captureChicken());
     }
 
 
@@ -121,6 +122,24 @@ public class ExplorationEventFactory
         e.options = new List<ExplorationEvent.Option>() {
             new ExplorationEvent.Option("Kill it", TraitFactory.Attribute.Fighting.ToString(), 2, new List<AnimalDef>() { rabbitAnimal}, new List<string>()),
             new ExplorationEvent.Option("Catch it", TraitFactory.Attribute.Tracking.ToString(), 6, new List<AnimalDef>() { rabbitAnimal}, new List<string>()),
+        };
+
+        return e;
+    }
+
+    public static ExplorationEvent captureChicken()
+    {
+        ExplorationEvent e = new ExplorationEvent();
+
+        e.precondition = new EventCondition(EventCondition.numKeenEyes, EventCondition.atLeast, 1);
+
+        GameObject obj = new GameObject();
+        Animal chicken = obj.AddComponent<Animal>();
+        chicken.Initialize(SpeciesFactory.createChicken(), SizeFactory.createTiny());
+
+        e.description = "You see a rabbit hiding in the bushes";
+        e.options = new List<ExplorationEvent.Option>() {
+            new ExplorationEvent.Option("sneek up on it", TraitFactory.Attribute.Tracking.ToString(), 2, new List<Animal>() { chicken}, new List<string>())
         };
 
         return e;
