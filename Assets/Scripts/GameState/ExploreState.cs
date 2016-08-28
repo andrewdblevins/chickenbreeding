@@ -41,7 +41,7 @@ public class ExploreState : BaseState {
                 state = State.Continue;
                 break;
             case State.Continue:
-				currentEvent = ExplorationEventFactory.getEvent(this.worldState);
+                currentEvent = RiverlandsExplorationEventFactory.GetInstance().getEvent(worldState);
                 for (int i = 0; i < currentEvent.options.Count; i++)
                 {
                     Debug.Log("   press " + (i + 1) + " to " + currentEvent.options[i].description);

@@ -160,17 +160,7 @@ public class Animal : MonoBehaviour
 
     public int GetAttributeScore(string attribute)
     {
-        int score = 3;
-
-		score += SpeciesTrait.getAttributes(attribute);
-		score += SizeTrait.getAttributes(attribute);
-
-        foreach (BaseTrait t in Traits)
-        {
-			score += t.getAttributes(attribute);
-        }
-
-        return score;
+        return def.GetAttributeScore(attribute);
     }
 
     public int GetFoodRequirement()
