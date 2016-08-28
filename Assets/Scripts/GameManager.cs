@@ -56,4 +56,9 @@ public class GameManager : MonoBehaviour {
     {
         activeState = homeState;
     }
+
+	public void AddFood(int food){
+		worldState.GetInventory ().CurFood += food;
+		print (worldState.GetInventory ().CurFood);
+	}
 }
