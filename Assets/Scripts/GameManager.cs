@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour {
         ExploreState exploreState = new ExploreState();
         exploreState.StartExploration(worldState);
         activeState = exploreState;
+        MyEventSystem.AdvanceSeasons();
     }
 
     void Awake () {
