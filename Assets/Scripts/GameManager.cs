@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
 		TraitFactory.createWeak ();
 		TraitFactory.createQuick ();
 		TraitFactory.createAggressive ();
+		TraitFactory.createDocile ();
 		TraitFactory.createSpikes ();  
 	}
 
