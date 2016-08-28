@@ -89,6 +89,11 @@ public class Animal : MonoBehaviour
         MyEventSystem.OnSeasonAdvance += GetOlder;
     }
 
+    void OnDestroy()
+    {
+        MyEventSystem.OnSeasonAdvance -= GetOlder;
+    }
+
     private void adjustScaleForAge()
     {
         switch (GetAge())
