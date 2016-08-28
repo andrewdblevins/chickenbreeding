@@ -107,7 +107,7 @@ public class ExploreState : BaseState {
             Debug.Log("you chose to " + option.description);
 			Reward reward = option.attempt(worldState.GetParty());
 
-            ExplorePanelBehavior.Instance.Results(currentEvent, this);
+            ExplorePanelBehavior.Instance.Results(reward, this);
             state = State.AfterEvent;
         }
     }

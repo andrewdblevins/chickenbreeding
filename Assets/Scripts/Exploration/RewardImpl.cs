@@ -19,12 +19,21 @@ public static class RewardImpl
 		public void grant(Party party) {
 			GameManager.Instance.worldState.GetInventory().AddAll(animals);
 		}
+
+        public override string ToString()
+        {
+            if (animals.Count > 0)
+            {
+                return "Success.  You have captured " + animals.Count + " " + animals[0].SpeciesTrait.name;
+            }
+            return "Success. All of your animals survived";
+        }
 	}
 
 	public class FoodReward : Reward
 	{
 
-		int foodCount;
+		protected int foodCount;
 
 		public FoodReward (int foodCount)
 		{
@@ -39,17 +48,29 @@ public static class RewardImpl
 				GameManager.Instance.worldState.GetInventory ().subtractFood (-this.foodCount);
 			}
 		}
-	}
+
+        public override string ToString()
+        {
+            return "The blood of your enemies is delicous.  You gained " + foodCount + " food";
+        }
+    }
 
 	public class FoodPenalty: FoodReward
 	{
 		public FoodPenalty (int foodCount) : base (-foodCount)
 		{
 		}
-	}
+
+        public override string ToString()
+        {
+            return "You lost " + foodCount + " food";
+        }
+    }
 
 	public class RandomAnimalPenalty : Reward
 	{
+        private string resultText;
+
 		public RandomAnimalPenalty ()
 		{
 		}
@@ -70,11 +91,19 @@ public static class RewardImpl
 					remaining += a.SpeciesTrait.name + ", ";
 				}
 				Debug.Log ("remaining: " + remaining);
-			} else {
+
+                resultText = "Billy the " + dyingAnimal.SpeciesTrait.name + " has died.";
+            } else {
 				Debug.Log ("All of your friends are already dead.  No one loves you.");
-				GameManager.Instance.GoHome ();
+                resultText = "All of your friends are already dead.  No one loves you.";
+                GameManager.Instance.GoHome ();
 			}
 		}
-	}
+
+        public override string ToString()
+        {
+            return resultText == null ? "One of your animals died" : resultText;
+        }
+    }
 }
 

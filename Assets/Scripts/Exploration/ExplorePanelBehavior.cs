@@ -32,9 +32,9 @@ public class ExplorePanelBehavior : MonoBehaviour {
 		this.gameObject.SetActive (true);
 	}
 
-    public void Results(ExplorationEvent currentEvent, ExploreState state)
+    public void Results(Reward reward, ExploreState state)
     {
-        gameObject.GetComponentInChildren<Text>().text = "This event is over, we will display result text here.";
+        gameObject.GetComponentInChildren<Text>().text = reward.ToString();
 
         GameObject goHomeButton = Instantiate(OptionButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
         goHomeButton.transform.SetParent(OptionPanel.transform);
