@@ -39,4 +39,13 @@ public class AnimalFactory : MonoBehaviour {
     {
 		return createAnimal(SpeciesFactory.createChicken(), SizeFactory.createTiny());
     }
+
+    public GameObject createFromDef(AnimalDef def)
+    {
+        GameObject animal = GameObject.Instantiate(animalPrefab);
+        Animal animalScript = animal.GetComponent<Animal>();
+        animalScript.Initialize(def.SpeciesTrait, def.SizeTrait);
+        animalScript.Traits = def.Traits;
+        return animal;
+    }
 }

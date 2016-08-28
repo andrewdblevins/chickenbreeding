@@ -19,22 +19,19 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        worldState = new WorldState();
+        AnimalFactory animalFactory = GetComponent<AnimalFactory>();
+        worldState.Initialize(animalFactory);
 
-		TraitFactory.createStrong ();
-		TraitFactory.createWeak ();
-		TraitFactory.createQuick ();
-		TraitFactory.createAggressive ();
-		TraitFactory.createDocile ();
-		TraitFactory.createSpikes ();  
+        TraitFactory.instantiateAllTraits();
 
-		homeState = new HomeState();
-		homeState.Initialize();
-		activeState = homeState;
+        homeState = new HomeState();
+        homeState.Initialize();
+        activeState = homeState;
 	}
 
     internal void goExplore()
     {
-        print("go explore clicked");
         ExploreState exploreState = new ExploreState();
         exploreState.StartExploration(worldState);
         activeState = exploreState;
