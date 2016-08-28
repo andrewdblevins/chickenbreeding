@@ -35,7 +35,6 @@ public class SizeFactory {
 
         tiny.linkageMap.Add(TraitFactory.Traits.Strong.ToString(), -0.4f);
         tiny.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), 0.4f);
-        tiny.linkageMap.Add(TraitFactory.Traits.SlowBreeding.ToString(), -0.4f);
         tiny.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), -0.4f);
         tiny.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 0.4f);
 
@@ -65,7 +64,6 @@ public class SizeFactory {
 
         small.linkageMap.Add(TraitFactory.Traits.Strong.ToString(), -0.2f);
         small.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), 0.2f);
-        small.linkageMap.Add(TraitFactory.Traits.SlowBreeding.ToString(), -0.2f);
         small.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), -0.2f);
         small.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 0.2f);
 
@@ -117,7 +115,6 @@ public class SizeFactory {
 
         large.linkageMap.Add(TraitFactory.Traits.Strong.ToString(), 0.2f);
         large.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), -0.2f);
-        large.linkageMap.Add(TraitFactory.Traits.SlowBreeding.ToString(), 0.2f);
         large.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 0.2f);
         large.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -0.2f);
 
@@ -146,7 +143,6 @@ public class SizeFactory {
 
         huge.linkageMap.Add(TraitFactory.Traits.Strong.ToString(), 0.4f);
         huge.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), -0.4f);
-        huge.linkageMap.Add(TraitFactory.Traits.SlowBreeding.ToString(), 0.4f);
         huge.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 0.4f);
         huge.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -0.4f);
 
@@ -175,7 +171,6 @@ public class SizeFactory {
 
         enormous.linkageMap.Add(TraitFactory.Traits.Strong.ToString(), 0.6f);
         enormous.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), -0.6f);
-        enormous.linkageMap.Add(TraitFactory.Traits.SlowBreeding.ToString(), 0.6f);
         enormous.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 0.6f);
         enormous.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -0.6f);
 
