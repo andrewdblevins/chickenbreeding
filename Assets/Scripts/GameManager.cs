@@ -27,12 +27,7 @@ public class GameManager : MonoBehaviour {
         homeState.Initialize();
         activeState = homeState;
 
-		TraitFactory.createStrong ();
-		TraitFactory.createWeak ();
-		TraitFactory.createQuick ();
-		TraitFactory.createAggressive ();
-		TraitFactory.createDocile ();
-		TraitFactory.createSpikes ();  
+		TraitFactory.instantiateAllTraits (); 
 
 		homeState = new HomeState();
 		homeState.Initialize();
