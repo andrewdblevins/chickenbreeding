@@ -39,10 +39,17 @@ public class ExplorationController : MonoBehaviour
                     rabbitAnimal,
                     chickenAnimal
                 };
+                string remaining = "";
+                foreach (Animal a in party)
+                {
+                    remaining += a.speciesTrait.name + ", ";
+                }
+                print("party: " + remaining);
                 state = State.Continue;
                 break;
             case State.Continue:
                 currentEvent = ExplorationEventFactory.createEvent();
+                print("=============================================");
                 print(currentEvent.description);
                 for (int i = 0; i < currentEvent.options.Count; i++)
                 {
@@ -75,6 +82,7 @@ public class ExplorationController : MonoBehaviour
         if (state == State.EncounterEvent && currentEvent != null && choice < currentEvent.options.Count)
         {
             ExplorationEvent.Option option = currentEvent.options[choice];
+            print("you chose to " + option.description);
             bool pass = option.attempt(party);
             if (pass)
             {
@@ -83,10 +91,23 @@ public class ExplorationController : MonoBehaviour
             } else
             {
                 print("You lose");
-                int index = Random.Range(1, party.Count);
-                print("1 of your " + party.Count + " animimals will die");
-                print("Billy the " + party[index].speciesTrait.name + " has died");
-                party.RemoveAt(index);
+                if (party.Count > 0)
+                {
+                    int index = Random.Range(0, party.Count);
+                    print("One of your " + party.Count + " animimals will die, the " + index + "th one");
+                    print("Billy the " + party[index].speciesTrait.name + " has died");
+                    party.RemoveAt(index);
+
+                    string remaining = "";
+                    foreach (Animal a in party)
+                    {
+                        remaining += a.speciesTrait.name + ", ";
+                    }
+                    print("remaining: " + remaining);
+                } else
+                {
+                    print("All of your friends are already dead.  No one loves you.");
+                }
             }
 
             state = State.ResolveEvent;
