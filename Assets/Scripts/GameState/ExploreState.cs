@@ -28,7 +28,6 @@ public class ExploreState : BaseState {
 
     public override void Step()
     {
-        Debug.Log("stepping exploratin");
         switch (state)
         {
             case State.Start:

@@ -2,12 +2,12 @@
 using System.Collections;
 
 public class WorldState : MonoBehaviour {
-    Party party = new Party();
+    public Party party;// = new Party();
     Inventory inventory = new Inventory();
 
     public void Initialize(AnimalFactory animalFactory)
     {
-        party = new Party();
+        //party = new Party();
         inventory = new Inventory();
         inventory.Initialize(animalFactory);
     }
@@ -24,6 +24,10 @@ public class WorldState : MonoBehaviour {
 
     public Party GetParty()
     {
+        if (party == null)
+        {
+            Debug.Log("WTF, where the party at?");
+        }
         return party;
     }
 
