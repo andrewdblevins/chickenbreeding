@@ -5,7 +5,7 @@ public class BaseTrait
 {
     public Dictionary<string, int> attributes = new Dictionary<string, int>();
 
-    public float inheritanceChance;
+    public float inheritanceChance = 0.0f;
 
     public string name;
     public string type;
