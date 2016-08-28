@@ -133,13 +133,13 @@ public class ExplorationEventFactory
 
         e.precondition = new EventCondition(EventCondition.numKeenEyes, EventCondition.atLeast, 1);
 
-        GameObject obj = new GameObject();
-        Animal chicken = obj.AddComponent<Animal>();
-        chicken.Initialize(SpeciesFactory.createChicken(), SizeFactory.createTiny());
+        AnimalDef chicken = new AnimalDef();
+        chicken.SizeTrait = SizeFactory.createTiny();
+        chicken.SpeciesTrait = SpeciesFactory.createChicken();
 
         e.description = "You see a rabbit hiding in the bushes";
         e.options = new List<ExplorationEvent.Option>() {
-            new ExplorationEvent.Option("sneek up on it", TraitFactory.Attribute.Tracking.ToString(), 2, new List<Animal>() { chicken}, new List<string>())
+            new ExplorationEvent.Option("sneek up on it", TraitFactory.Attribute.Tracking.ToString(), 2, new List<AnimalDef>() { chicken}, new List<string>())
         };
 
         return e;
