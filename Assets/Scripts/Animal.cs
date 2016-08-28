@@ -144,12 +144,12 @@ public class Animal : MonoBehaviour
     {
         int score = 0;
 
-        score += SpeciesTrait.attributes[attribute];
-        score += SizeTrait.attributes[attribute];
+		score += SpeciesTrait.getAttributes(attribute);
+		score += SizeTrait.getAttributes(attribute);
 
         foreach (BaseTrait t in Traits)
         {
-            score += t.attributes[attribute];
+			score += t.getAttributes(attribute);
         }
 
         return score;
