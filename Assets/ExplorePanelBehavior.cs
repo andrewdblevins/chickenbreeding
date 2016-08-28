@@ -34,5 +34,10 @@ public class ExplorePanelBehavior : MonoBehaviour {
 
 	public void Close(){
 		this.gameObject.SetActive (false);
+
+		foreach(Transform b in OptionPanel.transform){
+			Destroy(b.gameObject);
+		}
+
 	}
 }
