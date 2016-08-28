@@ -12,7 +12,11 @@ public class AnimalFactory : MonoBehaviour {
 		Instance = this;
 	}
 
-	public GameObject createAnimal(SpeciesTrait species, SizeTrait size) {
+    public GameObject createAnimal(SpeciesTrait species, SizeTrait size) {
+        return createAnimal(species, size, /* age */ 0);
+    }
+
+    public GameObject createAnimal(SpeciesTrait species, SizeTrait size, int age) { 
 		GameObject pf = GameObject.Instantiate(animalPrefab);
 		Animal animal = pf.GetComponent<Animal>();
 
@@ -20,7 +24,7 @@ public class AnimalFactory : MonoBehaviour {
 		allTraits.Add (species);
 		allTraits.Add (size);
 		List<BaseTrait> miscTraits = TraitSelector.selectTraits (allTraits);
-		animal.Initialize(species, size, miscTraits);
+		animal.Initialize(species, size, miscTraits, age);
 
 		return pf;
 	}
