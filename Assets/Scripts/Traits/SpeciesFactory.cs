@@ -6,47 +6,47 @@ public class SpeciesFactory {
     /** This should only be referenced by data classes. */
     public enum Species
     {
-        Cow, // 0
-        Lion, // 1
-        Turtle, // 2
-        Turkey, // 3
-        Lobster, // 4
-        Wolf, // 5
-        Bat, // 6
-        Bison, // 8
-        Bear, // 9
-        Bee, // 11
-        Crocodile, // 13
+		Cow, // 0 grasslands
+        Lion, // 1 savana
+        Turtle, // 2 riverlands
+        Turkey, // 3 forest
+        Lobster, // 4 riverlands
+        Wolf, // 5 everywhere
+        Bat, // 6 mountains
+        Bison, // 8 grasslands
+        Bear, // 9 forest, mountains
+        Bee, // 11 forest, grass
+		Crocodile, // 13 river
         Bulldog, // 14
-        Tiger, // 15
-        Deer,  // 17
-        Bluejay, // 18
-        Cat, // 19
-        Alligator, // 20
-        BaldEagle, // 21
-        Sheep, // 22
-        Panda, // 23
-        Fox, // 24
-        Elephant, // 25
-        Dog, // 26
-        Chicken, // 27
-        Gorilla, // 28
-        Owl, // 29
-        Horse, // 30
-        Frog, // 31
-        Giraffe, // 32
-        Moose, // 33
-        Mouse, // 34
-        Canary, // 35
-        Pig, // 36
-        Hippo, // 37
-        Donkey, // 38
-        Moneky, // 39
-        Duck, // 40
-        Snake, // 41
-        Penguin, // 42
-        Rhino, // 44
-        Rabbit, // 45
+        Tiger, // 15 jungle
+        Deer,  // 17 forest
+        Bluejay, // 18 forest
+        Cat, // 19 forest
+		Alligator, // 20 river
+        BaldEagle, // 21 mountains
+        Sheep, // 22 grass, mountains
+        Panda, // 23 jungle
+        Fox, // 24 forest
+        Elephant, // 25 savanah, jungle
+        Dog, // 26 
+        Chicken, // 27 grasslands
+        Gorilla, // 28 jungle
+        Owl, // 29 forest, grasslands
+        Horse, // 30 grasslands
+        Frog, // 31 riverlands
+        Giraffe, // 32 savanah
+        Moose, // 33 forest
+        Mouse, // 34 grasslands
+        Canary, // 35 forest
+        Pig, // 36 forest
+        Hippo, // 37 river
+        Donkey, // 38 grasslands
+        Monkey, // 39 jungle
+        Duck, // 40 riverlands
+        Snake, // 41 jungle
+        Penguin, // 42 riverlands
+        Rhino, // 44 savanah
+        Rabbit, // 45 grasslands
 
         //Ant, // 16
         //Ant, // 10
@@ -1015,7 +1015,7 @@ public class SpeciesFactory {
 
     public static SpeciesTrait createMoneky()
     {
-        string speciesString = Species.Moneky.ToString();
+        string speciesString = Species.Monkey.ToString();
         if (instantiatedTraits.ContainsKey(speciesString))
         {
             return instantiatedTraits[speciesString];
