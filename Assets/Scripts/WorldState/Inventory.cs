@@ -22,6 +22,12 @@ public class Inventory
         }
     }
 
+    public bool subtractFood(int amount)
+    {
+        curFood = Math.Max(0, curFood - amount);
+        return curFood > 0;
+    }
+
     public void Initialize(AnimalFactory animalFactory)
     {
         this.animalFactory = animalFactory;

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ExploreState : BaseState {
-    public enum State { Start, EncounterEvent, ResolveEvent, Continue };
+    public enum State { Start, EncounterEvent, AfterEvent, Continue, GoingHome };
 
     public State state = State.Start;
 
@@ -65,8 +65,12 @@ public class ExploreState : BaseState {
                     attempt(2);
                 }
                 break;
-            case State.ResolveEvent:
-                state = State.Continue;
+            case State.AfterEvent:
+                int partyFoodCost = worldState.GetParty().GetFoodRequirement();
+                state = worldState.GetInventory().subtractFood(partyFoodCost) ? State.Continue : State.GoingHome;
+                break;
+            case State.GoingHome:
+                Debug.Log("Time to go home");
                 break;
             default:
                 break;
@@ -112,7 +116,7 @@ public class ExploreState : BaseState {
                 }
             }
 
-            state = State.ResolveEvent;
+            state = State.AfterEvent;
         }
     }
 }

@@ -160,4 +160,9 @@ public class Animal : MonoBehaviour
         return score;
     }
 
+    public int GetFoodRequirement()
+    {
+        return def.SizeTrait.size;
+    }
+
 }

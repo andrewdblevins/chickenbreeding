@@ -38,4 +38,15 @@ public class Party
         }
         return score;
     }
+
+    public int GetFoodRequirement()
+    {
+        int requirement = 0;
+        foreach (GameObject partyMember in members)
+        {
+            Animal a = partyMember.GetComponent<Animal>();
+            requirement += a.GetFoodRequirement();
+        }
+        return requirement;
+    }
 }
