@@ -32,7 +32,12 @@ public class GameManager : MonoBehaviour {
 			//Get a plot
 			getSomePlot().addAnimal(AnimalFactory.Instance.createChicken());
 		}
-	  
+
+		TraitFactory.createStrong ();
+		TraitFactory.createWeak ();
+		TraitFactory.createQuick ();
+		TraitFactory.createAggressive ();
+		TraitFactory.createSpikes ();  
 	}
 
     internal void goExplore()
