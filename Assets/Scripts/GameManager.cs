@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager Instance;
 
-    private WorldState worldState = new WorldState();
+    public WorldState worldState = new WorldState();
 
     private HomeState homeState;
     private BaseState activeState;

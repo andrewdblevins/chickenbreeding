@@ -6,7 +6,7 @@ public class Party
 {
     List<GameObject> members = new List<GameObject>();
 
-    public void AddMemeber(GameObject obj)
+    public void AddMember(GameObject obj)
     {
         members.Add(obj);
     }
@@ -27,6 +27,17 @@ public class Party
         members.RemoveAt(index);
         return toDie;
     }
+
+	public HashSet<BaseTrait> getTraits() {
+		HashSet<BaseTrait> traits = new HashSet<BaseTrait>();
+		foreach (GameObject partyMember in members) {
+			Animal a = partyMember.GetComponent<Animal> ();
+			foreach (BaseTrait t in a.Traits) {
+				traits.Add (t);
+			}
+		}
+		return traits;
+	}
 
     public int GetAttributeScore(string attribute)
     {
