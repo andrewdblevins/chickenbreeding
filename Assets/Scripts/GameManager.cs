@@ -20,12 +20,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		TraitFactory.createStrong ();
-		TraitFactory.createWeak ();
-		TraitFactory.createQuick ();
-		TraitFactory.createAggressive ();
-		TraitFactory.createDocile ();
-		TraitFactory.createSpikes ();  
+		TraitFactory.instantiateAllTraits (); 
 
 		homeState = new HomeState();
 		homeState.Initialize();

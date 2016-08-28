@@ -60,6 +60,22 @@ public class TraitFactory {
         Loyalty,
     }
 
+	public static void instantiateAllTraits() {
+		TraitFactory.createStrong ();
+		TraitFactory.createWeak ();
+		TraitFactory.createQuick ();
+		TraitFactory.createAggressive ();
+		TraitFactory.createDocile ();
+		TraitFactory.createSpikes (); 
+		TraitFactory.createKeenEyes (); 
+		TraitFactory.createKeenSmell (); 
+		TraitFactory.createLoyal();
+		TraitFactory.createFlying();
+		TraitFactory.createHorned();
+		TraitFactory.createArmored();
+		TraitFactory.createIndependent();
+	}
+
     public static BaseTrait createStrong()
     {
         if (instantiatedTraits.ContainsKey(Traits.Strong.ToString()))
@@ -97,7 +113,7 @@ public class TraitFactory {
         weak.attributes.Add(Attribute.Tracking.ToString(), 0);
         weak.attributes.Add(Attribute.Food.ToString(), 0);
 
-        weak.inheritanceChance = 1.0f;
+        weak.inheritanceChance = 0.0f;
 
         weak.name = Traits.Weak.ToString();
         weak.type = Traits.Weak.ToString();
@@ -220,7 +236,7 @@ public class TraitFactory {
         flying.attributes.Add(Attribute.Tracking.ToString(), 2);
         flying.attributes.Add(Attribute.Food.ToString(), 0);
 
-        flying.inheritanceChance = -1.0f;
+        flying.inheritanceChance = -2.0f;
 
         flying.name = traitString;
         flying.type = traitString;
