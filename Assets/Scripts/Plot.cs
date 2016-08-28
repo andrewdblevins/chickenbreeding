@@ -11,11 +11,11 @@ public class Plot : MonoBehaviour, IDropHandler{
     {
         if (breedLeft != null && breedRight != null)
         {
-            print("have breeding animals");
             Animal leftAnimal = breedLeft.GetComponentInChildren<Animal>();
             Animal rightAnimal = breedRight.GetComponentInChildren<Animal>();
             if (leftAnimal != null && rightAnimal != null)
             {
+                print("have actual animals");
                 if (leftAnimal.CanBreedWith(rightAnimal))
                 {
                     GameObject baby = leftAnimal.breedWith(rightAnimal);

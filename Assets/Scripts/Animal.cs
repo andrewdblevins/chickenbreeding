@@ -47,10 +47,15 @@ public class Animal : MonoBehaviour
         }
     }
 
-    public void Initialize(SpeciesTrait species, SizeTrait size)
-    {
-        SpeciesTrait = species;
-        SizeTrait = size;
+	public void Initialize(SpeciesTrait species, SizeTrait size) {
+		Initialize (species, size, new List<BaseTrait> ());
+	}
+
+	public void Initialize(SpeciesTrait species, SizeTrait size, List<BaseTrait> inputTraits)
+	{
+		SpeciesTrait = species;
+		SizeTrait = size;
+		Traits = inputTraits;
 
         Image image = GetComponent<Image>();
         if (image != null)

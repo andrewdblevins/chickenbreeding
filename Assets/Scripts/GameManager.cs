@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour {
         AnimalFactory animalFactory = GetComponent<AnimalFactory>();
         worldState.Initialize(animalFactory);
 
-
         homeState = new HomeState();
         homeState.Initialize();
         activeState = homeState;
@@ -34,11 +33,14 @@ public class GameManager : MonoBehaviour {
 		TraitFactory.createAggressive ();
 		TraitFactory.createDocile ();
 		TraitFactory.createSpikes ();  
+
+		homeState = new HomeState();
+		homeState.Initialize();
+		activeState = homeState;
 	}
 
     internal void goExplore()
     {
-        print("go explore clicked");
         ExploreState exploreState = new ExploreState();
         exploreState.StartExploration(worldState);
         activeState = exploreState;
