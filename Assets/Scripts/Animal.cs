@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class Animal : MonoBehaviour
 {
     public SpecialTrait speciesTrait;
-    SpecialTrait sizeTrait;
-    List<BaseTrait> traits = new List<BaseTrait>();
+    public SpecialTrait sizeTrait;
+    public List<BaseTrait> traits = new List<BaseTrait>();
 
     public Sprite[] animals;
     public GameObject animalPrefab;
@@ -116,4 +116,5 @@ public class Animal : MonoBehaviour
 
         return score;
     }
+
 }
