@@ -15,9 +15,9 @@ public class ExplorationEvent {
 
         //TODO: penalty datatype?
 
-        public List<Animal> reward;
+        public List<AnimalDef> reward;
 
-        public Option(string description, string attribute, int passingScore, List<Animal> reward, List<BaseTrait> specialRequirements)
+        public Option(string description, string attribute, int passingScore, List<AnimalDef> reward, List<BaseTrait> specialRequirements)
         {
             this.description = description;
             this.attribute = attribute;

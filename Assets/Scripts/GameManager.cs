@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        worldState = new WorldState();
+        AnimalFactory animalFactory = GetComponent<AnimalFactory>();
+        worldState.Initialize(animalFactory);
+
+
         homeState = new HomeState();
         homeState.Initialize();
         activeState = homeState;

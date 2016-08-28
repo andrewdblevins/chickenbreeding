@@ -37,4 +37,13 @@ public class AnimalFactory : MonoBehaviour {
         // TODO: add other traits- maybe randomized?
         return chicken;
     }
+
+    public GameObject createFromDef(AnimalDef def)
+    {
+        GameObject animal = GameObject.Instantiate(animalPrefab);
+        Animal animalScript = animal.GetComponent<Animal>();
+        animalScript.Initialize(def.SpeciesTrait, def.SizeTrait);
+        animalScript.Traits = def.Traits;
+        return animal;
+    }
 }
