@@ -53,9 +53,9 @@ public class DraggableBehaviourScript : MonoBehaviour, IBeginDragHandler, IDragH
 			inspectManager.SetAttrText (attrText);
 
 			string traitText;
-			traitText = animal.sizeTrait.name.ToString () + "\n";
-			traitText = traitText + animal.speciesTrait.name.ToString() + "\n";
-			foreach (BaseTrait t in animal.traits) {
+			traitText = animal.SizeTrait.name.ToString () + "\n";
+			traitText = traitText + animal.SpeciesTrait.name.ToString() + "\n";
+			foreach (BaseTrait t in animal.Traits) {
 				traitText = traitText + t.name.ToString() + "\n";
 			}
 

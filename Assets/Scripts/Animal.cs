@@ -4,22 +4,58 @@ using UnityEngine.UI;
 
 public class Animal : MonoBehaviour
 {
-    public SpecialTrait speciesTrait;
-    public SpecialTrait sizeTrait;
-    public List<BaseTrait> traits = new List<BaseTrait>();
-
+    private AnimalDef def = new AnimalDef();
     public Sprite[] animals;
     public GameObject animalPrefab;
+
+    public SpeciesTrait SpeciesTrait
+    {
+        get
+        {
+            return def.SpeciesTrait;
+        }
+
+        set
+        {
+            def.SpeciesTrait = value;
+        }
+    }
+
+    public SizeTrait SizeTrait
+    {
+        get
+        {
+            return def.SizeTrait;
+        }
+
+        set
+        {
+            def.SizeTrait = value;
+        }
+    }
+
+    public List<BaseTrait> Traits
+    {
+        get
+        {
+            return def.Traits;
+        }
+
+        set
+        {
+            def.Traits = value;
+        }
+    }
 
 	public void Initialize(SpeciesTrait species, SizeTrait size) {
 		Initialize (species, size, new List<BaseTrait> ());
 	}
 
 	public void Initialize(SpeciesTrait species, SizeTrait size, List<BaseTrait> inputTraits)
-    {
-        speciesTrait = species;
-        sizeTrait = size;
-		traits = inputTraits;
+	{
+		SpeciesTrait = species;
+		SizeTrait = size;
+		Traits = inputTraits;
 
         Image image = GetComponent<Image>();
         if (image != null)
@@ -40,12 +76,12 @@ public class Animal : MonoBehaviour
 
     public void AddTrait(BaseTrait trait)
     {
-        traits.Add(trait);
+        Traits.Add(trait);
     }
 
     public bool CanBreedWith(Animal mate)
     {
-        return speciesTrait.isCompatible(mate.speciesTrait) && sizeTrait.isCompatible(mate.sizeTrait);
+        return SpeciesTrait.isCompatible(mate.SpeciesTrait) && SizeTrait.isCompatible(mate.SizeTrait);
     }
 
     public GameObject breedWith (Animal mate)
@@ -59,21 +95,21 @@ public class Animal : MonoBehaviour
         Animal babyAnimal = baby.GetComponent<Animal>();
 
         List<BaseTrait> mandatoryTraits = new List<BaseTrait>();
-        babyAnimal.speciesTrait = speciesTrait;
-		mandatoryTraits.Add(speciesTrait);
+        babyAnimal.SpeciesTrait = SpeciesTrait;
+		mandatoryTraits.Add(SpeciesTrait);
 
 		//TODO: Something about this doesn't quite make sense for the size trait
-		if (sizeTrait.getInheritanceChance(mandatoryTraits) >= Random.Range(0f, 1.0f))
+		if (SizeTrait.getInheritanceChance(mandatoryTraits) >= Random.Range(0f, 1.0f))
         {
-            babyAnimal.sizeTrait = sizeTrait;
-			mandatoryTraits.Add(sizeTrait);
+            babyAnimal.SizeTrait = SizeTrait;
+			mandatoryTraits.Add(SizeTrait);
         } else
         {
-            babyAnimal.sizeTrait = mate.sizeTrait;
-			mandatoryTraits.Add(mate.sizeTrait);
+            babyAnimal.SizeTrait = mate.SizeTrait;
+			mandatoryTraits.Add(mate.SizeTrait);
         }
 
-		babyAnimal.traits = TraitSelector.selectTraits (mandatoryTraits, this.traits, mate.traits);
+		babyAnimal.Traits = TraitSelector.selectTraits (mandatoryTraits, this.Traits, mate.Traits);
 //
 //        List<BaseTrait> babyTraits = new List<BaseTrait>();
 //        foreach (BaseTrait trait in traits)
@@ -113,10 +149,10 @@ public class Animal : MonoBehaviour
     {
         int score = 0;
 
-		score += speciesTrait.getAttributes(attribute);
-		score += sizeTrait.getAttributes(attribute);
+		score += SpeciesTrait.getAttributes(attribute);
+		score += SizeTrait.getAttributes(attribute);
 
-        foreach (BaseTrait t in traits)
+        foreach (BaseTrait t in Traits)
         {
 			score += t.getAttributes(attribute);
         }
