@@ -27,7 +27,6 @@ public class ExploreState : BaseState {
 
     public override void Step()
     {
-        print("Explore state step");
         switch (state)
         {
             case State.Start:
