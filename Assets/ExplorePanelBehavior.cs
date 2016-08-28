@@ -15,7 +15,7 @@ public class ExplorePanelBehavior : MonoBehaviour {
 		this.gameObject.SetActive (false);
 	}
 
-	public void Draw(ExplorationEvent currentEvent){
+	public void Draw(ExplorationEvent currentEvent, ExploreState state){
 		gameObject.GetComponentInChildren<Text> ().text = currentEvent.description;
 
 			
@@ -23,6 +23,8 @@ public class ExplorePanelBehavior : MonoBehaviour {
 			GameObject button = Instantiate (OptionButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
 			button.transform.SetParent (OptionPanel.transform);
 			button.GetComponentInChildren<Text>().text = currentEvent.options [i].description;
+			button.gameObject.GetComponent<OptionButtonBehavior> ().optionNum = i;
+			button.gameObject.GetComponent<OptionButtonBehavior> ().state = state;
 
 		}
 				

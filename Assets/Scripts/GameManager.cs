@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
         homeState = new HomeState();
         homeState.Initialize();
         activeState = homeState;
+
+		ExplorationEventFactory.init ();
 	}
 
     internal void goExplore()
