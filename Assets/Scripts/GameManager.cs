@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
 		TraitFactory.createWeak ();
 		TraitFactory.createQuick ();
 		TraitFactory.createAggressive ();
+		TraitFactory.createDocile ();
 		TraitFactory.createSpikes ();  
 	}
 
@@ -51,5 +52,10 @@ public class GameManager : MonoBehaviour {
     public void iterateTurn()
     {
         homeState.iterateTurn();
+    }
+
+    internal void GoHome()
+    {
+        activeState = homeState;
     }
 }

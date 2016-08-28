@@ -8,8 +8,7 @@ public class ExploreState : BaseState {
 
     public ExplorationEvent currentEvent;
 
-    // TODO initialize this using start exploration, not by creating a thing here.
-    WorldState worldState = new WorldState();
+    WorldState worldState;
 
     //new exploration event
 
@@ -22,11 +21,14 @@ public class ExploreState : BaseState {
 
     public void StartExploration(WorldState worldState)
     {
+        Debug.Log("starting exploration");
         this.worldState = worldState;
+        state = State.Start;
     }
 
     public override void Step()
     {
+        Debug.Log("stepping exploratin");
         switch (state)
         {
             case State.Start:
@@ -34,18 +36,18 @@ public class ExploreState : BaseState {
                 foreach (GameObject partyMember in worldState.GetParty().GetMembers())
                 {
                     Animal a = partyMember.GetComponent<Animal>();
-                    remaining += a.speciesTrait.name + ", ";
+                    remaining += a.SpeciesTrait.name + ", ";
                 }
-                print("party: " + remaining);
+                Debug.Log("party: " + remaining);
                 state = State.Continue;
                 break;
             case State.Continue:
                 currentEvent = ExplorationEventFactory.createEvent();
-                print("=============================================");
-                print(currentEvent.description);
+                Debug.Log("=============================================");
+                Debug.Log(currentEvent.description);
                 for (int i = 0; i < currentEvent.options.Count; i++)
                 {
-                    print("   press " + (i + 1) + " to " + currentEvent.options[i].description);
+                    Debug.Log("   press " + (i + 1) + " to " + currentEvent.options[i].description);
                 }
                 state = State.EncounterEvent;
                 break;
@@ -76,36 +78,37 @@ public class ExploreState : BaseState {
         if (state == State.EncounterEvent && currentEvent != null && choice < currentEvent.options.Count)
         {
             ExplorationEvent.Option option = currentEvent.options[choice];
-            print("you chose to " + option.description);
+            Debug.Log("you chose to " + option.description);
             bool pass = option.attempt(worldState.GetParty());
             if (pass)
             {
-                print("You win");
+                Debug.Log("You win");
                 worldState.GetInventory().AddAll(option.reward);
             }
             else
             {
-                print("You lose");
+                Debug.Log("You lose");
                 if (worldState.GetParty().Size() > 0)
                 {
                     Party party = worldState.GetParty();
                     int index = Random.Range(0, party.Size());
-                    print("One of your " + party.Size() + " animimals will die, the " + index + "th one");
+                    Debug.Log("One of your " + party.Size() + " animimals will die, the " + index + "th one");
                     GameObject toDie = party.RemoveMember(index);
                     Animal dyingAnimal = toDie.GetComponent<Animal>();
-                    print("Billy the " + dyingAnimal.speciesTrait.name + " has died");
+                    Debug.Log("Billy the " + dyingAnimal.SpeciesTrait.name + " has died");
 
                     string remaining = "";
                     foreach (GameObject partyMember in party.GetMembers())
                     {
                         Animal a = partyMember.GetComponent<Animal>();
-                        remaining += a.speciesTrait.name + ", ";
+                        remaining += a.SpeciesTrait.name + ", ";
                     }
-                    print("remaining: " + remaining);
+                    Debug.Log("remaining: " + remaining);
                 }
                 else
                 {
-                    print("All of your friends are already dead.  No one loves you.");
+                    Debug.Log("All of your friends are already dead.  No one loves you.");
+                    GameManager.Instance.GoHome();
                 }
             }
 

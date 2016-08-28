@@ -32,9 +32,9 @@ public class SpeciesFactory {
         wolf.type = Species.Wolf.ToString();
         wolf.traitClass = SPECIES;
 
-        wolf.linkageMap.Add(TraitFactory.Traits.Midsized.ToString(), 0.3f);
-        wolf.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 0.2f);
-        wolf.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 0.1f);
+        wolf.linkageMap.Add(TraitFactory.Traits.Midsized.ToString(), 3.0f);
+        wolf.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 2.0f);
+        wolf.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 1.0f);
 
         instantiatedTraits[Species.Wolf.ToString()] = wolf;
         return wolf;
@@ -59,8 +59,8 @@ public class SpeciesFactory {
         rabbit.type = Species.Rabbit.ToString();
         rabbit.traitClass = SPECIES;
 
-        rabbit.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 0.3f);
-        rabbit.linkageMap.Add(TraitFactory.Traits.Tiny.ToString(), 0.6f);
+        rabbit.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 3.0f);
+        rabbit.linkageMap.Add(TraitFactory.Traits.Tiny.ToString(), 6.0f);
 
         instantiatedTraits[Species.Rabbit.ToString()] = rabbit;
         return rabbit;
@@ -85,7 +85,7 @@ public class SpeciesFactory {
         chicken.type = Species.Chicken.ToString();
         chicken.traitClass = SPECIES;
 
-        chicken.linkageMap.Add(TraitFactory.Traits.Tiny.ToString(), 0.6f);
+        chicken.linkageMap.Add(TraitFactory.Traits.Tiny.ToString(), 6.0f);
 
         instantiatedTraits[Species.Chicken.ToString()] = chicken;
         return chicken;

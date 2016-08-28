@@ -78,8 +78,8 @@ public class TraitFactory {
         strong.type = Traits.Strong.ToString();
         strong.traitClass = TraitClass.Power.ToString();
 
-        strong.linkageMap.Add(Traits.Slow.ToString(), 1.0f);
-        strong.linkageMap.Add(Traits.Quick.ToString(), -1.0f);
+        strong.linkageMap.Add(Traits.Slow.ToString(), 3.0f);
+        strong.linkageMap.Add(Traits.Quick.ToString(), -3.0f);
 
         instantiatedTraits[Traits.Strong.ToString()] = strong;
         return strong;
@@ -97,13 +97,13 @@ public class TraitFactory {
         weak.attributes.Add(Attribute.Tracking.ToString(), 0);
         weak.attributes.Add(Attribute.Food.ToString(), 0);
 
-        weak.inheritanceChance = 2.0f;
+        weak.inheritanceChance = 1.0f;
 
         weak.name = Traits.Weak.ToString();
         weak.type = Traits.Weak.ToString();
         weak.traitClass = TraitClass.Power.ToString();
 
-        weak.linkageMap.Add(Traits.Quick.ToString(), 0.9f);
+        weak.linkageMap.Add(Traits.Quick.ToString(), 2.0f);
 
         instantiatedTraits[Traits.Weak.ToString()] = weak;
         return weak;
@@ -127,7 +127,7 @@ public class TraitFactory {
         quick.type = Traits.Quick.ToString();
         quick.traitClass = TraitClass.Speed.ToString();
 
-        quick.linkageMap.Add(Traits.Weak.ToString(), 0.9f);
+        quick.linkageMap.Add(Traits.Weak.ToString(), 2.0f);
 
         instantiatedTraits[Traits.Quick.ToString()] = quick;
         return quick;
@@ -169,14 +169,14 @@ public class TraitFactory {
         aggressive.attributes.Add(Attribute.Tracking.ToString(), 1);
         aggressive.attributes.Add(Attribute.Food.ToString(), 0);
 
-        aggressive.inheritanceChance = 0.1f;
+//        aggressive.inheritanceChance = 0.1f;
 
         aggressive.name = Traits.Aggressive.ToString();
         aggressive.type = Traits.Aggressive.ToString();
         aggressive.traitClass = TraitClass.Aggression.ToString();
 
-        aggressive.linkageMap.Add(Traits.Independent.ToString(), 0.1f);
-        aggressive.linkageMap.Add(Traits.Loyal.ToString(), -0.2f);
+        aggressive.linkageMap.Add(Traits.Independent.ToString(), 1.0f);
+        aggressive.linkageMap.Add(Traits.Loyal.ToString(), -2.0f);
 
         instantiatedTraits[Traits.Aggressive.ToString()] = aggressive;
         return aggressive;
@@ -195,13 +195,13 @@ public class TraitFactory {
         docile.attributes.Add(Attribute.Tracking.ToString(), -2);
         docile.attributes.Add(Attribute.Food.ToString(), 0);
 
-        docile.inheritanceChance = 0.1f;
+//        docile.inheritanceChance = 0.1f;
 
         docile.name = traitString;
         docile.type = traitString;
         docile.traitClass = TraitClass.Aggression.ToString();
 
-        docile.linkageMap.Add(Traits.Independent.ToString(), -0.2f);
+        docile.linkageMap.Add(Traits.Independent.ToString(), -2.0f);
 
         instantiatedTraits[traitString] = docile;
         return docile;
@@ -220,14 +220,14 @@ public class TraitFactory {
         flying.attributes.Add(Attribute.Tracking.ToString(), 2);
         flying.attributes.Add(Attribute.Food.ToString(), 0);
 
-        flying.inheritanceChance = 0.1f;
+        flying.inheritanceChance = -1.0f;
 
         flying.name = traitString;
         flying.type = traitString;
         flying.traitClass = null;
 
-        flying.linkageMap.Add(Traits.Quick.ToString(), 0.2f);
-        flying.linkageMap.Add(Traits.KeenEyes.ToString(), 0.4f);
+        flying.linkageMap.Add(Traits.Quick.ToString(), 2.0f);
+        flying.linkageMap.Add(Traits.KeenEyes.ToString(), 1.0f);
 
         instantiatedTraits[traitString] = flying;
         return flying;
@@ -246,13 +246,13 @@ public class TraitFactory {
         keenEyes.attributes.Add(Attribute.Tracking.ToString(), 4);
         keenEyes.attributes.Add(Attribute.Food.ToString(), 0);
 
-        keenEyes.inheritanceChance = 0.1f;
+//        keenEyes.inheritanceChance = 0.1f;
 
         keenEyes.name = traitString;
         keenEyes.type = traitString;
         keenEyes.traitClass = null;
 
-        keenEyes.linkageMap.Add(Traits.Flying.ToString(), 0.1f);
+        keenEyes.linkageMap.Add(Traits.Flying.ToString(), 1.0f);
 
         instantiatedTraits[traitString] = keenEyes;
         return keenEyes;
@@ -271,14 +271,14 @@ public class TraitFactory {
         armored.attributes.Add(Attribute.Tracking.ToString(), 0);
         armored.attributes.Add(Attribute.Food.ToString(), 0);
 
-        armored.inheritanceChance = 0.1f;
+//        armored.inheritanceChance = 0.1f;
 
         armored.name = traitString;
         armored.type = traitString;
         armored.traitClass = null;
 
-        armored.linkageMap.Add(Traits.Strong.ToString(), 0.4f);
-        armored.linkageMap.Add(Traits.Quick.ToString(), -0.2f);
+        armored.linkageMap.Add(Traits.Strong.ToString(), 4.0f);
+        armored.linkageMap.Add(Traits.Quick.ToString(), -2.0f);
 
         instantiatedTraits[traitString] = armored;
         return armored;
@@ -297,15 +297,15 @@ public class TraitFactory {
         spikes.attributes.Add(Attribute.Tracking.ToString(), 0);
         spikes.attributes.Add(Attribute.Food.ToString(), 0);
 
-        spikes.inheritanceChance = 0.1f;
+//        spikes.inheritanceChance = 0.1f;
 
         spikes.name = traitString;
         spikes.type = traitString;
         spikes.traitClass = null;
 
-        spikes.linkageMap.Add(Traits.Strong.ToString(), 0.2f);
-        spikes.linkageMap.Add(Traits.Quick.ToString(), -0.1f);
-        spikes.linkageMap.Add(Traits.Aggressive.ToString(), 0.1f);
+        spikes.linkageMap.Add(Traits.Strong.ToString(), 2.0f);
+        spikes.linkageMap.Add(Traits.Quick.ToString(), -1.0f);
+        spikes.linkageMap.Add(Traits.Aggressive.ToString(), 1.0f);
 
         instantiatedTraits[traitString] = spikes;
         return spikes;
@@ -324,7 +324,7 @@ public class TraitFactory {
         keenSmell.attributes.Add(Attribute.Tracking.ToString(), 4);
         keenSmell.attributes.Add(Attribute.Food.ToString(), 0);
 
-        keenSmell.inheritanceChance = 0.1f;
+//        keenSmell.inheritanceChance = 0.1f;
 
         keenSmell.name = traitString;
         keenSmell.type = traitString;
@@ -344,17 +344,17 @@ public class TraitFactory {
         BaseTrait horned = new BaseTrait();
         horned.attributes.Add(Attribute.Fighting.ToString(), 3);
         horned.attributes.Add(Attribute.Strength.ToString(), 1);
-        horned.attributes.Add(Attribute.Tracking.ToString(), 0);
-        horned.attributes.Add(Attribute.Food.ToString(), 0);
-
-        horned.inheritanceChance = 0.1f;
+//        horned.attributes.Add(Attribute.Tracking.ToString(), 0);
+//        horned.attributes.Add(Attribute.Food.ToString(), 0);
+//
+//        horned.inheritanceChance = 0.1f;
 
         horned.name = traitString;
         horned.type = traitString;
         horned.traitClass = null;
 
-        horned.linkageMap.Add(Traits.Armored.ToString(), 0.1f);
-        horned.linkageMap.Add(Traits.Aggressive.ToString(), 0.1f);
+        horned.linkageMap.Add(Traits.Armored.ToString(), 1.0f);
+        horned.linkageMap.Add(Traits.Aggressive.ToString(), 1.0f);
 
         instantiatedTraits[traitString] = horned;
         return horned;
@@ -373,14 +373,14 @@ public class TraitFactory {
         loyalty.attributes.Add(Attribute.Tracking.ToString(), 1);
         loyalty.attributes.Add(Attribute.Food.ToString(), 0);
 
-        loyalty.inheritanceChance = 0.1f;
+//        loyalty.inheritanceChance = 0.1f;
 
         loyalty.name = traitString;
         loyalty.type = traitString;
         loyalty.traitClass = TraitClass.Loyalty.ToString();
 
-        loyalty.linkageMap.Add(Traits.Docile.ToString(), 0.1f);
-        loyalty.linkageMap.Add(Traits.Aggressive.ToString(), -0.1f);
+        loyalty.linkageMap.Add(Traits.Docile.ToString(), 1.0f);
+        loyalty.linkageMap.Add(Traits.Aggressive.ToString(), -1.0f);
 
         instantiatedTraits[traitString] = loyalty;
         return loyalty;
@@ -399,14 +399,14 @@ public class TraitFactory {
         independent.attributes.Add(Attribute.Tracking.ToString(), 0);
         independent.attributes.Add(Attribute.Food.ToString(), 0);
 
-        independent.inheritanceChance = 0.1f;
+//        independent.inheritanceChance = 0.1f;
 
         independent.name = traitString;
         independent.type = traitString;
         independent.traitClass = TraitClass.Loyalty.ToString();
 
-        independent.linkageMap.Add(Traits.Docile.ToString(), -0.2f);
-        independent.linkageMap.Add(Traits.Aggressive.ToString(), 0.2f);
+        independent.linkageMap.Add(Traits.Docile.ToString(), -2.0f);
+        independent.linkageMap.Add(Traits.Aggressive.ToString(), 2.0f);
 
         instantiatedTraits[traitString] = independent;
         return independent;

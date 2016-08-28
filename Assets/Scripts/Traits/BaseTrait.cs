@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class BaseTrait
 {
+	//TODO: This should really be private
     public Dictionary<string, int> attributes = new Dictionary<string, int>();
 
     public float inheritanceChance = 0.0f;
@@ -10,6 +11,24 @@ public class BaseTrait
     public string name;
     public string type;
     public string traitClass;
+
+	public int getAttributes(string key) {
+		int outValue;
+		attributes.TryGetValue (key, out outValue);
+		return outValue;
+	}
+
+	public void addLinkage(TraitFactory.Traits trt) {
+		addLinkage (trt, 1.0f);
+	}
+
+	public void addLinkage(TraitFactory.Traits trt, float weight) {
+		addLinkage (trt.ToString(), weight);
+	}
+
+	public void addLinkage(string trt, float weight) {
+		this.linkageMap.Add (trt, weight);
+	}
 
     public float getLinkageChance(List<BaseTrait> traits)
     {
