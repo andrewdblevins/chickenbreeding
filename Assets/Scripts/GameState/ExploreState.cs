@@ -28,7 +28,6 @@ public class ExploreState : BaseState {
 
     public override void Step()
     {
-        Debug.Log("stepping exploratin");
         switch (state)
         {
             case State.Start:
@@ -42,13 +41,12 @@ public class ExploreState : BaseState {
                 state = State.Continue;
                 break;
             case State.Continue:
-                currentEvent = ExplorationEventFactory.createEvent();
-                Debug.Log("=============================================");
-                Debug.Log(currentEvent.description);
+				currentEvent = ExplorationEventFactory.getEvent(this.worldState);
                 for (int i = 0; i < currentEvent.options.Count; i++)
                 {
                     Debug.Log("   press " + (i + 1) + " to " + currentEvent.options[i].description);
                 }
+				ExplorePanelBehavior.Instance.Draw (currentEvent,this);
                 state = State.EncounterEvent;
                 break;
             case State.EncounterEvent:
@@ -70,7 +68,8 @@ public class ExploreState : BaseState {
                 state = worldState.GetInventory().subtractFood(partyFoodCost) ? State.Continue : State.GoingHome;
                 break;
             case State.GoingHome:
-                Debug.Log("Time to go home");
+                Debug.Log("Out of food, time to go home");
+                GameManager.Instance.GoHome();
                 break;
             default:
                 break;
@@ -79,44 +78,12 @@ public class ExploreState : BaseState {
 
     public void attempt(int choice)
     {
+		ExplorePanelBehavior.Instance.Close ();
         if (state == State.EncounterEvent && currentEvent != null && choice < currentEvent.options.Count)
         {
             ExplorationEvent.Option option = currentEvent.options[choice];
             Debug.Log("you chose to " + option.description);
 			Reward reward = option.attempt(worldState.GetParty());
-//
-//            bool pass = option.attempt(worldState.GetParty());
-//            if (pass)
-//            {
-//                Debug.Log("You win");
-//                worldState.GetInventory().AddAll(option.reward);
-//            }
-//            else
-//            {
-//                Debug.Log("You lose");
-//                if (worldState.GetParty().Size() > 0)
-//                {
-//                    Party party = worldState.GetParty();
-//                    int index = Random.Range(0, party.Size());
-//                    Debug.Log("One of your " + party.Size() + " animimals will die, the " + index + "th one");
-//                    GameObject toDie = party.RemoveMember(index);
-//                    Animal dyingAnimal = toDie.GetComponent<Animal>();
-//                    Debug.Log("Billy the " + dyingAnimal.SpeciesTrait.name + " has died");
-//
-//                    string remaining = "";
-//                    foreach (GameObject partyMember in party.GetMembers())
-//                    {
-//                        Animal a = partyMember.GetComponent<Animal>();
-//                        remaining += a.SpeciesTrait.name + ", ";
-//                    }
-//                    Debug.Log("remaining: " + remaining);
-//                }
-//                else
-//                {
-//                    Debug.Log("All of your friends are already dead.  No one loves you.");
-//                    GameManager.Instance.GoHome();
-//                }
-//            }
 
             state = State.AfterEvent;
         }

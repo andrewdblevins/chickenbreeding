@@ -20,9 +20,9 @@ public class ExplorationDefinition
 		this.possibleExplorations = possibleExplorations;
 	}
 
-	public Reward explore(Party party, int score) {
+	public Reward explore(Party party, int roll) {
 		foreach (ExplorationCriteria ec in possibleExplorations) {
-			if (ec.attempt (party, score)) {
+			if (ec.attempt (party, roll)) {
 				return ec.grantReward (party);
 			}
 		}

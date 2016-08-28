@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager Instance;
 
-    public WorldState worldState = new WorldState();
+    public WorldState worldState;// = new WorldState();
 
     private HomeState homeState;
     private BaseState activeState;
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        worldState = new WorldState();
+        //worldState = new WorldState();
         AnimalFactory animalFactory = GetComponent<AnimalFactory>();
         worldState.Initialize(animalFactory);
 
@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
         homeState = new HomeState();
         homeState.Initialize();
         activeState = homeState;
+
+		ExplorationEventFactory.init ();
 	}
 
     internal void goExplore()
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour {
         ExploreState exploreState = new ExploreState();
         exploreState.StartExploration(worldState);
         activeState = exploreState;
+        MyEventSystem.AdvanceSeasons();
     }
 
     void Awake () {

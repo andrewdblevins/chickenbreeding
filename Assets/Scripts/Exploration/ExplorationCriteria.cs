@@ -34,7 +34,8 @@ public class ExplorationCriteria
 		return false;
 	}
 
-	public bool attempt(Party party, int score) {
+	public bool attempt(Party party, int roll) {
+		int score = party.GetAttributeScore (this.attribute) + roll;
 		return (meetsSpecialTraitRequirements(party) || score >= minScore && score < maxScore);
 	}
 

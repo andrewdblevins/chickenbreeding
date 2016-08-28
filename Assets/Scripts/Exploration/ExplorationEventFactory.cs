@@ -15,6 +15,7 @@ public class ExplorationEventFactory
         explorationEvents.Add(bearCub());
         explorationEvents.Add(keenEyes());
         explorationEvents.Add(captureChicken());
+		explorationEvents.Add(eatingKid());
     }
 
 
@@ -50,6 +51,21 @@ public class ExplorationEventFactory
         return e;
     }
 
+	public static ExplorationEvent eatingKid()
+	{
+		ExplorationEvent e = new ExplorationEvent();
+
+		e.description = "You encounter an obese child carrying a sandwich.";
+		e.options = new List<ExplorationEvent.Option>() {
+			new ExplorationEvent.Option("Try to steal the sandwich.", TraitFactory.Attribute.Fighting.ToString(), 3, 
+				new RewardImpl.FoodReward(10), new RewardImpl.FoodPenalty(-5)),
+			new ExplorationEvent.Option("Run like the wind", TraitFactory.Attribute.Tracking.ToString(), 6, new List<AnimalDef>(), new List<string>()),
+			new ExplorationEvent.Option("Negotiate.  You are the Alpha.", TraitFactory.Attribute.Fighting.ToString(), 3, new List<AnimalDef>(), new List<string>() { SpeciesFactory.Species.Wolf.ToString()})
+		};
+
+		return e;
+	}
+
     public static ExplorationEvent wolfAttack()
     {
         ExplorationEvent e = new ExplorationEvent();
@@ -84,7 +100,7 @@ public class ExplorationEventFactory
         e.description = "You seem to be lost";
         e.options = new List<ExplorationEvent.Option>() {
             new ExplorationEvent.Option("Find the trail", TraitFactory.Attribute.Tracking.ToString(), 7, new List<AnimalDef>(), new List<string>()),
-            new ExplorationEvent.Option("end out a flying scout", TraitFactory.Attribute.Tracking.ToString(), 7, new List<AnimalDef>(), new List<string>() {TraitFactory.Traits.Flying.ToString() }),
+            new ExplorationEvent.Option("Send out a flying scout", TraitFactory.Attribute.Tracking.ToString(), 7, new List<AnimalDef>(), new List<string>() {TraitFactory.Traits.Flying.ToString() }),
             new ExplorationEvent.Option("I dont need a trail, follow the setting sun.", TraitFactory.Attribute.Strength.ToString(), 9, new List<AnimalDef>(), new List<string>()),
         };
 
@@ -137,7 +153,7 @@ public class ExplorationEventFactory
         chicken.SizeTrait = SizeFactory.createTiny();
         chicken.SpeciesTrait = SpeciesFactory.createChicken();
 
-        e.description = "You see a rabbit hiding in the bushes";
+        e.description = "You see a chicken hiding in the bushes";
         e.options = new List<ExplorationEvent.Option>() {
             new ExplorationEvent.Option("sneek up on it", TraitFactory.Attribute.Tracking.ToString(), 2, new List<AnimalDef>() { chicken}, new List<string>())
         };

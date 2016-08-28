@@ -27,7 +27,43 @@ public static class TraitSelector
 		return selectTraits (mandatoryTraits, new List<BaseTrait> (), new List<BaseTrait> ());
 	}
 
-	public static List<BaseTrait> selectTraits(List<BaseTrait> mandatoryTraits, List<BaseTrait> firstParentTraits, List<BaseTrait> secondParentTraits) {
+    public static SizeTrait selectSize(SpeciesTrait species, SizeTrait leftSize, SizeTrait rightSize)
+    {
+        List<SizeTrait> possibleSize = new List<SizeTrait>();
+
+        foreach (SizeTrait size in SizeFactory.GetAllSizeTraits())
+        {
+            if ((leftSize.size -1 <= size.size && leftSize.size + 1 >= size.size) ||
+                (rightSize.size - 1 <= size.size && rightSize.size + 1 >= size.size))
+            {
+                possibleSize.Add(size);
+            }
+        }
+
+        foreach (SizeTrait trait in Randomize(possibleSize))
+        {
+            float probability = baseInheritance;
+            if (leftSize.size == trait.size)
+            {
+                probability += trait.tenacity;
+            }
+            if (rightSize.size == trait.size)
+            {
+                probability += trait.tenacity;
+            }
+            probability += trait.getLinkageChance(new List<BaseTrait>() { species, leftSize, rightSize });
+            probability += trait.inheritanceChance;
+
+            if (Random.value < logistic(probability)) { return trait; }
+        }
+        if (Random.value < 0.5f)
+        {
+            return leftSize;
+        }
+        return rightSize;
+    }
+
+    public static List<BaseTrait> selectTraits(List<BaseTrait> mandatoryTraits, List<BaseTrait> firstParentTraits, List<BaseTrait> secondParentTraits) {
 		List<BaseTrait> inheritableTraits = new List<BaseTrait>();
 
 		foreach (BaseTrait trait in Randomize(TraitFactory.getInstantiatedTraitValues())) {

@@ -8,6 +8,10 @@ public class Animal : MonoBehaviour
     public Sprite[] animals;
     public GameObject animalPrefab;
 
+    private int age = 0;
+
+    public enum Age { Baby, YoungAdult, Adult, Old };
+
     public SpeciesTrait SpeciesTrait
     {
         get
@@ -47,11 +51,28 @@ public class Animal : MonoBehaviour
         }
     }
 
-	public void Initialize(SpeciesTrait species, SizeTrait size) {
-		Initialize (species, size, new List<BaseTrait> ());
+    public Age GetAge()
+    {
+        if (age < 4)
+        {
+            return Age.Baby;
+        }
+        if (age < 8)
+        {
+            return Age.YoungAdult;
+        }
+        if (age < 16)
+        {
+            return Age.Adult;
+        }
+        return Age.Old;
+    }
+
+    public void Initialize(SpeciesTrait species, SizeTrait size) {
+		Initialize (species, size, new List<BaseTrait> (), 0);
 	}
 
-	public void Initialize(SpeciesTrait species, SizeTrait size, List<BaseTrait> inputTraits)
+	public void Initialize(SpeciesTrait species, SizeTrait size, List<BaseTrait> inputTraits, int age)
 	{
 		SpeciesTrait = species;
 		SizeTrait = size;
@@ -62,6 +83,14 @@ public class Animal : MonoBehaviour
         {
             image.sprite = animals[species.spriteIndex];
         }
+        this.age = age;
+
+        MyEventSystem.OnSeasonAdvance += GetOlder;
+    }
+
+    public void GetOlder()
+    {
+        age++;
     }
 
     // Use this for initialization
@@ -95,52 +124,12 @@ public class Animal : MonoBehaviour
         Animal babyAnimal = baby.GetComponent<Animal>();
 
         List<BaseTrait> mandatoryTraits = new List<BaseTrait>();
-        babyAnimal.SpeciesTrait = SpeciesTrait;
-		mandatoryTraits.Add(SpeciesTrait);
-
-		//TODO: Something about this doesn't quite make sense for the size trait
-		if (SizeTrait.getInheritanceChance(mandatoryTraits) >= Random.Range(0f, 1.0f))
-        {
-            babyAnimal.SizeTrait = SizeTrait;
-			mandatoryTraits.Add(SizeTrait);
-        } else
-        {
-            babyAnimal.SizeTrait = mate.SizeTrait;
-			mandatoryTraits.Add(mate.SizeTrait);
-        }
+        SizeTrait babySize = TraitSelector.selectSize(SpeciesTrait, SizeTrait, mate.SizeTrait);
+        babyAnimal.Initialize(SpeciesTrait, babySize);
+        mandatoryTraits.Add(SpeciesTrait);
+        mandatoryTraits.Add(babySize);
 
 		babyAnimal.Traits = TraitSelector.selectTraits (mandatoryTraits, this.Traits, mate.Traits);
-//
-//        List<BaseTrait> babyTraits = new List<BaseTrait>();
-//        foreach (BaseTrait trait in traits)
-//        {
-//            if (trait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
-//            {
-//                babyTraits.Add(trait);
-//                babyTotalTraits.Add(trait);
-//            }
-//        }
-//        foreach (BaseTrait trait in mate.traits)
-//        {
-//            bool compatible = true;
-//            foreach (BaseTrait babyTrait in babyTotalTraits)
-//            {
-//                if (!babyTrait.isCompatible(trait))
-//                {
-//                    compatible = false;
-//                    break;
-//                }
-//            }
-//            if (!compatible)
-//            {
-//                continue;
-//            }
-//            if (trait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
-//            {
-//                babyTraits.Add(trait);
-//                babyTotalTraits.Add(trait);
-//            }
-//        }
 
         return baby;
     }

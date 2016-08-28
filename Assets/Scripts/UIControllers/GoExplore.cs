@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class GoExplore : MonoBehaviour, IPointerClickHandler
 {
@@ -16,7 +17,6 @@ public class GoExplore : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("explore clicked");
         GameManager.Instance.goExplore();
     }
 }

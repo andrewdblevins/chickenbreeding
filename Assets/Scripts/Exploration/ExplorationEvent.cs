@@ -7,9 +7,9 @@ public class ExplorationEvent {
     {
         public string description;
 
-        public string attribute;
+//        public string attribute;
 
-        public int passingScore;
+//        public int passingScore;
 
         public List<string> specialRequirements; //stringly typed required traits
 
@@ -17,23 +17,44 @@ public class ExplorationEvent {
 
 //		public List<ExplorationOption> possibleResults;
 
-        public List<AnimalDef> reward;
+//        public List<AnimalDef> reward;
 
-		private BooleanExplorationDefinition bed;
+		ExplorationDefinition ed;
 
+		//TODO: Merge this with Exploration definition
         public Option(string description, string attribute, int passingScore, List<AnimalDef> reward, List<string> specialRequirements)
         {
             this.description = description;
-            this.attribute = attribute;
-            this.passingScore = passingScore;
-            this.reward = reward;
-            this.specialRequirements = specialRequirements;
+//            this.attribute = attribute;
+//            this.passingScore = passingScore;
+//            this.reward = reward;
+//            this.specialRequirements = specialRequirements;
 
 			Reward passReward = new RewardImpl.AnimalReward(reward);
 			Reward failReward = new RewardImpl.RandomAnimalPenalty();
 
-			bed = new BooleanExplorationDefinition(description, attribute, passingScore, passReward, failReward);
+			ed = new BooleanExplorationDefinition(description, attribute, passingScore, passReward, failReward);
         }
+
+		//TODO: Merge this with Exploration definition
+		public Option(string description, string attribute, int passingScore, Reward passReward, Reward failReward)
+		{
+			this.description = description;
+
+			ed = new BooleanExplorationDefinition(description, attribute, passingScore, passReward, failReward);
+		}
+
+		public Option(string description, List<ExplorationCriteria> explorationCriteria) {
+			this.description = description;
+
+			ed = new ExplorationDefinition(description,explorationCriteria);
+		}
+
+		public Option(string description, ExplorationDefinition expd) {
+			this.description = description;
+
+			ed = expd;
+		}
 
 		//TODO: This is hacky way to estimate probability; do better
 //		public float probability(Party party) {
@@ -52,12 +73,12 @@ public class ExplorationEvent {
 
 		public Reward attempt(Party party)
         {
-            int score = party.GetAttributeScore(attribute);
+            //int score = party.GetAttributeScore(attribute);
             int roll = Random.Range(1, 7);
             //Debug.Log("you have a score of " + score + " + " + roll + " and need " + passingScore + " to win");
-            score += roll;
+//            score += roll;
 //            return score >= passingScore;
-			return bed.explore(party, score);
+			return ed.explore(party, roll);
         }
 
 //		public bool attempt(Party party)

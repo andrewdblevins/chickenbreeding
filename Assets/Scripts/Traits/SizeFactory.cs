@@ -4,6 +4,18 @@ using System.Collections.Generic;
 public class SizeFactory {
     static Dictionary<string, SizeTrait> instantiatedTraits = new Dictionary<string, SizeTrait>();
 
+    public static List<SizeTrait> GetAllSizeTraits()
+    {
+        List<SizeTrait> sizes = new List<SizeTrait>();
+        sizes.Add(createTiny());
+        sizes.Add(createSmall());
+        sizes.Add(createMidsized());
+        sizes.Add(createLarge());
+        sizes.Add(createHuge());
+        sizes.Add(createEnormous());
+        return sizes;
+    }
+
     enum Size : int
     {
         Tiny = 0,
@@ -38,6 +50,9 @@ public class SizeFactory {
         tiny.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), -2.0f);
         tiny.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 1.5f);
 
+        tiny.linkageMap.Add(Size.Tiny.ToString(), 1.5f);
+        tiny.linkageMap.Add(Size.Small.ToString(), 0.5f);
+
         instantiatedTraits[TraitFactory.Traits.Tiny.ToString()] = tiny;
         return tiny;
     }
@@ -67,6 +82,11 @@ public class SizeFactory {
 		small.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), -1.0f);
 		small.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 1.0f);
 
+        small.linkageMap.Add(Size.Tiny.ToString(), 0.5f);
+        small.linkageMap.Add(Size.Small.ToString(), 1.5f);
+        small.linkageMap.Add(Size.Midsized.ToString(), 0.5f);
+
+
         instantiatedTraits[TraitFactory.Traits.Small.ToString()] = small;
         return small;
     }
@@ -89,6 +109,10 @@ public class SizeFactory {
         midsized.name = TraitFactory.Traits.Midsized.ToString();
         midsized.type = TraitFactory.Traits.Midsized.ToString();
         midsized.traitClass = TraitFactory.TraitClass.Size.ToString();
+
+        midsized.linkageMap.Add(Size.Small.ToString(), 0.5f);
+        midsized.linkageMap.Add(Size.Midsized.ToString(), 1.5f);
+        midsized.linkageMap.Add(Size.Large.ToString(), 0.5f);
 
         instantiatedTraits[TraitFactory.Traits.Midsized.ToString()] = midsized;
         return midsized;
@@ -118,6 +142,10 @@ public class SizeFactory {
 		large.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 1.0f);
 		large.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -1.0f);
 
+        large.linkageMap.Add(Size.Midsized.ToString(), 0.5f);
+        large.linkageMap.Add(Size.Large.ToString(), 1.5f);
+        large.linkageMap.Add(Size.Huge.ToString(), 0.5f);
+
         instantiatedTraits[TraitFactory.Traits.Large.ToString()] = large;
         return large;
     }
@@ -146,6 +174,10 @@ public class SizeFactory {
 		huge.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 1.5f);
 		huge.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -2.0f);
 
+        huge.linkageMap.Add(Size.Large.ToString(), 0.5f);
+        huge.linkageMap.Add(Size.Huge.ToString(), 1.5f);
+        huge.linkageMap.Add(Size.Enormous.ToString(), 0.5f);
+
         instantiatedTraits[TraitFactory.Traits.Huge.ToString()] = huge;
         return huge;
     }
@@ -173,6 +205,9 @@ public class SizeFactory {
 		enormous.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), -3.0f);
 		enormous.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 3.0f);
 		enormous.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -3.0f);
+
+        enormous.linkageMap.Add(Size.Huge.ToString(), 0.5f);
+        enormous.linkageMap.Add(Size.Enormous.ToString(), 1.5f);
 
         instantiatedTraits[TraitFactory.Traits.Enormous.ToString()] = enormous;
         return enormous;
