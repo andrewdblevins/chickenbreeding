@@ -78,7 +78,7 @@ public class ExploreState : BaseState {
 
     public void attempt(int choice)
     {
-		Debug.Log("Button pushed");
+		ExplorePanelBehavior.Instance.Close ();
         if (state == State.EncounterEvent && currentEvent != null && choice < currentEvent.options.Count)
         {
             ExplorationEvent.Option option = currentEvent.options[choice];

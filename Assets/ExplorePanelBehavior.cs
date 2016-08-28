@@ -31,4 +31,8 @@ public class ExplorePanelBehavior : MonoBehaviour {
 		this.gameObject.transform.position = GameManager.Instance.transform.position;
 		this.gameObject.SetActive (true);
 	}
+
+	public void Close(){
+		this.gameObject.SetActive (false);
+	}
 }
