@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     List<GameObject> inventory = new List<GameObject>();
     public int maxSize = 5;
 
-    int curFood = 0;
+    int curFood = 100;
 
     public int CurFood
     {

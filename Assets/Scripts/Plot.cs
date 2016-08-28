@@ -30,11 +30,15 @@ public class Plot : MonoBehaviour, IDropHandler{
 
     public bool IsFull()
     {
-        return transform.childCount >= 3;
+        return transform.childCount >= 25;
     }
 
 	public void OnDrop (PointerEventData eventData)
 	{
+        if (IsFull())
+        {
+            return;
+        }
 		GameObject animal = DraggableBehaviourScript.ItemBeingDragged;
 		this.addAnimal (animal);
 	}
