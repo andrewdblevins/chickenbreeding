@@ -35,6 +35,16 @@ public class BaseTrait
 
     public Dictionary<string, float> linkageMap = new Dictionary<string, float>();
 
+	public virtual bool isCompatible(List<BaseTrait> traitList)
+	{
+		foreach (BaseTrait trait in traitList) {
+			if (!this.isCompatible (trait)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
     public virtual bool isCompatible(BaseTrait other)
     {
         return !(this.type == other.type || (traitClass != null && traitClass == other.traitClass));

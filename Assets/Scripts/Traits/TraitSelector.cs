@@ -27,10 +27,10 @@ public static class TraitSelector
 	public static List<BaseTrait> selectTraits(List<BaseTrait> mandatoryTraits, List<BaseTrait> firstParentTraits, List<BaseTrait> secondParentTraits) {
 		List<BaseTrait> inheritableTraits = new List<BaseTrait>();
 
-		//Pick size trait
-
-
 		foreach (BaseTrait trait in Randomize(TraitFactory.getInstantiatedTraitValues())) {
+			if (!trait.isCompatible (mandatoryTraits) || !trait.isCompatible (inheritableTraits)) {
+				continue;
+			}
 			float probability = baseInheritance;
 			if (firstParentTraits.Contains (trait)) {
 				probability += parentalBoost;
