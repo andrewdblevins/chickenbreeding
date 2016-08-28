@@ -49,6 +49,7 @@ public class ExploreState : BaseState {
                 {
                     Debug.Log("   press " + (i + 1) + " to " + currentEvent.options[i].description);
                 }
+				ExplorePanelBehavior.Instance.Draw (currentEvent);
                 state = State.EncounterEvent;
                 break;
             case State.EncounterEvent:
