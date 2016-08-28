@@ -83,38 +83,7 @@ public class ExploreState : BaseState {
         {
             ExplorationEvent.Option option = currentEvent.options[choice];
             Debug.Log("you chose to " + option.description);
-            bool pass = option.attempt(worldState.GetParty());
-            if (pass)
-            {
-                Debug.Log("You win");
-                worldState.GetInventory().AddAll(option.reward);
-            }
-            else
-            {
-                Debug.Log("You lose");
-                if (worldState.GetParty().Size() > 0)
-                {
-                    Party party = worldState.GetParty();
-                    int index = Random.Range(0, party.Size());
-                    Debug.Log("One of your " + party.Size() + " animimals will die, the " + index + "th one");
-                    GameObject toDie = party.RemoveMember(index);
-                    Animal dyingAnimal = toDie.GetComponent<Animal>();
-                    Debug.Log("Billy the " + dyingAnimal.SpeciesTrait.name + " has died");
-
-                    string remaining = "";
-                    foreach (GameObject partyMember in party.GetMembers())
-                    {
-                        Animal a = partyMember.GetComponent<Animal>();
-                        remaining += a.SpeciesTrait.name + ", ";
-                    }
-                    Debug.Log("remaining: " + remaining);
-                }
-                else
-                {
-                    Debug.Log("All of your friends are already dead.  No one loves you.");
-                    GameManager.Instance.GoHome();
-                }
-            }
+			Reward reward = option.attempt(worldState.GetParty());
 
             state = State.AfterEvent;
         }

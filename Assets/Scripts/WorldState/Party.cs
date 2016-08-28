@@ -43,6 +43,17 @@ public class Party : MonoBehaviour, IDropHandler
         return toDie.gameObject;
     }
 
+	public HashSet<BaseTrait> getTraits() {
+		HashSet<BaseTrait> traits = new HashSet<BaseTrait>();
+		foreach (GameObject partyMember in GetMembers()) {
+			Animal a = partyMember.GetComponent<Animal> ();
+			foreach (BaseTrait t in a.Traits) {
+				traits.Add (t);
+			}
+		}
+		return traits;
+	}
+
     public int GetAttributeScore(string attribute)
     {
         int score = 0;
