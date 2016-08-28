@@ -64,8 +64,8 @@ public class ExploreState : BaseState {
                 }
                 break;
             case State.AfterEvent:
-                int partyFoodCost = worldState.GetParty().GetFoodRequirement();
-                state = worldState.GetInventory().subtractFood(partyFoodCost) ? State.Continue : State.GoingHome;
+                //Debug.Log("Should display results now");
+                //ExplorePanelBehavior.Instance.Results(currentEvent, this);
                 break;
             case State.GoingHome:
                 Debug.Log("Out of food, time to go home");
@@ -76,9 +76,31 @@ public class ExploreState : BaseState {
         }
     }
 
+    public void goHome()
+    {
+        GameManager.Instance.GoHome();
+    }
+
     public void attempt(int choice)
     {
 		ExplorePanelBehavior.Instance.Close ();
+        if (state == State.AfterEvent)
+        {
+            switch (choice)
+            {
+                case 0:
+                    GameManager.Instance.GoHome();
+                    break;
+                case 1:
+                    int partyFoodCost = worldState.GetParty().GetFoodRequirement();
+                    state = worldState.GetInventory().subtractFood(partyFoodCost) ? State.Continue : State.GoingHome;
+                    break;
+                default:
+                    Debug.Log("Nope");
+                    break;
+            }
+        }
+
         if (state == State.EncounterEvent && currentEvent != null && choice < currentEvent.options.Count)
         {
             ExplorationEvent.Option option = currentEvent.options[choice];
@@ -116,6 +138,7 @@ public class ExploreState : BaseState {
                 }
             }
 
+            ExplorePanelBehavior.Instance.Results(currentEvent, this);
             state = State.AfterEvent;
         }
     }

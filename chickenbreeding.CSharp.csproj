@@ -71,16 +71,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ExplorePanelBehavior.cs" />
     <Compile Include="Assets\HarvestBehavior.cs" />
-    <Compile Include="Assets\OptionButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\Animal.cs" />
     <Compile Include="Assets\Scripts\AnimalDef.cs" />
     <Compile Include="Assets\Scripts\AnimalFactory.cs" />
     <Compile Include="Assets\Scripts\DraggableBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Exploration\ContinueBoutton.cs" />
     <Compile Include="Assets\Scripts\Exploration\EventCondition.cs" />
     <Compile Include="Assets\Scripts\Exploration\ExplorationEvent.cs" />
     <Compile Include="Assets\Scripts\Exploration\ExplorationEventFactory.cs" />
+    <Compile Include="Assets\Scripts\Exploration\ExplorePanelBehavior.cs" />
+    <Compile Include="Assets\Scripts\Exploration\GoHomeButton.cs" />
+    <Compile Include="Assets\Scripts\Exploration\OptionButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameState\BaseState.cs" />
     <Compile Include="Assets\Scripts\GameState\ExploreState.cs" />
