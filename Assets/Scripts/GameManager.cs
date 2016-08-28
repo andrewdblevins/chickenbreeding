@@ -1,18 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour {
 
 	public GameObject panel;
 	public Plot plot;
+    public ExplorationController explorationController;
 
 	public static GameManager Instance;
+
+    private WorldState worldState = new WorldState();
+
+    private BaseState state;
 
 	private GameManager() {}
 
 	// Use this for initialization
 	void Start () {
+        state = new HomeState();
 		//Create N plots and M animals in the first plot
 		int n = 10;
 		int m = 2;
@@ -28,7 +35,12 @@ public class GameManager : MonoBehaviour {
 	  
 	}
 
-	void Awake () {
+    internal void goExplore()
+    {
+        explorationController.StartExploration(worldState);
+    }
+
+    void Awake () {
 		Instance = this;
 	}
 	
