@@ -5,7 +5,7 @@ public class BaseTrait
 {
     public Dictionary<string, int> attributes = new Dictionary<string, int>();
 
-    public float inheritanceChance;
+    public float inheritanceChance = 0.0f;
 
     public string name;
     public string type;
@@ -34,6 +34,16 @@ public class BaseTrait
     }
 
     public Dictionary<string, float> linkageMap = new Dictionary<string, float>();
+
+	public virtual bool isCompatible(List<BaseTrait> traitList)
+	{
+		foreach (BaseTrait trait in traitList) {
+			if (!this.isCompatible (trait)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
     public virtual bool isCompatible(BaseTrait other)
     {

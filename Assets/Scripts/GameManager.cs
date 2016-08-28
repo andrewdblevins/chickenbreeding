@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,90 +10,46 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager Instance;
 
+    private WorldState worldState = new WorldState();
+
+    private HomeState homeState;
+    private BaseState activeState;
+
 	private GameManager() {}
 
 	// Use this for initialization
 	void Start () {
-		//Create N plots and M animals in the first plot
-		int n = 10;
-		int m = 2;
-		foreach (var i in System.Linq.Enumerable.Range(0, n))
-		{
-			createPlot ();
-		}
-		foreach (var i in System.Linq.Enumerable.Range(0, m))
-		{
-			//Get a plot
-			getSomePlot().addAnimal(AnimalFactory.Instance.createChicken());
-		}
-	  
+        homeState = new HomeState();
+        homeState.Initialize();
+        activeState = homeState;
+
+		TraitFactory.createStrong ();
+		TraitFactory.createWeak ();
+		TraitFactory.createQuick ();
+		TraitFactory.createAggressive ();
+		TraitFactory.createSpikes ();  
 	}
 
-	void Awake () {
+    internal void goExplore()
+    {
+        print("go explore clicked");
+        ExploreState exploreState = new ExploreState();
+        exploreState.StartExploration(worldState);
+        activeState = exploreState;
+    }
+
+    void Awake () {
 		Instance = this;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-//		Instantiate(plot);
-//		GameState.Instance.iterateTurn ();
+        activeState.Step();
 	}
 
-	private int turn = 0;
-
-	List<Animal> allAnimals = new List<Animal>();
-	List<Plot> allPlots = new List<Plot>();
-
-	enum Season {Spring, Summer, Autumn, Winter};
-
-	Season getSeason() { return (Season)(turn % 4); }
-
-	public Plot createPlot() {
-		Plot p = Instantiate (GameManager.Instance.plot);
-		p.transform.SetParent(GameManager.Instance.panel.transform);
-		allPlots.Add (p);
-		return p;
-	}
-
-	public Plot getSomePlot() {
-		return allPlots [0];
-	}
-
-	public void registerAnimal(Animal a) {
-		allAnimals.Add (a);
-	}
-
-	public void removeAnimal(Animal a) {
-		allAnimals.Remove (a);
-	}
-
-	void manageAnimals() {
-		foreach (Animal a in allAnimals) {
-
-		}
-	}
-
-	void managePlots() {
-		foreach (Plot p in allPlots) {
-			p.Breed ();
-		}
-	}
-
-	void fireRandomEvent() {
-		//TODO
-	}
-
-	bool preEndTurnChecks() {
-		//TODO: Check if anything needs to be done by user
-		return true;
-	}
-
-	public void iterateTurn() {
-		if (preEndTurnChecks()) {
-			turn += 1;
-			managePlots ();
-			manageAnimals ();
-			fireRandomEvent ();
-		}
-	}
+    // TODO move the next button to be controlled by home state being the active state.
+    public void iterateTurn()
+    {
+        homeState.iterateTurn();
+    }
 }

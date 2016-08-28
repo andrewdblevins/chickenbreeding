@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class EventCondition {
 
-    public delegate float Source(ExplorationController ec);
+    public delegate float Source(WorldState ws);
 
     Source sourceHandler;
 
@@ -20,9 +20,9 @@ public class EventCondition {
         threshold = t;
     }
 
-	public bool check(ExplorationController ec)
+	public bool check(WorldState ws)
     {
-        return comparatorHnadler(sourceHandler(ec), threshold);
+        return comparatorHnadler(sourceHandler(ws), threshold);
     }
 
     public static bool atLeast(float source, float threshold)
@@ -30,12 +30,12 @@ public class EventCondition {
         return source >= threshold;
     }
 
-    public static float numWolvesInParty(ExplorationController ec)
+    public static float numWolvesInParty(WorldState ws)
     {
         return 1;
     }
 
-    public static float numKeenEyes(ExplorationController ec)
+    public static float numKeenEyes(WorldState ws)
     {
         return 1;
     }

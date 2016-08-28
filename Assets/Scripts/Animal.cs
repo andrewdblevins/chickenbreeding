@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class Animal : MonoBehaviour
 {
     public SpecialTrait speciesTrait;
-    SpecialTrait sizeTrait;
-    List<BaseTrait> traits = new List<BaseTrait>();
+    public SpecialTrait sizeTrait;
+    public List<BaseTrait> traits = new List<BaseTrait>();
 
     public Sprite[] animals;
     public GameObject animalPrefab;
@@ -53,52 +53,54 @@ public class Animal : MonoBehaviour
         GameObject baby = GameObject.Instantiate(animalPrefab);
         Animal babyAnimal = baby.GetComponent<Animal>();
 
-        List<BaseTrait> babyTotalTraits = new List<BaseTrait>();
+        List<BaseTrait> mandatoryTraits = new List<BaseTrait>();
         babyAnimal.speciesTrait = speciesTrait;
-        babyTotalTraits.Add(speciesTrait);
+		mandatoryTraits.Add(speciesTrait);
 
-        if (sizeTrait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
+		//TODO: Something about this doesn't quite make sense for the size trait
+		if (sizeTrait.getInheritanceChance(mandatoryTraits) >= Random.Range(0f, 1.0f))
         {
             babyAnimal.sizeTrait = sizeTrait;
-            babyTotalTraits.Add(sizeTrait);
+			mandatoryTraits.Add(sizeTrait);
         } else
         {
             babyAnimal.sizeTrait = mate.sizeTrait;
-            babyTotalTraits.Add(mate.sizeTrait);
+			mandatoryTraits.Add(mate.sizeTrait);
         }
 
-        List<BaseTrait> babyTraits = new List<BaseTrait>();
-        foreach (BaseTrait trait in traits)
-        {
-            if (trait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
-            {
-                babyTraits.Add(trait);
-                babyTotalTraits.Add(trait);
-            }
-        }
-        foreach (BaseTrait trait in mate.traits)
-        {
-            bool compatible = true;
-            foreach (BaseTrait babyTrait in babyTotalTraits)
-            {
-                if (!babyTrait.isCompatible(trait))
-                {
-                    compatible = false;
-                    break;
-                }
-            }
-            if (!compatible)
-            {
-                continue;
-            }
-            if (trait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
-            {
-                babyTraits.Add(trait);
-                babyTotalTraits.Add(trait);
-            }
-        }
+		babyAnimal.traits = TraitSelector.selectTraits (mandatoryTraits, this.traits, mate.traits);
+//
+//        List<BaseTrait> babyTraits = new List<BaseTrait>();
+//        foreach (BaseTrait trait in traits)
+//        {
+//            if (trait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
+//            {
+//                babyTraits.Add(trait);
+//                babyTotalTraits.Add(trait);
+//            }
+//        }
+//        foreach (BaseTrait trait in mate.traits)
+//        {
+//            bool compatible = true;
+//            foreach (BaseTrait babyTrait in babyTotalTraits)
+//            {
+//                if (!babyTrait.isCompatible(trait))
+//                {
+//                    compatible = false;
+//                    break;
+//                }
+//            }
+//            if (!compatible)
+//            {
+//                continue;
+//            }
+//            if (trait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
+//            {
+//                babyTraits.Add(trait);
+//                babyTotalTraits.Add(trait);
+//            }
+//        }
 
-        babyAnimal.traits = babyTraits;
         return baby;
     }
 
@@ -116,4 +118,5 @@ public class Animal : MonoBehaviour
 
         return score;
     }
+
 }

@@ -17,7 +17,7 @@ public class ExplorationEventFactory
     }
 
 
-    public static ExplorationEvent getEvent(ExplorationController ec)
+    public static ExplorationEvent getEvent(WorldState ws)
     {
         if (explorationEvents.Count == 0) return createEvent();
 
@@ -25,7 +25,7 @@ public class ExplorationEventFactory
         {
             int index = Random.Range(0, explorationEvents.Count);
             ExplorationEvent e = explorationEvents[index];
-            if (e.precondition.check(ec)) return e;
+            if (e.precondition.check(ws)) return e;
         }
 
         Debug.Log("This is highly improbable");
