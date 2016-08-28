@@ -9,7 +9,8 @@ public class ExplorationController : MonoBehaviour
 
     public ExplorationEvent currentEvent;
 
-    public List<Animal> party;
+    // TODO initialize this using start exploration, not by creating a thing here.
+    WorldState worldState = new WorldState();
 
     //new exploration event
 
@@ -20,28 +21,21 @@ public class ExplorationController : MonoBehaviour
 
     //consume food
 
+    public void StartExploration(WorldState worldState)
+    {
+        this.worldState = worldState;
+    }
+
 
     void Update()
     {
         switch (state)
         {
             case State.Start:
-                GameObject obj = new GameObject();
-                Animal wolfAnimal = obj.AddComponent<Animal>();
-                wolfAnimal.Initialize(SpeciesFactory.createWolf(), SizeFactory.createMidsized());
-                Animal rabbitAnimal = obj.AddComponent<Animal>();
-                rabbitAnimal.Initialize(SpeciesFactory.createRabbit(), SizeFactory.createTiny());
-                Animal chickenAnimal = obj.AddComponent<Animal>();
-                chickenAnimal.Initialize(SpeciesFactory.createChicken(), SizeFactory.createTiny());
-
-                party = new List<Animal>() {
-                    wolfAnimal,
-                    rabbitAnimal,
-                    chickenAnimal
-                };
                 string remaining = "";
-                foreach (Animal a in party)
+                foreach (GameObject partyMember in worldState.GetParty().GetMembers())
                 {
+                    Animal a = partyMember.GetComponent<Animal>();
                     remaining += a.speciesTrait.name + ", ";
                 }
                 print("party: " + remaining);
@@ -83,24 +77,27 @@ public class ExplorationController : MonoBehaviour
         {
             ExplorationEvent.Option option = currentEvent.options[choice];
             print("you chose to " + option.description);
-            bool pass = option.attempt(party);
+            bool pass = option.attempt(worldState.GetParty());
             if (pass)
             {
                 print("You win");
-                party.AddRange(option.reward);
+                worldState.GetInventory().AddAll(option.reward);
             } else
             {
                 print("You lose");
-                if (party.Count > 0)
+                if (worldState.GetParty().Size() > 0)
                 {
-                    int index = Random.Range(0, party.Count);
-                    print("One of your " + party.Count + " animimals will die, the " + index + "th one");
-                    print("Billy the " + party[index].speciesTrait.name + " has died");
-                    party.RemoveAt(index);
+                    Party party = worldState.GetParty();
+                    int index = Random.Range(0, party.Size());
+                    print("One of your " + party.Size() + " animimals will die, the " + index + "th one");
+                    GameObject toDie = party.RemoveMember(index);
+                    Animal dyingAnimal = toDie.GetComponent<Animal>();
+                    print("Billy the " + dyingAnimal.speciesTrait.name + " has died");
 
                     string remaining = "";
-                    foreach (Animal a in party)
+                    foreach (GameObject partyMember in party.GetMembers())
                     {
+                        Animal a = partyMember.GetComponent<Animal>();
                         remaining += a.speciesTrait.name + ", ";
                     }
                     print("remaining: " + remaining);

@@ -26,13 +26,9 @@ public class ExplorationEvent {
             this.specialRequirements = specialRequirements;
         }
 
-        public bool attempt(List<Animal> party)
+        public bool attempt(Party party)
         {
-            int score = 0;
-            foreach (Animal a in party)
-            {
-                score += a.GetAttributeScore(attribute);
-            }
+            int score = party.GetAttributeScore(attribute);
             int roll = Random.Range(1, 7);
             Debug.Log("you have a score of " + score + " + " + roll + " and need " + passingScore + " to win");
             score += roll;
