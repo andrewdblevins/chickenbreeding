@@ -6,7 +6,8 @@ public class BaseTrait
 	//TODO: This should really be private
     public Dictionary<string, int> attributes = new Dictionary<string, int>();
 
-    public float inheritanceChance = 0.0f;
+    public float inheritanceChance = -1.0f;
+	public float tenacity = 2.5f;
 
     public string name;
     public string type;

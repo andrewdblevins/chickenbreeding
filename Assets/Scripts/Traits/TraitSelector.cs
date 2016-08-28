@@ -20,8 +20,7 @@ public static class TraitSelector
 		return 1.0f / (1.0f + Mathf.Exp(-val));
 	}
 
-	static float baseInheritance = -5.0f;
-	static float parentalBoost = 3.0f;
+	static float baseInheritance = -4.0f;
 	static float perAdditionalTraitChance = -1.0f;
 
 	public static List<BaseTrait> selectTraits(List<BaseTrait> mandatoryTraits) {
@@ -37,10 +36,10 @@ public static class TraitSelector
 			}
 			float probability = baseInheritance;
 			if (firstParentTraits.Contains (trait)) {
-				probability += parentalBoost;
+				probability += trait.tenacity;
 			}
 			if (secondParentTraits.Contains (trait)) {
-				probability += parentalBoost;
+				probability += trait.tenacity;
 			}
 			probability += trait.inheritanceChance;
 			probability += trait.getLinkageChance (mandatoryTraits);
