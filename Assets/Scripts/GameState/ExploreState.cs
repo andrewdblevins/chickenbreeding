@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
-public class ExplorationController : MonoBehaviour
-{
-    public enum State { Start, EncounterEvent, ResolveEvent, Continue};
+public class ExploreState : BaseState {
+    public enum State { Start, EncounterEvent, ResolveEvent, Continue };
 
     public State state = State.Start;
 
@@ -26,9 +25,9 @@ public class ExplorationController : MonoBehaviour
         this.worldState = worldState;
     }
 
-
-    void Update()
+    public override void Step()
     {
+        print("Explore state step");
         switch (state)
         {
             case State.Start:
@@ -55,10 +54,12 @@ public class ExplorationController : MonoBehaviour
                 if (Input.GetKeyUp(KeyCode.Alpha1))
                 {
                     attempt(0);
-                } else if (Input.GetKeyUp(KeyCode.Alpha2))
+                }
+                else if (Input.GetKeyUp(KeyCode.Alpha2))
                 {
                     attempt(1);
-                } else if (Input.GetKeyUp(KeyCode.Alpha3))
+                }
+                else if (Input.GetKeyUp(KeyCode.Alpha3))
                 {
                     attempt(2);
                 }
@@ -82,7 +83,8 @@ public class ExplorationController : MonoBehaviour
             {
                 print("You win");
                 worldState.GetInventory().AddAll(option.reward);
-            } else
+            }
+            else
             {
                 print("You lose");
                 if (worldState.GetParty().Size() > 0)
@@ -101,7 +103,8 @@ public class ExplorationController : MonoBehaviour
                         remaining += a.speciesTrait.name + ", ";
                     }
                     print("remaining: " + remaining);
-                } else
+                }
+                else
                 {
                     print("All of your friends are already dead.  No one loves you.");
                 }
@@ -110,5 +113,4 @@ public class ExplorationController : MonoBehaviour
             state = State.ResolveEvent;
         }
     }
-
 }
