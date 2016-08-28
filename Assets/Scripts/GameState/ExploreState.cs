@@ -68,7 +68,8 @@ public class ExploreState : BaseState {
                 state = worldState.GetInventory().subtractFood(partyFoodCost) ? State.Continue : State.GoingHome;
                 break;
             case State.GoingHome:
-                Debug.Log("Time to go home");
+                Debug.Log("Out of food, time to go home");
+                GameManager.Instance.GoHome();
                 break;
             default:
                 break;
