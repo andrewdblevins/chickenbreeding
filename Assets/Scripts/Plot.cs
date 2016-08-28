@@ -16,7 +16,7 @@ public class Plot : MonoBehaviour, IDropHandler{
             if (leftAnimal != null && rightAnimal != null)
             {
                 print("have actual animals");
-                if (leftAnimal.CanBreedWith(rightAnimal))
+                if (leftAnimal.CanBreedWith(rightAnimal) && !IsFull())
                 {
                     GameObject baby = leftAnimal.breedWith(rightAnimal);
                     if (baby != null)
@@ -26,6 +26,11 @@ public class Plot : MonoBehaviour, IDropHandler{
                 }
             }
         }
+    }
+
+    public bool IsFull()
+    {
+        return transform.childCount >= 3;
     }
 
 	public void OnDrop (PointerEventData eventData)
