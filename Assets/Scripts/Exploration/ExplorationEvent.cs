@@ -11,13 +11,13 @@ public class ExplorationEvent {
 
         public int passingScore;
 
-        public List<BaseTrait> specialRequirements;
+        public List<string> specialRequirements; //stringly typed required traits
 
         //TODO: penalty datatype?
 
         public List<Animal> reward;
 
-        public Option(string description, string attribute, int passingScore, List<Animal> reward, List<BaseTrait> specialRequirements)
+        public Option(string description, string attribute, int passingScore, List<Animal> reward, List<string> specialRequirements)
         {
             this.description = description;
             this.attribute = attribute;
@@ -42,5 +42,8 @@ public class ExplorationEvent {
 
     public List<Option> options;
 
-
+    public ExplorationEvent()
+    {
+        precondition = EventCondition.alwaysTrue();
+    }
 }
