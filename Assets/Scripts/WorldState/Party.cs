@@ -69,7 +69,8 @@ public class Party : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (Size() < maxSize)
+        Animal draggedAnimal = DraggableBehaviourScript.ItemBeingDragged.GetComponent<Animal>();
+        if (Size() < maxSize && draggedAnimal.GetAge() != Animal.Age.Baby)
         {
             DraggableBehaviourScript.ItemBeingDragged.transform.SetParent(transform);
             DraggableBehaviourScript.ItemBeingDragged.transform.position = transform.position;

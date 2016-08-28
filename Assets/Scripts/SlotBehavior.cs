@@ -14,7 +14,8 @@ public class SlotBehavior : MonoBehaviour, IDropHandler{
 
 	public void OnDrop (PointerEventData eventData)
 	{
-		if (!animal) {
+        Animal draggedAnimal = DraggableBehaviourScript.ItemBeingDragged.GetComponent<Animal>();
+		if (!animal && draggedAnimal.GetAge() != Animal.Age.Baby) {
 			DraggableBehaviourScript.ItemBeingDragged.transform.SetParent (transform);
 			DraggableBehaviourScript.ItemBeingDragged.transform.position = transform.position;
 		}
