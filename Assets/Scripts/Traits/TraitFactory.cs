@@ -39,6 +39,10 @@ public class TraitFactory {
         Horned,
         Loyal,
         Independent,
+        Swim,
+        Climb,
+        Stealthy,
+        Dig,
     }
 
     /** This should only be referenced by data classes. */
@@ -74,6 +78,10 @@ public class TraitFactory {
 		TraitFactory.createHorned();
 		TraitFactory.createArmored();
 		TraitFactory.createIndependent();
+        TraitFactory.createClimb();
+        TraitFactory.createDig();
+        TraitFactory.createStealthy();
+        TraitFactory.createSwim();
 	}
 
     public static BaseTrait createStrong()
@@ -419,7 +427,7 @@ public class TraitFactory {
 
         independent.name = traitString;
         independent.type = traitString;
-        independent.traitClass = TraitClass.Loyalty.ToString();
+        independent.traitClass = null;
 
         independent.linkageMap.Add(Traits.Docile.ToString(), -2.0f);
         independent.linkageMap.Add(Traits.Aggressive.ToString(), 2.0f);
@@ -427,4 +435,97 @@ public class TraitFactory {
         instantiatedTraits[traitString] = independent;
         return independent;
     }
+
+    public static BaseTrait createSwim()
+    {
+        string traitString = Traits.Swim.ToString();
+        if (instantiatedTraits.ContainsKey(traitString))
+        {
+            return instantiatedTraits[traitString];
+        }
+        BaseTrait swim = new BaseTrait();
+        swim.attributes.Add(Attribute.Fighting.ToString(), 0);
+        swim.attributes.Add(Attribute.Strength.ToString(), 0);
+        swim.attributes.Add(Attribute.Tracking.ToString(), 0);
+        swim.attributes.Add(Attribute.Food.ToString(), 0);
+
+        //        swim.inheritanceChance = 0.1f;
+
+        swim.name = traitString;
+        swim.type = traitString;
+        swim.traitClass = null;
+
+        instantiatedTraits[traitString] = swim;
+        return swim;
+    }
+
+    public static BaseTrait createClimb()
+    {
+        string traitString = Traits.Climb.ToString();
+        if (instantiatedTraits.ContainsKey(traitString))
+        {
+            return instantiatedTraits[traitString];
+        }
+        BaseTrait climb = new BaseTrait();
+        climb.attributes.Add(Attribute.Fighting.ToString(), 0);
+        climb.attributes.Add(Attribute.Strength.ToString(), 1);
+        climb.attributes.Add(Attribute.Tracking.ToString(), 0);
+        climb.attributes.Add(Attribute.Food.ToString(), 0);
+
+        //        climb.inheritanceChance = 0.1f;
+
+        climb.name = traitString;
+        climb.type = traitString;
+        climb.traitClass = null;
+
+        instantiatedTraits[traitString] = climb;
+        return climb;
+    }
+
+    public static BaseTrait createStealthy()
+    {
+        string traitString = Traits.Stealthy.ToString();
+        if (instantiatedTraits.ContainsKey(traitString))
+        {
+            return instantiatedTraits[traitString];
+        }
+        BaseTrait stealthy = new BaseTrait();
+        stealthy.attributes.Add(Attribute.Fighting.ToString(), 2);
+        stealthy.attributes.Add(Attribute.Strength.ToString(), 0);
+        stealthy.attributes.Add(Attribute.Tracking.ToString(), 3);
+        stealthy.attributes.Add(Attribute.Food.ToString(), 0);
+
+        //        stealthy.inheritanceChance = 0.1f;
+
+        stealthy.name = traitString;
+        stealthy.type = traitString;
+        stealthy.traitClass = null;
+
+        instantiatedTraits[traitString] = stealthy;
+        return stealthy;
+    }
+
+    public static BaseTrait createDig()
+    {
+        string traitString = Traits.Dig.ToString();
+        if (instantiatedTraits.ContainsKey(traitString))
+        {
+            return instantiatedTraits[traitString];
+        }
+        BaseTrait dig = new BaseTrait();
+        dig.attributes.Add(Attribute.Fighting.ToString(), 1);
+        dig.attributes.Add(Attribute.Strength.ToString(), 1);
+        dig.attributes.Add(Attribute.Tracking.ToString(), 0);
+        dig.attributes.Add(Attribute.Food.ToString(), 0);
+
+        //        dig.inheritanceChance = 0.1f;
+
+        dig.name = traitString;
+        dig.type = traitString;
+        dig.traitClass = null;
+
+        instantiatedTraits[traitString] = dig;
+        return dig;
+    }
+
 }
