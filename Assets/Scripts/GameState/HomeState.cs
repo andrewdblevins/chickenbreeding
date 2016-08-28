@@ -29,7 +29,8 @@ public class HomeState : BaseState {
         foreach (var i in System.Linq.Enumerable.Range(0, m))
         {
             //Get a plot
-            getSomePlot().addAnimal(AnimalFactory.Instance.createChicken());
+            getSomePlot().addAnimal(AnimalFactory.Instance.createAnimal
+                (SpeciesFactory.createChicken(), SizeFactory.createTiny(), /* age: youngAdult */ 5));
         }
     }
 

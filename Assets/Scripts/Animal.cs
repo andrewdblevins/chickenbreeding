@@ -69,10 +69,10 @@ public class Animal : MonoBehaviour
     }
 
     public void Initialize(SpeciesTrait species, SizeTrait size) {
-		Initialize (species, size, new List<BaseTrait> ());
+		Initialize (species, size, new List<BaseTrait> (), 0);
 	}
 
-	public void Initialize(SpeciesTrait species, SizeTrait size, List<BaseTrait> inputTraits)
+	public void Initialize(SpeciesTrait species, SizeTrait size, List<BaseTrait> inputTraits, int age)
 	{
 		SpeciesTrait = species;
 		SizeTrait = size;
@@ -83,6 +83,7 @@ public class Animal : MonoBehaviour
         {
             image.sprite = animals[species.spriteIndex];
         }
+        this.age = age;
 
         MyEventSystem.OnSeasonAdvance += GetOlder;
     }
