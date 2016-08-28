@@ -2,13 +2,11 @@
 using System.Collections;
 
 public class WorldState : MonoBehaviour {
-    public Party party;// = new Party();
-    Inventory inventory = new Inventory();
+    public Party party;
+    public Inventory inventory;
 
     public void Initialize(AnimalFactory animalFactory)
     {
-        //party = new Party();
-        inventory = new Inventory();
         inventory.Initialize(animalFactory);
     }
 
