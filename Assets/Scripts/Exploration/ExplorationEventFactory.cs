@@ -3,6 +3,18 @@ using System.Collections.Generic;
 
 public class ExplorationEventFactory
 {
+    public static List<ExplorationEvent> explorationEvents;
+
+    public static void init()
+    {
+        explorationEvents = new List<ExplorationEvent>(20);
+        //explorationEvents.Add()
+    }
+
+
+
+
+
     public static ExplorationEvent createEvent()
     {
         ExplorationEvent e = new ExplorationEvent();

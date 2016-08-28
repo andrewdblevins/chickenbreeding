@@ -42,6 +42,8 @@ public class ExplorationEvent {
 
     public string description;
 
+    public EventCondition precondition;
+
     public List<Option> options;
 
 
