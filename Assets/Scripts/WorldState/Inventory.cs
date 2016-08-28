@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class Inventory
 {
+    private AnimalFactory animalFactory;
+
     List<GameObject> inventory = new List<GameObject>();
 
-    internal void AddAll(List<Animal> reward)
+    public void Initialize(AnimalFactory animalFactory)
     {
-        
+        this.animalFactory = animalFactory;
+    }
+
+    internal void AddAll(List<AnimalDef> reward)
+    {
+        foreach (AnimalDef def in reward)
+        {
+            inventory.Add(animalFactory.createFromDef(def));
+        }
     }
 }
