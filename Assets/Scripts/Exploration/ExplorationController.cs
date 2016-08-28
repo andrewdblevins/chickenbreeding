@@ -9,7 +9,8 @@ public class ExplorationController : MonoBehaviour
 
     public ExplorationEvent currentEvent;
 
-    public List<Animal> party;
+    // TODO initialize this using start exploration, not by creating a thing here.
+    WorldState worldState = new WorldState();
 
     //new exploration event
 
@@ -20,29 +21,29 @@ public class ExplorationController : MonoBehaviour
 
     //consume food
 
+    public void StartExploration(WorldState worldState)
+    {
+        this.worldState = worldState;
+    }
+
 
     void Update()
     {
         switch (state)
         {
             case State.Start:
-                GameObject obj = new GameObject();
-                Animal wolfAnimal = obj.AddComponent<Animal>();
-                wolfAnimal.Initialize(SpeciesFactory.createWolf(), SizeFactory.createMidsized());
-                Animal rabbitAnimal = obj.AddComponent<Animal>();
-                rabbitAnimal.Initialize(SpeciesFactory.createRabbit(), SizeFactory.createTiny());
-                Animal chickenAnimal = obj.AddComponent<Animal>();
-                chickenAnimal.Initialize(SpeciesFactory.createChicken(), SizeFactory.createTiny());
-
-                party = new List<Animal>() {
-                    wolfAnimal,
-                    rabbitAnimal,
-                    chickenAnimal
-                };
+                string remaining = "";
+                foreach (GameObject partyMember in worldState.GetParty().GetMembers())
+                {
+                    Animal a = partyMember.GetComponent<Animal>();
+                    remaining += a.speciesTrait.name + ", ";
+                }
+                print("party: " + remaining);
                 state = State.Continue;
                 break;
             case State.Continue:
                 currentEvent = ExplorationEventFactory.createEvent();
+                print("=============================================");
                 print(currentEvent.description);
                 for (int i = 0; i < currentEvent.options.Count; i++)
                 {
@@ -75,18 +76,35 @@ public class ExplorationController : MonoBehaviour
         if (state == State.EncounterEvent && currentEvent != null && choice < currentEvent.options.Count)
         {
             ExplorationEvent.Option option = currentEvent.options[choice];
-            bool pass = option.attempt(party);
+            print("you chose to " + option.description);
+            bool pass = option.attempt(worldState.GetParty());
             if (pass)
             {
                 print("You win");
-                party.AddRange(option.reward);
+                worldState.GetInventory().AddAll(option.reward);
             } else
             {
                 print("You lose");
-                int index = Random.Range(1, party.Count);
-                print("1 of your " + party.Count + " animimals will die");
-                print("Billy the " + party[index].speciesTrait.name + " has died");
-                party.RemoveAt(index);
+                if (worldState.GetParty().Size() > 0)
+                {
+                    Party party = worldState.GetParty();
+                    int index = Random.Range(0, party.Size());
+                    print("One of your " + party.Size() + " animimals will die, the " + index + "th one");
+                    GameObject toDie = party.RemoveMember(index);
+                    Animal dyingAnimal = toDie.GetComponent<Animal>();
+                    print("Billy the " + dyingAnimal.speciesTrait.name + " has died");
+
+                    string remaining = "";
+                    foreach (GameObject partyMember in party.GetMembers())
+                    {
+                        Animal a = partyMember.GetComponent<Animal>();
+                        remaining += a.speciesTrait.name + ", ";
+                    }
+                    print("remaining: " + remaining);
+                } else
+                {
+                    print("All of your friends are already dead.  No one loves you.");
+                }
             }
 
             state = State.ResolveEvent;

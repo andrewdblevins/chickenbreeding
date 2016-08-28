@@ -87,7 +87,7 @@ public class SpeciesFactory {
 
         chicken.linkageMap.Add(TraitFactory.Traits.Tiny.ToString(), 0.6f);
 
-        instantiatedTraits[Species.Rabbit.ToString()] = chicken;
+        instantiatedTraits[Species.Chicken.ToString()] = chicken;
         return chicken;
     }
 }
