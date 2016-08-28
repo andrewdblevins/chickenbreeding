@@ -23,15 +23,11 @@ public class GameManager : MonoBehaviour {
         AnimalFactory animalFactory = GetComponent<AnimalFactory>();
         worldState.Initialize(animalFactory);
 
+        TraitFactory.instantiateAllTraits();
+
         homeState = new HomeState();
         homeState.Initialize();
         activeState = homeState;
-
-		TraitFactory.instantiateAllTraits (); 
-
-		homeState = new HomeState();
-		homeState.Initialize();
-		activeState = homeState;
 	}
 
     internal void goExplore()
