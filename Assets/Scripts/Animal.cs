@@ -95,19 +95,10 @@ public class Animal : MonoBehaviour
         Animal babyAnimal = baby.GetComponent<Animal>();
 
         List<BaseTrait> mandatoryTraits = new List<BaseTrait>();
-        babyAnimal.SpeciesTrait = SpeciesTrait;
-		mandatoryTraits.Add(SpeciesTrait);
-
-		//TODO: Something about this doesn't quite make sense for the size trait
-		if (SizeTrait.getInheritanceChance(mandatoryTraits) >= Random.Range(0f, 1.0f))
-        {
-            babyAnimal.SizeTrait = SizeTrait;
-			mandatoryTraits.Add(SizeTrait);
-        } else
-        {
-            babyAnimal.SizeTrait = mate.SizeTrait;
-			mandatoryTraits.Add(mate.SizeTrait);
-        }
+        SizeTrait babySize = TraitSelector.selectSize(SpeciesTrait, SizeTrait, mate.SizeTrait);
+        babyAnimal.Initialize(SpeciesTrait, babySize);
+        mandatoryTraits.Add(SpeciesTrait);
+        mandatoryTraits.Add(babySize);
 
 		babyAnimal.Traits = TraitSelector.selectTraits (mandatoryTraits, this.Traits, mate.Traits);
 //
