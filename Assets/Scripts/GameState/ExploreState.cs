@@ -36,7 +36,7 @@ public class ExploreState : BaseState {
                 foreach (GameObject partyMember in worldState.GetParty().GetMembers())
                 {
                     Animal a = partyMember.GetComponent<Animal>();
-                    remaining += a.speciesTrait.name + ", ";
+                    remaining += a.SpeciesTrait.name + ", ";
                 }
                 Debug.Log("party: " + remaining);
                 state = State.Continue;
@@ -95,13 +95,13 @@ public class ExploreState : BaseState {
                     Debug.Log("One of your " + party.Size() + " animimals will die, the " + index + "th one");
                     GameObject toDie = party.RemoveMember(index);
                     Animal dyingAnimal = toDie.GetComponent<Animal>();
-                    Debug.Log("Billy the " + dyingAnimal.speciesTrait.name + " has died");
+                    Debug.Log("Billy the " + dyingAnimal.SpeciesTrait.name + " has died");
 
                     string remaining = "";
                     foreach (GameObject partyMember in party.GetMembers())
                     {
                         Animal a = partyMember.GetComponent<Animal>();
-                        remaining += a.speciesTrait.name + ", ";
+                        remaining += a.SpeciesTrait.name + ", ";
                     }
                     Debug.Log("remaining: " + remaining);
                 }
