@@ -52,4 +52,9 @@ public class GameManager : MonoBehaviour {
     {
         homeState.iterateTurn();
     }
+
+    internal void GoHome()
+    {
+        activeState = homeState;
+    }
 }
