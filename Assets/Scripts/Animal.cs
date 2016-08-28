@@ -8,6 +8,10 @@ public class Animal : MonoBehaviour
     public Sprite[] animals;
     public GameObject animalPrefab;
 
+    private int age = 0;
+
+    public enum Age { Baby, YoungAdult, Adult, Old };
+
     public SpeciesTrait SpeciesTrait
     {
         get
@@ -47,7 +51,24 @@ public class Animal : MonoBehaviour
         }
     }
 
-	public void Initialize(SpeciesTrait species, SizeTrait size) {
+    public Age GetAge()
+    {
+        if (age < 4)
+        {
+            return Age.Baby;
+        }
+        if (age < 8)
+        {
+            return Age.YoungAdult;
+        }
+        if (age < 16)
+        {
+            return Age.Adult;
+        }
+        return Age.Old;
+    }
+
+    public void Initialize(SpeciesTrait species, SizeTrait size) {
 		Initialize (species, size, new List<BaseTrait> ());
 	}
 
@@ -62,6 +83,13 @@ public class Animal : MonoBehaviour
         {
             image.sprite = animals[species.spriteIndex];
         }
+
+        MyEventSystem.OnSeasonAdvance += GetOlder;
+    }
+
+    public void GetOlder()
+    {
+        age++;
     }
 
     // Use this for initialization
@@ -101,37 +129,6 @@ public class Animal : MonoBehaviour
         mandatoryTraits.Add(babySize);
 
 		babyAnimal.Traits = TraitSelector.selectTraits (mandatoryTraits, this.Traits, mate.Traits);
-//
-//        List<BaseTrait> babyTraits = new List<BaseTrait>();
-//        foreach (BaseTrait trait in traits)
-//        {
-//            if (trait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
-//            {
-//                babyTraits.Add(trait);
-//                babyTotalTraits.Add(trait);
-//            }
-//        }
-//        foreach (BaseTrait trait in mate.traits)
-//        {
-//            bool compatible = true;
-//            foreach (BaseTrait babyTrait in babyTotalTraits)
-//            {
-//                if (!babyTrait.isCompatible(trait))
-//                {
-//                    compatible = false;
-//                    break;
-//                }
-//            }
-//            if (!compatible)
-//            {
-//                continue;
-//            }
-//            if (trait.getInheritanceChance(babyTotalTraits) >= Random.Range(0f, 1.0f))
-//            {
-//                babyTraits.Add(trait);
-//                babyTotalTraits.Add(trait);
-//            }
-//        }
 
         return baby;
     }

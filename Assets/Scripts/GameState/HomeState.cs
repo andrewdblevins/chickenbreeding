@@ -46,24 +46,6 @@ public class HomeState : BaseState {
         return allPlots[0];
     }
 
-    public void registerAnimal(Animal a)
-    {
-        allAnimals.Add(a);
-    }
-
-    public void removeAnimal(Animal a)
-    {
-        allAnimals.Remove(a);
-    }
-
-    void manageAnimals()
-    {
-        foreach (Animal a in allAnimals)
-        {
-
-        }
-    }
-
     void managePlots()
     {
         foreach (Plot p in allPlots)
@@ -77,8 +59,8 @@ public class HomeState : BaseState {
         if (preEndTurnChecks())
         {
             turn += 1;
+            MyEventSystem.AdvanceSeasons();
             managePlots();
-            manageAnimals();
             fireRandomEvent();
         }
     }
