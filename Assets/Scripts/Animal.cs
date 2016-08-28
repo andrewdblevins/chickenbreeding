@@ -84,13 +84,32 @@ public class Animal : MonoBehaviour
             image.sprite = animals[species.spriteIndex];
         }
         this.age = age;
+        adjustScaleForAge();
 
         MyEventSystem.OnSeasonAdvance += GetOlder;
+    }
+
+    private void adjustScaleForAge()
+    {
+        switch (GetAge())
+        {
+            case Age.Baby:
+                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                break;
+            case Age.YoungAdult:
+                transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                break;
+            case Age.Adult:
+            case Age.Old:
+                transform.localScale = new Vector3(1f, 1f, 1f);
+                break;
+        }
     }
 
     public void GetOlder()
     {
         age++;
+        adjustScaleForAge();
     }
 
     // Use this for initialization
