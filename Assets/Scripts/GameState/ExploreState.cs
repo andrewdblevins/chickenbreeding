@@ -41,13 +41,12 @@ public class ExploreState : BaseState {
                 state = State.Continue;
                 break;
             case State.Continue:
-                currentEvent = ExplorationEventFactory.createEvent();
-                Debug.Log("=============================================");
-                Debug.Log(currentEvent.description);
+				currentEvent = ExplorationEventFactory.getEvent(this.worldState);
                 for (int i = 0; i < currentEvent.options.Count; i++)
                 {
                     Debug.Log("   press " + (i + 1) + " to " + currentEvent.options[i].description);
                 }
+				ExplorePanelBehavior.Instance.Draw (currentEvent,this);
                 state = State.EncounterEvent;
                 break;
             case State.EncounterEvent:
@@ -79,6 +78,7 @@ public class ExploreState : BaseState {
 
     public void attempt(int choice)
     {
+		ExplorePanelBehavior.Instance.Close ();
         if (state == State.EncounterEvent && currentEvent != null && choice < currentEvent.options.Count)
         {
             ExplorationEvent.Option option = currentEvent.options[choice];

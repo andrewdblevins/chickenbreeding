@@ -71,7 +71,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ExplorePanelBehavior.cs" />
     <Compile Include="Assets\HarvestBehavior.cs" />
+    <Compile Include="Assets\OptionButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\Animal.cs" />
     <Compile Include="Assets\Scripts\AnimalDef.cs" />
     <Compile Include="Assets\Scripts\AnimalFactory.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\Scripts\GameState\ExploreState.cs" />
     <Compile Include="Assets\Scripts\GameState\HomeState.cs" />
     <Compile Include="Assets\Scripts\InspectPanelBehavior.cs" />
+    <Compile Include="Assets\Scripts\MyEventSystem.cs" />
     <Compile Include="Assets\Scripts\Plot.cs" />
     <Compile Include="Assets\Scripts\SlotBehavior.cs" />
     <Compile Include="Assets\Scripts\Traits\BaseTrait.cs" />

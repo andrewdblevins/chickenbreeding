@@ -29,7 +29,8 @@ public class HomeState : BaseState {
         foreach (var i in System.Linq.Enumerable.Range(0, m))
         {
             //Get a plot
-            getSomePlot().addAnimal(AnimalFactory.Instance.createChicken());
+            getSomePlot().addAnimal(AnimalFactory.Instance.createAnimal
+                (SpeciesFactory.createChicken(), SizeFactory.createTiny(), /* age: youngAdult */ 5));
         }
     }
 
@@ -46,24 +47,6 @@ public class HomeState : BaseState {
         return allPlots[0];
     }
 
-    public void registerAnimal(Animal a)
-    {
-        allAnimals.Add(a);
-    }
-
-    public void removeAnimal(Animal a)
-    {
-        allAnimals.Remove(a);
-    }
-
-    void manageAnimals()
-    {
-        foreach (Animal a in allAnimals)
-        {
-
-        }
-    }
-
     void managePlots()
     {
         foreach (Plot p in allPlots)
@@ -77,8 +60,8 @@ public class HomeState : BaseState {
         if (preEndTurnChecks())
         {
             turn += 1;
+            MyEventSystem.AdvanceSeasons();
             managePlots();
-            manageAnimals();
             fireRandomEvent();
         }
     }
