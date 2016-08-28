@@ -72,7 +72,7 @@ public class TraitFactory {
         strong.attributes.Add(Attribute.Tracking.ToString(), 0);
         strong.attributes.Add(Attribute.Food.ToString(), 0);
 
-        strong.inheritanceChance = 1.0f;
+//        strong.inheritanceChance = 1.0f;
 
         strong.name = Traits.Strong.ToString();
         strong.type = Traits.Strong.ToString();
@@ -97,7 +97,7 @@ public class TraitFactory {
         weak.attributes.Add(Attribute.Tracking.ToString(), 0);
         weak.attributes.Add(Attribute.Food.ToString(), 0);
 
-        weak.inheritanceChance = 5.0f;
+        weak.inheritanceChance = 2.0f;
 
         weak.name = Traits.Weak.ToString();
         weak.type = Traits.Weak.ToString();
@@ -121,7 +121,7 @@ public class TraitFactory {
         quick.attributes.Add(Attribute.Tracking.ToString(), 1);
         quick.attributes.Add(Attribute.Food.ToString(), 0);
 
-        quick.inheritanceChance = 1.0f;
+//        quick.inheritanceChance = 0.0f;
 
         quick.name = Traits.Quick.ToString();
         quick.type = Traits.Quick.ToString();
@@ -145,7 +145,7 @@ public class TraitFactory {
         slow.attributes.Add(Attribute.Tracking.ToString(), 0);
         slow.attributes.Add(Attribute.Food.ToString(), 0);
 
-        slow.inheritanceChance = 4.0f;
+        slow.inheritanceChance = 1.0f;
 
         slow.name = Traits.Slow.ToString();
         slow.type = Traits.Slow.ToString();

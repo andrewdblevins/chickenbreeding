@@ -17,10 +17,10 @@ public static class TraitSelector
 	}
 
 	private static float logistic(float val) {
-		return 1 / (1 + Mathf.Exp(-val));
+		return 1.0f / (1.0f + Mathf.Exp(-val));
 	}
 
-	static float baseInheritance = -7.0f;
+	static float baseInheritance = -5.0f;
 	static float parentalBoost = 3.0f;
 	static float perAdditionalTraitChance = -1.0f;
 
@@ -43,7 +43,8 @@ public static class TraitSelector
 			probability += trait.getLinkageChance (inheritableTraits);
 			//TODO: Add species chance
 			probability += inheritableTraits.Count * perAdditionalTraitChance;
-			if (Random.value > logistic(probability)) { inheritableTraits.Add (trait); }
+			GameManager.print (logistic(probability));
+			if (Random.value < logistic(probability)) { inheritableTraits.Add (trait); }
 		}
 		return inheritableTraits;
 	}
