@@ -20,7 +20,7 @@ public class HomeState : BaseState {
     public void Initialize()
     {
         //Create N plots and M animals in the first plot
-        int n = 10;
+        int n = 9;
         int m = 2;
         foreach (var i in System.Linq.Enumerable.Range(0, n))
         {

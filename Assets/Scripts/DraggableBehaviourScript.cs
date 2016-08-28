@@ -43,7 +43,14 @@ public class DraggableBehaviourScript : MonoBehaviour, IBeginDragHandler, IDragH
 			animal = (Animal)gameObject.GetComponent<Animal>();
 
 			inspectManager.SetImage( gameObject.GetComponent<Image> ().sprite);
-			inspectManager.SetAttrText (animal.GetAttributeScore("Fighting").ToString());
+
+			string attrText = "Stats";
+			attrText = attrText + "\nFighting: " + animal.GetAttributeScore ("Fighting").ToString ();
+			attrText = attrText + "\nStrength: " + animal.GetAttributeScore ("Strength").ToString ();
+			attrText = attrText + "\nTracking: " + animal.GetAttributeScore ("Tracking").ToString ();
+			attrText = attrText + "\nFood:     " + animal.GetAttributeScore ("Food").ToString ();
+
+			inspectManager.SetAttrText (attrText);
 
 			string traitText;
 			traitText = animal.sizeTrait.name.ToString () + "\n";
