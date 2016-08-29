@@ -36,7 +36,7 @@ public class ExplorationCriteria
 
 	public bool attempt(Party party, int roll) {
 		int score = party.GetAttributeScore (this.attribute) + roll;
-		return (meetsSpecialTraitRequirements(party) || score >= minScore && score < maxScore);
+		return (meetsSpecialTraitRequirements(party) && score >= minScore && score < maxScore);
 	}
 
 	//TODO: This is hacky way to estimate probability; do better
