@@ -12,6 +12,11 @@ public class AnimalFactory : MonoBehaviour {
 		Instance = this;
 	}
 
+    public GameObject createAnimal(SpeciesFactory.Species species)
+    {
+        return createFromDef(AnimalDefFactory.CreateDefForSpecies(species));
+    }
+
     public GameObject createAnimal(SpeciesTrait species, SizeTrait size) {
         return createAnimal(species, size, /* age */ 0);
     }
