@@ -33,5 +33,11 @@ public class JungleExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Elephant, 2, SpeciesFactory.Species.Mouse.ToString()));
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Gorilla, 3));
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Snake, 2));
+
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Snake));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Gorilla));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Monkey));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Panda));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Tiger));
     }
 }
