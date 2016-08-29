@@ -39,7 +39,7 @@ public abstract class BaseEventFactory
         e.options = new List<ExplorationEvent.Option>();
         e.options.Add(
             new ExplorationEvent.Option("Grab it.  You are not afraid of a mama " + species.ToString() + ".", TraitFactory.Attribute.Fighting.ToString(),
-            animalReward.GetAttributeScore(TraitFactory.Attribute.Fighting.ToString()), new List<AnimalDef>() { animalReward }, new List<string>()));
+            animalReward.GetAttributeScore(TraitFactory.Attribute.Fighting.ToString()) * 2, new List<AnimalDef>() { animalReward }, new List<string>()));
         e.options.Add(
             new ExplorationEvent.Option("Walk away quietly.", TraitFactory.Attribute.Tracking.ToString(),
             animalReward.GetAttributeScore(TraitFactory.Attribute.Tracking.ToString()), new List<AnimalDef>(), new List<string>()));
