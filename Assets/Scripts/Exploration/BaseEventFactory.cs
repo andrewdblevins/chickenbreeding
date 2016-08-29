@@ -124,5 +124,34 @@ public abstract class BaseEventFactory
 
         return e;
     }
+
+    protected ExplorationEvent babyInATree(SpeciesFactory.Species species)
+    {
+        ExplorationEvent e = new ExplorationEvent();
+
+        AnimalDef animalReward = AnimalDefFactory.CreateDefForSpecies(species);
+
+        e.description = "You come across a baby " + species.ToString() + " in a tree.";
+        e.options = new List<ExplorationEvent.Option>();
+
+        List<AnimalDef> twoAnimals = new List<AnimalDef>() { animalReward, animalReward };
+
+        int trackingScore = animalReward.GetAttributeScore(TraitFactory.Attribute.Tracking.ToString());
+
+        List<ExplorationCriteria> variableAnimalReward = new List<ExplorationCriteria>() {
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2, new RewardImpl.DoNothingReward("You can't reach it.")),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2 , trackingScore * 5, new RewardImpl.AnimalReward (animalReward)),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 5 , int.MaxValue, new RewardImpl.AnimalReward (twoAnimals))
+        };
+
+        e.options.Add(new ExplorationEvent.Option("Attempt to climb the tree to get it.", variableAnimalReward));
+        e.options.Add(new ExplorationEvent.Option("Walk away.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.DoNothingReward("You walk away."), new RewardImpl.DoNothingReward("You walk away.")));
+        e.options.Add(
+            new ExplorationEvent.Option("Send your climbing creature after it.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Climb.ToString() }));
+        e.options.Add(
+            new ExplorationEvent.Option("Send your flying creature after it.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Flying.ToString() }));
+        return e;
+    }
 }
 

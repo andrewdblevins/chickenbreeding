@@ -41,5 +41,12 @@ class ForestExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Cat, 2));
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Fox, 2));
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Moose, 2));
+
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Wolf));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Bluejay));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Cat));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Fox));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Owl));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Canary));
     }
 }
