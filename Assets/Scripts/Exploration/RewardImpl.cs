@@ -24,22 +24,38 @@ public static class RewardImpl
 
 	public class AnimalReward : Reward {
 		private List<AnimalDef> animals = new List<AnimalDef>();
+        protected string message;
 
-		public AnimalReward(AnimalDef animal) {
+        public AnimalReward(AnimalDef animal) {
 			animals.Add(animal);
 		}
 
-		public AnimalReward(List<AnimalDef> animals) {
+        public AnimalReward(AnimalDef animal, string message)
+        {
+            animals.Add(animal);
+            this.message = message;
+        }
+
+        public AnimalReward(List<AnimalDef> animals) {
 			animals.ForEach(this.animals.Add);
 		}
 
-		public void grant(Party party) {
+        public AnimalReward(List<AnimalDef> animals, string message)
+        {
+            animals.ForEach(this.animals.Add);
+            this.message = message;
+        }
+
+        public void grant(Party party) {
 			GameManager.Instance.worldState.GetInventory().AddAll(animals);
 		}
 
         public override string ToString()
         {
-            if (animals.Count > 0)
+            if (message != null)
+            {
+                return message;
+            } else if (animals.Count > 0)
             {
                 return "Success.  You have captured " + animals.Count + " " + animals[0].SpeciesTrait.name;
             }
@@ -100,13 +116,19 @@ public static class RewardImpl
 	public class RandomAnimalPenalty : Reward
 	{
         private string resultText;
+        private string message;
 
 		public RandomAnimalPenalty ()
 		{
 		}
 
+        public RandomAnimalPenalty(string message)
+        {
+            this.message = message;
+        }
 
-		public void grant (Party party)
+
+        public void grant (Party party)
 		{
 			if (GameManager.Instance.worldState.GetParty ().Size () > 0) {
 				int index = UnityEngine.Random.Range (0, party.Size ());
@@ -132,6 +154,7 @@ public static class RewardImpl
 
         public override string ToString()
         {
+            if (message != null) return message + "  " + resultText == null ? "" : resultText;
             return resultText == null ? "One of your animals died" : resultText;
         }
     }
