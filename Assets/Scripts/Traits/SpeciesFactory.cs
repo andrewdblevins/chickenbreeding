@@ -104,6 +104,7 @@ public class SpeciesFactory {
 
         rabbit.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 3.0f);
         rabbit.linkageMap.Add(TraitFactory.Traits.Tiny.ToString(), 6.0f);
+        rabbit.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
 
         instantiatedTraits[Species.Rabbit.ToString()] = rabbit;
         return rabbit;
@@ -130,6 +131,7 @@ public class SpeciesFactory {
         chicken.traitClass = SPECIES;
 
         chicken.linkageMap.Add(TraitFactory.Traits.Tiny.ToString(), 6.0f);
+        chicken.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 3.0f);
 
         instantiatedTraits[speciesString] = chicken;
         return chicken;
@@ -157,7 +159,9 @@ public class SpeciesFactory {
 
 		cow.linkageMap.Add(TraitFactory.Traits.Large.ToString(), 6.0f);
 		cow.linkageMap.Add(TraitFactory.Traits.Horned.ToString(), 1.0f);
-
+        cow.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
+        cow.linkageMap.Add(TraitFactory.Traits.Marbled.ToString(), 2.0f);
+        cow.linkageMap.Add(TraitFactory.Traits.Fat.ToString(), 2.0f);
 
         instantiatedTraits[speciesString] = cow;
         return cow;
@@ -187,8 +191,6 @@ public class SpeciesFactory {
 		lion.linkageMap.Add(TraitFactory.Traits.Strong.ToString(), 6.0f);
 		lion.linkageMap.Add(TraitFactory.Traits.Stealthy.ToString(), 1.0f);
 		lion.linkageMap.Add(TraitFactory.Traits.Aggressive.ToString(), 1.0f);
-
-
 
 
         instantiatedTraits[speciesString] = lion;
@@ -246,7 +248,7 @@ public class SpeciesFactory {
 
         turkey.linkageMap.Add(TraitFactory.Traits.Small.ToString(), 6.0f);
 		turkey.linkageMap.Add(TraitFactory.Traits.Flying.ToString(), 1.0f);
-
+        turkey.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
 
         instantiatedTraits[speciesString] = turkey;
         return turkey;
@@ -276,6 +278,7 @@ public class SpeciesFactory {
         lobster.linkageMap.Add(TraitFactory.Traits.Armored.ToString(), 3.0f);
 		lobster.linkageMap.Add(TraitFactory.Traits.Spikes.ToString(), 1.0f);
         lobster.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 5.0f);
+        lobster.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
 
 
         instantiatedTraits[speciesString] = lobster;
@@ -334,6 +337,10 @@ public class SpeciesFactory {
         bison.linkageMap.Add(TraitFactory.Traits.Aggressive.ToString(), 2.0f);
         bison.linkageMap.Add(TraitFactory.Traits.Horned.ToString(), 7.0f);
 
+        bison.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
+        bison.linkageMap.Add(TraitFactory.Traits.Fat.ToString(), 2.0f);
+        bison.linkageMap.Add(TraitFactory.Traits.Marbled.ToString(), 2.0f);
+
         instantiatedTraits[speciesString] = bison;
         return bison;
     }
@@ -363,6 +370,7 @@ public class SpeciesFactory {
         bear.linkageMap.Add(TraitFactory.Traits.Independent.ToString(), 3.0f);
 		bear.linkageMap.Add(TraitFactory.Traits.Strong.ToString(), 3.0f);
 
+        bear.linkageMap.Add(TraitFactory.Traits.Fat.ToString(), 2.0f);
 
         instantiatedTraits[speciesString] = bear;
         return bear;
@@ -509,6 +517,8 @@ public class SpeciesFactory {
         deer.linkageMap.Add(TraitFactory.Traits.Midsized.ToString(), 6.0f);
 		deer.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 1.0f);
 
+        deer.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
+
 
         instantiatedTraits[speciesString] = deer;
         return deer;
@@ -653,7 +663,9 @@ public class SpeciesFactory {
         sheep.linkageMap.Add(TraitFactory.Traits.Midsized.ToString(), 6.0f);
         sheep.linkageMap.Add(TraitFactory.Traits.Docile.ToString(), 6.0f);
 		sheep.linkageMap.Add(TraitFactory.Traits.Spikes.ToString(), -6.0f);
-
+        sheep.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
+        sheep.linkageMap.Add(TraitFactory.Traits.Fat.ToString(), 2.0f);
+        sheep.linkageMap.Add(TraitFactory.Traits.Marbled.ToString(), 2.0f);
 
         instantiatedTraits[speciesString] = sheep;
         return sheep;
@@ -941,7 +953,9 @@ public class SpeciesFactory {
 		moose.linkageMap.Add(TraitFactory.Traits.Aggressive.ToString(), 6.0f);
 		moose.linkageMap.Add(TraitFactory.Traits.Horned.ToString(), 6.0f);
 
-
+        moose.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
+        moose.linkageMap.Add(TraitFactory.Traits.Fat.ToString(), 2.0f);
+        moose.linkageMap.Add(TraitFactory.Traits.Marbled.ToString(), 2.0f);
 
         instantiatedTraits[speciesString] = moose;
         return moose;
@@ -1029,6 +1043,10 @@ public class SpeciesFactory {
         pig.linkageMap.Add(TraitFactory.Traits.Midsized.ToString(), 6.0f);
         pig.linkageMap.Add(TraitFactory.Traits.Docile.ToString(), 2.0f);
         pig.linkageMap.Add(TraitFactory.Traits.KeenSmell.ToString(), 2.0f);
+
+        pig.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
+        pig.linkageMap.Add(TraitFactory.Traits.Fat.ToString(), 2.0f);
+        pig.linkageMap.Add(TraitFactory.Traits.Marbled.ToString(), 2.0f);
 
         instantiatedTraits[speciesString] = pig;
         return pig;
@@ -1139,6 +1157,8 @@ public class SpeciesFactory {
 
         duck.linkageMap.Add(TraitFactory.Traits.Small.ToString(), 6.0f);
         duck.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 5.0f);
+
+        duck.linkageMap.Add(TraitFactory.Traits.Delicious.ToString(), 2.0f);
 
         instantiatedTraits[speciesString] = duck;
         return duck;
