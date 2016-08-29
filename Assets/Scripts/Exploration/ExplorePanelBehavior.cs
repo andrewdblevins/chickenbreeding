@@ -26,10 +26,7 @@ public class ExplorePanelBehavior : MonoBehaviour {
 			button.gameObject.GetComponent<OptionButtonBehavior> ().optionNum = i;
 			button.gameObject.GetComponent<OptionButtonBehavior> ().state = state;
 
-            if (Random.Range(0f, 1f) > 0.5)
-            {
-                button.GetComponent<Button>().interactable = false;
-            }
+            button.GetComponent<Button>().interactable = currentEvent.options[i].checkSpecialRequirements(state.getParty());
 
 		}
 				

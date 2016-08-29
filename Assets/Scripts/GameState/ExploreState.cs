@@ -19,6 +19,11 @@ public class ExploreState : BaseState {
 
     //consume food
 
+    public Party getParty()
+    {
+        return worldState.party;
+    }
+
     public void StartExploration(WorldState worldState)
     {
         Debug.Log("starting exploration");

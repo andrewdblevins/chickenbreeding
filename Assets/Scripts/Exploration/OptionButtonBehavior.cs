@@ -2,15 +2,14 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class OptionButtonBehavior : MonoBehaviour, IPointerClickHandler{
+public class OptionButtonBehavior : MonoBehaviour {
 
 	public int optionNum;
 	public ExploreState state;
 
-	public void OnPointerClick (PointerEventData eventData)
-	{
-		Debug.Log("Button pushed");
-		state.attempt (optionNum);
-	}
+    public void myOnClick()
+    {
+        state.attempt(optionNum);
+    }
 		
 }
