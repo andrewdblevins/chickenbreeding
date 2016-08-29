@@ -69,6 +69,61 @@ public abstract class BaseEventFactory
         return e;
     }
 
+	protected ExplorationEvent rescueFromQuicksand(SpeciesFactory.Species species, int numAttackers) {
+		ExplorationEvent e = new ExplorationEvent();
+
+		AnimalDef animalReward = AnimalDefFactory.CreateDefForSpecies(species);
+
+		int foodReward = animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()) * numAttackers;
+
+		string foodString = "";
+		if (numAttackers == 1) {
+			e.description = "You see a " + species.ToString() + " trapped in the quicksand";
+			foodString = "You rescued the " + species.ToString() + " and harvest its meat to feed your animals";
+		} else {
+			e.description = "You see " + numAttackers + " " + species.ToString() + " trapped in the quicksand";
+			foodString = "You killed every last " + species.ToString() + " and make a meal of their corpses.  you collect a feast of " + foodReward + " food.";
+		}
+
+		string tameString = "";
+		if (numAttackers == 1) {
+			e.description = "You see a " + species.ToString() + " trapped in the quicksand";
+			tameString = "You rescued the " + species.ToString() + " and it joins you.";
+		} else {
+			e.description = "You see " + numAttackers + " " + species.ToString() + " trapped in the quicksand";
+			tameString = "You rescued every last " + species.ToString() + " and they join you.";
+		}
+
+		e.options = new List<ExplorationEvent.Option>();
+
+		int trackingScore = Mathf.FloorToInt( animalReward.GetAttributeScore(TraitFactory.Attribute.Tracking.ToString()) * (0.5f + numAttackers));
+		//int trackingScore = animalReward.GetAttributeScore(TraitFactory.Attribute.Tracking.ToString());
+
+
+		List<ExplorationCriteria> variableFoodReward = new List<ExplorationCriteria>() {
+			new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore * 2, new RewardImpl.RandomAnimalPenalty()),
+			new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2, trackingScore * 2 + 3, new RewardImpl.FoodPenalty(25,
+				"The quicksand nearly killed you and claimed some of your supplies.  You lost 25 food.")),
+			new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2 + 3, int.MaxValue, new RewardImpl.FoodReward(foodReward, foodString))
+		};
+
+		List<ExplorationCriteria> variableRescueReward = new List<ExplorationCriteria>() {
+			new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore * 3, new RewardImpl.RandomAnimalPenalty()),
+			new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 3, trackingScore * 3 + 3, new RewardImpl.FoodPenalty(25,
+				"The quicksand nearly killed you and claimed some of your supplies.  You lost 25 food.")),
+			new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 3 + 3, int.MaxValue, new RewardImpl.AnimalReward(animalReward, tameString))
+		};
+
+
+		e.options.Add(new ExplorationEvent.Option("Your animals are hungry.  Let's try to get some meat.", variableFoodReward));
+		e.options.Add(new ExplorationEvent.Option("The " + species.ToString() + " look like great new travel companions. Maybe if we rescue them, they will join our cause?", variableRescueReward));
+		e.options.Add(new ExplorationEvent.Option("Do Nothing.", 
+			new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, int.MaxValue, new RewardImpl.DoNothingReward())
+		));
+
+		return e;
+	}
+
     protected ExplorationEvent attackedBy(SpeciesFactory.Species species, int numAttackers)
     {
         return attackedBy(species, numAttackers, null);

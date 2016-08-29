@@ -57,6 +57,12 @@ public class ExplorationEvent {
 			ed = new ExplorationDefinition(description,explorationCriteria);
 		}
 
+		public Option(string description, ExplorationCriteria explorationCriteria) {
+			this.description = description;
+
+			ed = new ExplorationDefinition(description,new List<ExplorationCriteria> {explorationCriteria});
+		}
+
 		public Option(string description, ExplorationDefinition expd) {
 			this.description = description;
 

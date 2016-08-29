@@ -25,7 +25,9 @@ public static class RewardImpl
 	public class AnimalReward : Reward {
 		private List<AnimalDef> animals = new List<AnimalDef>();
 
-		public AnimalReward(AnimalDef animal) {
+		string rewardString;
+
+		public AnimalReward(AnimalDef animal, string rewardString = null) {
 			animals.Add(animal);
 		}
 
@@ -39,11 +41,15 @@ public static class RewardImpl
 
         public override string ToString()
         {
-            if (animals.Count > 0)
-            {
-                return "Success.  You have captured " + animals.Count + " " + animals[0].SpeciesTrait.name;
-            }
-            return "Success. All of your animals survived";
+			if (rewardString == null) {
+				
+				if (animals.Count > 0) {
+					return "Success.  You have captured " + animals.Count + " " + animals [0].SpeciesTrait.name;
+				}
+				return "Success. All of your animals survived";
+			} else {
+				return rewardString;
+			}
         }
 	}
 
