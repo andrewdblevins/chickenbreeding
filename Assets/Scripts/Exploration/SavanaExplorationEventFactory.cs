@@ -36,5 +36,8 @@ public class SavanaExplorationEventFactory : BaseEventFactory
 
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Lion));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Wolf));
+
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Wolf));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Lion));
     }
 }

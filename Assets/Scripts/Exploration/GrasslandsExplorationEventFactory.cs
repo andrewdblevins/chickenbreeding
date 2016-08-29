@@ -44,6 +44,10 @@ class GrasslandsExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Owl));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Chicken));
 
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Wolf));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Mouse));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Rabbit));
+
     }
 
     public static ExplorationEvent stealEggs()
@@ -59,8 +63,8 @@ class GrasslandsExplorationEventFactory : BaseEventFactory
         List<ExplorationCriteria> variableChickenReward = new List<ExplorationCriteria>() {
             new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), int.MinValue, 6, new RewardImpl.RandomAnimalPenalty()),
             new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), 6, 10, new RewardImpl.DoNothingReward("The Chicken looks kinda scary, and you back off.")),
-            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), 10, 20, new RewardImpl.AnimalReward (chicken)),
-            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), 20, int.MaxValue, new RewardImpl.AnimalReward (twoChickens))
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), 10, 20, new RewardImpl.AnimalReward (chicken, "You defeat the mother and get one unbroken egg from the nest.")),
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), 20, int.MaxValue, new RewardImpl.AnimalReward (twoChickens, "After defeating the mother there are two viable eggs left in the nest."))
         };
 
         e.description = "You see a nest with a few eggs.  Its mother, a hugely oversized chicken, is nearby.";

@@ -62,9 +62,9 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
         int strengthScore = animalReward.GetAttributeScore(TraitFactory.Attribute.Strength.ToString());
 
         List<ExplorationCriteria> variableAnimalReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), int.MinValue, strengthScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), int.MinValue, strengthScore, new RewardImpl.RandomAnimalPenalty("The current was too swift.")),
             new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), strengthScore, strengthScore * 2, new RewardImpl.DoNothingReward("The tree doesn't budge.")),
-            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), strengthScore * 2 , int.MaxValue, new RewardImpl.AnimalReward (animalReward))
+            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), strengthScore * 2 , int.MaxValue, new RewardImpl.AnimalReward (animalReward, "You crosses the water and captured a baby " + species.ToString()))
         };
 
         e.options.Add(new ExplorationEvent.Option("There is a tree nearby, you can try to push it over.", variableAnimalReward));
@@ -86,7 +86,7 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
 
         int strengthScore = 10;
         List<ExplorationCriteria> variableStuckReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), int.MinValue, strengthScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), int.MinValue, strengthScore, new RewardImpl.RandomAnimalPenalty("The Earth itself has swallowed one of your animals.")),
             new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), strengthScore, int.MaxValue, new RewardImpl.DoNothingReward ("You get the animal free."))
         };
 
@@ -106,10 +106,10 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
 
         int trackingScore = 6;
         List<ExplorationCriteria> variableFishReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty("You are really bad at fishing.  One of your animals managed to fall in and drown.")),
             new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), trackingScore, trackingScore * 2, new RewardImpl.DoNothingReward("The fish gets away.")),
-            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), trackingScore * 2, trackingScore * 6, new RewardImpl.FoodReward(4)),
-            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), trackingScore * 2, int.MaxValue,  new RewardImpl.FoodReward(12))
+            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), trackingScore * 2, trackingScore * 6, new RewardImpl.FoodReward(4, "You catch a small fish and gain 4 food.")),
+            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), trackingScore * 2, int.MaxValue,  new RewardImpl.FoodReward(12, "You catch a large fish and gain 12 food."))
         };
 
         e.options.Add(new ExplorationEvent.Option("Walk away.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.DoNothingReward("You walk away."), new RewardImpl.DoNothingReward("You walk away.")));
@@ -117,7 +117,7 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
 		e.options.Add(new ExplorationEvent.Option("Try to catch the fish.", variableFishReward));
 
         e.options.Add(
-            new ExplorationEvent.Option("Send in your swimming animal.", TraitFactory.Attribute.Tracking.ToString(), 10, new RewardImpl.FoodReward(12), new RewardImpl.FoodReward(4), new List<string>() { TraitFactory.Traits.Swim.ToString() }));
+            new ExplorationEvent.Option("Send in your swimming animal.", TraitFactory.Attribute.Tracking.ToString(), 10, new RewardImpl.FoodReward(12, "You catch a large fish and gain 12 food."), new RewardImpl.FoodReward(4, "You catch a large fish and gain 4 food."), new List<string>() { TraitFactory.Traits.Swim.ToString() }));
         return e;
     }
 }
