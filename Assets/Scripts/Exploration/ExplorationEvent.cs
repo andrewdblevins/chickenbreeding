@@ -81,6 +81,27 @@ public class ExplorationEvent {
 			return ed.explore(party, roll);
         }
 
+        public bool checkSpecialRequirements(Party party)
+        {
+            if (specialRequirements == null) return true;
+            int requirementSatisfactionCount = 0;
+            
+            foreach (string trait in specialRequirements)
+            {
+                foreach (GameObject obj in party.GetMembers())
+                {
+                    Animal a = obj.GetComponent<Animal>();
+                    if (a != null && a.hasTrait(trait))
+                    {
+                        requirementSatisfactionCount++;
+                        break;
+                    }
+                }
+            }
+            return requirementSatisfactionCount >= specialRequirements.Count;
+
+        }
+
 //		public bool attempt(Party party)
 //		{
 //		}

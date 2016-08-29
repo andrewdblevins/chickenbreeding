@@ -168,4 +168,19 @@ public class Animal : MonoBehaviour
         return def.SizeTrait.size;
     }
 
+    public bool hasTrait(string trait)
+    {
+        if (SpeciesTrait.type == trait || SizeTrait.type == trait)
+        {
+            return true;
+        }
+
+        foreach (BaseTrait t in Traits)
+        {
+            if (t.type == trait) return true;
+        }
+
+        return false;
+    }
+
 }

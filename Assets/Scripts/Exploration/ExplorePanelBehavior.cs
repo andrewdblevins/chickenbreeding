@@ -26,6 +26,8 @@ public class ExplorePanelBehavior : MonoBehaviour {
 			button.gameObject.GetComponent<OptionButtonBehavior> ().optionNum = i;
 			button.gameObject.GetComponent<OptionButtonBehavior> ().state = state;
 
+            button.GetComponent<Button>().interactable = currentEvent.options[i].checkSpecialRequirements(state.getParty());
+
 		}
 				
 		this.gameObject.transform.position = GameManager.Instance.transform.position;
