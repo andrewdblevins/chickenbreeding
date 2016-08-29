@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-abstract class BaseEventFactory
+public abstract class BaseEventFactory
 {
     public List<ExplorationEvent> explorationEvents = new List<ExplorationEvent>();
 
