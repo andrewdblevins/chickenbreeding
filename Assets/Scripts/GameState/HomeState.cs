@@ -21,17 +21,17 @@ public class HomeState : BaseState {
     {
         //Create N plots and M animals in the first plot
         int n = 9;
-        int m = 2;
         foreach (var i in System.Linq.Enumerable.Range(0, n))
         {
             createPlot();
         }
-        foreach (var i in System.Linq.Enumerable.Range(0, m))
-        {
-            //Get a plot
-            getSomePlot().addAnimal(AnimalFactory.Instance.createAnimal
-                (SpeciesFactory.createLion(), SizeFactory.createTiny(), /* age: youngAdult */ 5));
-        }
+            //Start with 2 chickens and a wolf
+         getSomePlot().addAnimal(AnimalFactory.Instance.createAnimal
+                (SpeciesFactory.createChicken(), SizeFactory.createTiny(), /* age: youngAdult */ 5));
+		getSomePlot().addAnimal(AnimalFactory.Instance.createAnimal
+			(SpeciesFactory.createChicken(), SizeFactory.createTiny(), /* age: youngAdult */ 5));
+		getSomePlot().addAnimal(AnimalFactory.Instance.createAnimal
+			(SpeciesFactory.createWolf(), SizeFactory.createMidsized(), /* age: youngAdult */ 5));
     }
 
     public Plot createPlot()
