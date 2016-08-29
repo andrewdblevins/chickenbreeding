@@ -30,15 +30,14 @@ public class ExplorePanelBehavior : MonoBehaviour {
 			texts[0].text = currentEvent.options [i].description;
 
 
-
-			List<KeyValuePair<string, int>> list = currentEvent.options[i].ToList();
+			List<KeyValuePair<string, int>> list = currentEvent.options [i].probability (state.getParty ()).ToList();
 
 			string odds = ""; 
 			foreach (KeyValuePair<string, int> pair in list)
 			{
-				odds += pair.Key + ": " + pair.Value;
+				odds += pair.Key + ": " + pair.Value + "\n";
 			}
-			texts [1].text = odds;
+			texts[1].text = odds;
 
 			button.gameObject.GetComponent<OptionButtonBehavior> ().optionNum = i;
 			button.gameObject.GetComponent<OptionButtonBehavior> ().state = state;
