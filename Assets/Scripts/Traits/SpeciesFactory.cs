@@ -217,6 +217,7 @@ public class SpeciesFactory {
 
         turtle.linkageMap.Add(TraitFactory.Traits.Small.ToString(), 6.0f);
 		turtle.linkageMap.Add(TraitFactory.Traits.Armored.ToString(), 6.0f);
+        turtle.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 4.0f);
 
 
         instantiatedTraits[speciesString] = turtle;
@@ -274,6 +275,7 @@ public class SpeciesFactory {
         lobster.linkageMap.Add(TraitFactory.Traits.Small.ToString(), 3.0f);
         lobster.linkageMap.Add(TraitFactory.Traits.Armored.ToString(), 3.0f);
 		lobster.linkageMap.Add(TraitFactory.Traits.Spikes.ToString(), 1.0f);
+        lobster.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 5.0f);
 
 
         instantiatedTraits[speciesString] = lobster;
@@ -879,7 +881,7 @@ public class SpeciesFactory {
         frog.traitClass = SPECIES;
 
         frog.linkageMap.Add(TraitFactory.Traits.Tiny.ToString(), 6.0f);
-		frog.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 3.0f);
+		frog.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 4.0f);
 
 
 
@@ -1055,6 +1057,7 @@ public class SpeciesFactory {
         hippo.linkageMap.Add(TraitFactory.Traits.Huge.ToString(), 6.0f);
         hippo.linkageMap.Add(TraitFactory.Traits.Aggressive.ToString(), 3.0f);
         hippo.linkageMap.Add(TraitFactory.Traits.Independent.ToString(), 2.0f);
+        hippo.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 6.0f);
 
         instantiatedTraits[speciesString] = hippo;
         return hippo;
@@ -1135,6 +1138,7 @@ public class SpeciesFactory {
         duck.traitClass = SPECIES;
 
         duck.linkageMap.Add(TraitFactory.Traits.Small.ToString(), 6.0f);
+        duck.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 5.0f);
 
         instantiatedTraits[speciesString] = duck;
         return duck;
@@ -1190,7 +1194,7 @@ public class SpeciesFactory {
 
         penguin.linkageMap.Add(TraitFactory.Traits.Midsized.ToString(), 6.0f);
 		penguin.linkageMap.Add(TraitFactory.Traits.Flying.ToString(), -1.0f);
-		penguin.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 2.0f);
+		penguin.linkageMap.Add(TraitFactory.Traits.Swim.ToString(), 3.0f);
 
 
         instantiatedTraits[speciesString] = penguin;
