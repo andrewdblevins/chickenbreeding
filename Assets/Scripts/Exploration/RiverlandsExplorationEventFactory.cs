@@ -42,6 +42,10 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Alligator, 1));
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Crocodile, 1));
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Hippo, 1));
+
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Duck));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Penguin));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Frog));
     }
 
     protected ExplorationEvent babyIslandSwim(SpeciesFactory.Species species)
