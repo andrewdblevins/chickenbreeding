@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
 
 class AnimalDefFactory
 {
@@ -157,7 +153,7 @@ class AnimalDefFactory
                 animalDef.SizeTrait = SizeFactory.createLarge();
                 break;
             case SpeciesFactory.Species.Monkey:
-                animalDef.SpeciesTrait = SpeciesFactory.createMoneky();
+                animalDef.SpeciesTrait = SpeciesFactory.createMonkey();
                 animalDef.SizeTrait = SizeFactory.createMidsized();
                 break;
             case SpeciesFactory.Species.Duck:

@@ -86,10 +86,15 @@
     <Compile Include="Assets\Scripts\Exploration\ExplorationEvent.cs" />
     <Compile Include="Assets\Scripts\Exploration\ExplorationEventFactory.cs" />
     <Compile Include="Assets\Scripts\Exploration\ExplorePanelBehavior.cs" />
+    <Compile Include="Assets\Scripts\Exploration\ForestExplorationEventFactory.cs" />
+    <Compile Include="Assets\Scripts\Exploration\GrasslandsExplorationEventFactory.cs" />
+    <Compile Include="Assets\Scripts\Exploration\JungleExplorationEventFactory.cs" />
+    <Compile Include="Assets\Scripts\Exploration\MountainExplorationEventFactory.cs" />
     <Compile Include="Assets\Scripts\Exploration\OptionButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\Exploration\Reward.cs" />
     <Compile Include="Assets\Scripts\Exploration\RewardImpl.cs" />
     <Compile Include="Assets\Scripts\Exploration\RiverlandsExplorationEventFactory.cs" />
+    <Compile Include="Assets\Scripts\Exploration\SavanaExplorationEventFactory.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameState\BaseState.cs" />
     <Compile Include="Assets\Scripts\GameState\ExploreState.cs" />
