@@ -37,12 +37,30 @@ public abstract class BaseEventFactory
 
         e.description = "You come across a baby " + species.ToString() + ", its mother is nearby.";
         e.options = new List<ExplorationEvent.Option>();
-        e.options.Add(
-            new ExplorationEvent.Option("Grab it.  You are not afraid of a mama " + species.ToString() + ".", TraitFactory.Attribute.Fighting.ToString(),
-            animalReward.GetAttributeScore(TraitFactory.Attribute.Fighting.ToString()) * 2, new List<AnimalDef>() { animalReward }, new List<string>()));
-        e.options.Add(
-            new ExplorationEvent.Option("Walk away quietly.", TraitFactory.Attribute.Tracking.ToString(),
-            animalReward.GetAttributeScore(TraitFactory.Attribute.Tracking.ToString()), new List<AnimalDef>(), new List<string>()));
+
+        List<AnimalDef> twoAnimals = new List<AnimalDef>() { animalReward, animalReward };
+
+        int fightScore = animalReward.GetAttributeScore(TraitFactory.Attribute.Fighting.ToString());
+        int trackingScore = animalReward.GetAttributeScore(TraitFactory.Attribute.Tracking.ToString());
+
+        List<ExplorationCriteria> variableAnimalReward = new List<ExplorationCriteria>() {
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), int.MinValue, fightScore * 2, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 2, fightScore * 2 + 1, new RewardImpl.DoNothingReward("The " + species.ToString() + " looks kinda scary, and you back off.")),
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 2 + 1, fightScore * 4, new RewardImpl.AnimalReward (animalReward)),
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 4, int.MaxValue, new RewardImpl.AnimalReward (twoAnimals))
+        };
+
+        List<ExplorationCriteria> variableTrackingReward = new List<ExplorationCriteria>() {
+                        new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
+                        new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2, new RewardImpl.FoodPenalty(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()))),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2, trackingScore * 4, new RewardImpl.FoodReward(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()))),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString(), trackingScore * 4, int.MaxValue, new RewardImpl.AnimalReward (animalReward))
+        };
+
+
+        e.options.Add(new ExplorationEvent.Option("Grab it.  You are not afraid of a mama " + species.ToString() + ".", variableAnimalReward));
+        e.options.Add(new ExplorationEvent.Option("Walk away quietly.", variableTrackingReward));
+
         if (trumpOption != null) {
             e.options.Add(
                 new ExplorationEvent.Option("Because you have " + trumpOption + ", you can scare the mom away.", TraitFactory.Attribute.Fighting.ToString(), 0, new List<AnimalDef>() { animalReward }, new List<string>() { trumpOption }));
