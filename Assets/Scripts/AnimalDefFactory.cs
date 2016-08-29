@@ -8,6 +8,11 @@ class AnimalDefFactory
 {
     public static AnimalDef CreateDefForSpecies(SpeciesFactory.Species species)
     {
+        return CreateDefForSpecies(species, true);
+    }
+
+    public static AnimalDef CreateDefForSpecies(SpeciesFactory.Species species, bool assignRandomTraits)
+    {
         AnimalDef animalDef = new AnimalDef();
         switch (species)
         {
@@ -178,6 +183,11 @@ class AnimalDefFactory
             default:
                 break;
         }
+
+        List<BaseTrait> allTraits = new List<BaseTrait>();
+        allTraits.Add(animalDef.SpeciesTrait);
+        allTraits.Add(animalDef.SizeTrait);
+        animalDef.Traits = TraitSelector.selectTraits(allTraits);
         return animalDef;
     }
 }
