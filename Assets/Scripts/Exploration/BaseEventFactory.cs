@@ -114,7 +114,7 @@ public abstract class BaseEventFactory
         if (trumpOption != null)
         {
             e.options.Add(
-                new ExplorationEvent.Option("Lucky for you, " + species.ToString() + " are afraid of " + trumpOption + ", you can scare them away.", TraitFactory.Attribute.Fighting.ToString(), 0, new List<AnimalDef>() { animalReward }, new List<string>() { trumpOption }));
+                new ExplorationEvent.Option("Lucky for you, " + species.ToString() + " are afraid of " + trumpOption + ", you can scare them away.", TraitFactory.Attribute.Fighting.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.DoNothingReward("Nothing interesting happens."), new List<string>() { trumpOption }));
         }
 
         return e;
