@@ -99,14 +99,14 @@ public abstract class BaseEventFactory
 
 
         List<ExplorationCriteria> variableAnimalReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), int.MinValue, fightScore * 2, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), int.MinValue, fightScore * 2, new RewardImpl.RandomAnimalPenalty("The pack of wild " + species.ToString() + " tear one of your animals apart.")),
             new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 2, fightScore * 2 + 3, new RewardImpl.FoodPenalty(25,
                 "The " + species.ToString() + " nearly killed you.  Before you dealt the winning blow it tore into your pack and scatterd your suppplies.  You lost 25 food.")),
             new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 2 + 3, int.MaxValue, new RewardImpl.FoodReward(foodReward, foodString))
         };
 
         List<ExplorationCriteria> variableTrackingReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty("You did not run faster than the pack of wild " + species.ToString() +".")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2,
                 new RewardImpl.FoodPenalty(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()), "You drop some of your supplies as you run.  You lose " + animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()) + " food")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString(), trackingScore * 2, int.MaxValue, new RewardImpl.DoNothingReward("You escape without losing any of your animals"))
@@ -139,18 +139,18 @@ public abstract class BaseEventFactory
         int trackingScore = animalReward.GetAttributeScore(TraitFactory.Attribute.Tracking.ToString());
 
         List<ExplorationCriteria> variableAnimalReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty("You discover that falling from a tree can be fatal.")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2, new RewardImpl.DoNothingReward("You can't reach it.")),
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2 , trackingScore * 5, new RewardImpl.AnimalReward (animalReward)),
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 5 , int.MaxValue, new RewardImpl.AnimalReward (twoAnimals))
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2 , trackingScore * 5, new RewardImpl.AnimalReward (animalReward, "You 'rescue' the baby " + species.ToString() + ".  It will never have suffer the pains of freedom again.")),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 5 , int.MaxValue, new RewardImpl.AnimalReward (twoAnimals, "There were 2 of them up there.  You capture 2 baby " + species.ToString() + "."))
         };
 
         e.options.Add(new ExplorationEvent.Option("Attempt to climb the tree to get it.", variableAnimalReward));
         e.options.Add(new ExplorationEvent.Option("Walk away.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.DoNothingReward("You walk away."), new RewardImpl.DoNothingReward("You walk away.")));
         e.options.Add(
-            new ExplorationEvent.Option("Send your climbing creature after it.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Climb.ToString() }));
+            new ExplorationEvent.Option("Send your climbing creature after it.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward, "Your climbing creature brings the baby " + species.ToString() + " down from the tree"), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Climb.ToString() }));
         e.options.Add(
-            new ExplorationEvent.Option("Send your flying creature after it.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Flying.ToString() }));
+            new ExplorationEvent.Option("Send your flying creature after it.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward, "Your flying creature brings the baby " + species.ToString() + " down from the tree"), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Flying.ToString() }));
         return e;
     }
 
@@ -169,9 +169,9 @@ public abstract class BaseEventFactory
         int strengthScore = animalReward.GetAttributeScore(TraitFactory.Attribute.Strength.ToString());
 
         List<ExplorationCriteria> variableAnimalReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, strengthScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, strengthScore, new RewardImpl.RandomAnimalPenalty("Somestimes things go into a cave, but don't come out.")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), strengthScore, strengthScore * 3, new RewardImpl.DoNothingReward("You can't clear the entrance.")),
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), strengthScore * 3, strengthScore * 6, new RewardImpl.AnimalReward (animalReward)),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), strengthScore * 3, strengthScore * 6, new RewardImpl.AnimalReward (animalReward, "You find a baby " + species.ToString() + " in the cave.")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), strengthScore * 6, int.MaxValue, new RewardImpl.AnimalReward (twoAnimals))
         };
 
@@ -183,16 +183,17 @@ public abstract class BaseEventFactory
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 3, new RewardImpl.DoNothingReward("You don't find another way in.")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 3, trackingScore * 6, new RewardImpl.AnimalReward (animalReward)),
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 6, int.MaxValue, new RewardImpl.AnimalReward (twoAnimals))
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 6, int.MaxValue, new RewardImpl.AnimalReward (twoAnimals, "There were 2 of them in there.  You capture 2 baby " + species.ToString() + "."))
         };
 
         e.options.Add(new ExplorationEvent.Option("Attempt to find another way in.", variableTrackingReward));
 
         e.options.Add(new ExplorationEvent.Option("Walk away.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.DoNothingReward("You walk away."), new RewardImpl.DoNothingReward("You walk away.")));
         e.options.Add(
-            new ExplorationEvent.Option("Send your climbing creature in.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Climb.ToString() }));
+            new ExplorationEvent.Option("Send your climbing creature in.", TraitFactory.Attribute.Tracking.ToString(), trackingScore - 2, new RewardImpl.AnimalReward(animalReward, "Your climbing creature leads the way and finds a baby " + species.ToString() + "."),
+                new RewardImpl.RandomAnimalPenalty("Even with a climbing creature to guide you, caves can still be hazzardous."), new List<string>() { TraitFactory.Traits.Climb.ToString() }));
         e.options.Add(
-            new ExplorationEvent.Option("Dig through the rubble.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Dig.ToString() }));
+            new ExplorationEvent.Option("Dig through the rubble.", TraitFactory.Attribute.Strength.ToString(), strengthScore - 2, new RewardImpl.AnimalReward(animalReward, "You dig and dig until you find a baby " + species.ToString() + "."), new RewardImpl.DoNothingReward("You don't find anything."), new List<string>() { TraitFactory.Traits.Dig.ToString() }));
         return e;
     }
 }
