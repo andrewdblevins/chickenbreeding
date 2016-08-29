@@ -5,6 +5,23 @@ using UnityEngine;
 public static class RewardImpl
 {
 
+	public class DoNothingReward : Reward {
+		string message;
+
+		public DoNothingReward(string message = "Nothing interesting happens.") {
+			this.message = message;
+		}
+
+		public override string ToString()
+		{
+			return message;
+		}
+
+		public void grant(Party party) {
+			//Do nothing
+		}
+	}
+
 	public class AnimalReward : Reward {
 		private List<AnimalDef> animals = new List<AnimalDef>();
 

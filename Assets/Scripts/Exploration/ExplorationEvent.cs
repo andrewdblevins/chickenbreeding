@@ -3,6 +3,16 @@ using System.Collections.Generic;
 
 public class ExplorationEvent {
 
+//	public class Probability {
+//		public Reward reward;
+//		public float probability;
+//
+//		public Probability(Reward reward, float probability) {
+//			this.reward = reward;
+//			this.probability = probability;
+//		}
+//	}
+
 	public class Option //: BooleanExplorationDefinition
     {
         public string description;
@@ -57,19 +67,22 @@ public class ExplorationEvent {
 		}
 
 		//TODO: This is hacky way to estimate probability; do better
-//		public float probability(Party party) {
-//			int m = 50;
-//			int cntSuccess = 0;
-//			int cntFailure = 0;
-//			foreach (var i in System.Linq.Enumerable.Range(0, m)) {
-//				if (attempt (party)) {
-//					cntSuccess++;
-//				} else {
-//					cntFailure++;
-//				}
-//			}
-//			return (float)cntSuccess / (float)(cntSuccess + cntFailure);
-//		}
+		public Dictionary<Reward, int> probability(Party party) {
+			int m = 100;  //For percent calculations
+
+			Dictionary<Reward, int> counts = new Dictionary<Reward, int> ();
+
+			foreach (var i in System.Linq.Enumerable.Range(0, m)) {
+				Reward r = attempt (party);
+				if (counts.ContainsKey (r)) {
+					counts [r] += 1;
+				} else {
+					counts [r] = 1;
+				}
+			}
+			return counts;
+
+		}
 
 		public Reward attempt(Party party)
         {

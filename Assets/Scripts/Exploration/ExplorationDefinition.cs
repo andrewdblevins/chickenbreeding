@@ -4,11 +4,18 @@ using System.Collections.Generic;
 public class ExplorationDefinition
 {
 	private List<ExplorationCriteria> possibleExplorations;
+
+	//Currently unused.
 	string description;
 	    
 	public ExplorationDefinition (string description, List<ExplorationCriteria> possibleExplorations)
 	{
 		fakeConstructor (description, possibleExplorations);
+	}
+
+	public ExplorationDefinition (List<ExplorationCriteria> possibleExplorations)
+	{
+		fakeConstructor ("", possibleExplorations);
 	}
 
 	//Some stupid Unity crap
