@@ -88,7 +88,8 @@ public class ExplorationEvent {
             //Debug.Log("you have a score of " + score + " + " + roll + " and need " + passingScore + " to win");
 //            score += roll;
 //            return score >= passingScore;
-			return ed.explore(party, roll);
+			Reward r =  ed.explore(party, roll);
+			return r;
         }
 
         public bool checkSpecialRequirements(Party party)
