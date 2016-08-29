@@ -62,7 +62,8 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
 
         e.options.Add(
             new ExplorationEvent.Option("Because you have swim, you can reach the island and get the baby.", TraitFactory.Attribute.Fighting.ToString(), 0, new List<AnimalDef>() { animalReward }, new List<string>() { TraitFactory.Traits.Swim.ToString() }));
-
+        e.options.Add(
+            new ExplorationEvent.Option("Because you have flying, you can reach the island and get the baby.", TraitFactory.Attribute.Fighting.ToString(), 0, new List<AnimalDef>() { animalReward }, new List<string>() { TraitFactory.Traits.Flying.ToString() }));
         return e;
     }
 }
