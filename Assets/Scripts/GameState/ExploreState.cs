@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ExploreState : BaseState {
     public enum State { Start, EncounterEvent, AfterEvent, Continue, GoingHome };
@@ -136,7 +137,14 @@ public class ExploreState : BaseState {
         {
             ExplorationEvent.Option option = currentEvent.options[choice];
             Debug.Log("you chose to " + option.description);
-			Reward reward = option.attempt(worldState.GetParty());
+			Party p = worldState.GetParty ();
+			Reward reward = option.attempt(p);
+//			foreach (KeyValuePair<Reward, int> kvp in option.probability (p))
+//				{
+//					//textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+//				Debug.Log("Key = " + kvp.Key.ToString() + ", Value = " + kvp.Value.ToString());
+//				}
+			reward.grant (p);
 
             ExplorePanelBehavior.Instance.Results(reward, this);
             state = State.AfterEvent;

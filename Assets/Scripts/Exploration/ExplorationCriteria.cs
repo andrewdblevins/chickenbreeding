@@ -55,8 +55,7 @@ public class ExplorationCriteria
 //	}
 
 
-	public Reward grantReward(Party party) {
-		reward.grant (party);
+	public Reward getReward(Party party) {
 		return reward;
 	}
 }

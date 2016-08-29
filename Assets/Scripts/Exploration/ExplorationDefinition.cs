@@ -30,7 +30,7 @@ public class ExplorationDefinition
 	public Reward explore(Party party, int roll) {
 		foreach (ExplorationCriteria ec in possibleExplorations) {
 			if (ec.attempt (party, roll)) {
-				return ec.grantReward (party);
+				return ec.getReward (party);
 			}
 		}
 		return null;
