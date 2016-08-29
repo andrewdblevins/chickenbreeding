@@ -64,13 +64,13 @@ public class ExplorationEvent {
 		}
 
 		//TODO: This is hacky way to estimate probability; do better
-		public Dictionary<Reward, int> probability(Party party) {
+		public Dictionary<string, int> probability(Party party) {
 			int m = 100;  //For percent calculations
 
-			Dictionary<Reward, int> counts = new Dictionary<Reward, int> ();
+			Dictionary<string, int> counts = new Dictionary<string, int> ();
 
 			foreach (var i in System.Linq.Enumerable.Range(0, m)) {
-				Reward r = attempt (party);
+				string r = attempt (party).RewardText();
 				if (counts.ContainsKey (r)) {
 					counts [r] += 1;
 				} else {

@@ -114,7 +114,7 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
 
         e.options.Add(new ExplorationEvent.Option("Walk away.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.DoNothingReward("You walk away."), new RewardImpl.DoNothingReward("You walk away.")));
 
-        e.options.Add(new ExplorationEvent.Option("Try to catch the fish.", TraitFactory.Attribute.Tracking.ToString(), 20, new RewardImpl.FoodReward(8), new RewardImpl.FoodReward(4)));
+		e.options.Add(new ExplorationEvent.Option("Try to catch the fish.", variableFishReward));
 
         e.options.Add(
             new ExplorationEvent.Option("Send in your swimming animal.", TraitFactory.Attribute.Tracking.ToString(), 10, new RewardImpl.FoodReward(12), new RewardImpl.FoodReward(4), new List<string>() { TraitFactory.Traits.Swim.ToString() }));
