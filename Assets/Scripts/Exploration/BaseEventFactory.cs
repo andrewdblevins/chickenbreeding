@@ -51,7 +51,7 @@ public abstract class BaseEventFactory
         };
 
         List<ExplorationCriteria> variableTrackingReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty("You're not very quiet, but don't have to run faster that the " + species.ToString() + ".  You just have to run faster than the slowest animal in your party.")),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty("You're not very quiet, but don't have to run faster than the " + species.ToString() + ".  You just have to run faster than the slowest animal in your party.")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2, new RewardImpl.DoNothingReward("You escape.")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2, trackingScore * 4, new RewardImpl.FoodReward(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()), "After you escape you find " + animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()) + " food with your keen tracking skills")),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString(), trackingScore * 4, int.MaxValue, new RewardImpl.AnimalReward (animalReward, "You manage to grab the baby " + species.ToString() + " as you walk away without the mother even noticing"))
