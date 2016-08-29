@@ -34,6 +34,16 @@ class GrasslandsExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Cow));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Bison));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Bee));
+
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bee, 12));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Wolf, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bison, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Cow, 2));
+
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Wolf));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Owl));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Chicken));
+
     }
 
     public static ExplorationEvent stealEggs()
@@ -56,8 +66,8 @@ class GrasslandsExplorationEventFactory : BaseEventFactory
         e.description = "You see a nest with a few eggs.  Its mother, a hugely oversized chicken, is nearby.";
         e.options = new List<ExplorationEvent.Option>() {
             new ExplorationEvent.Option("Fight the chicken", variableChickenReward),
-            new ExplorationEvent.Option("Run like the wind", TraitFactory.Attribute.Tracking.ToString(), 4, new List<AnimalDef>(), new List<string>()),
-            new ExplorationEvent.Option("Build a defensive wall", TraitFactory.Attribute.Strength.ToString(), 20, new List<AnimalDef>(), new List<string>())
+            new ExplorationEvent.Option("Run like the wind", TraitFactory.Attribute.Tracking.ToString(), 4, new RewardImpl.DoNothingReward("You run away"), new RewardImpl.RandomAnimalPenalty(), new List<string>()),
+            new ExplorationEvent.Option("Build a defensive wall", TraitFactory.Attribute.Strength.ToString(), 20, new RewardImpl.DoNothingReward("You build a wall and make the chicken pay for it."), new RewardImpl.RandomAnimalPenalty(), new List<string>())
         };
 
         return e;

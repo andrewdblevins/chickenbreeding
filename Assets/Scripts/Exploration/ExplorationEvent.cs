@@ -32,16 +32,13 @@ public class ExplorationEvent {
 		ExplorationDefinition ed;
 
 		//TODO: Merge this with Exploration definition
-        public Option(string description, string attribute, int passingScore, List<AnimalDef> reward, List<string> specialRequirements)
+        public Option(string description, string attribute, int passingScore, Reward passReward, Reward failReward, List<string> specialRequirements)
         {
             this.description = description;
             //            this.attribute = attribute;
             //            this.passingScore = passingScore;
             //            this.reward = reward;
             this.specialRequirements = specialRequirements;
-
-            Reward passReward = new RewardImpl.AnimalReward(reward);
-			Reward failReward = new RewardImpl.RandomAnimalPenalty();
 
 			ed = new BooleanExplorationDefinition(description, attribute, passingScore, passReward, failReward);
         }
@@ -91,7 +88,8 @@ public class ExplorationEvent {
             //Debug.Log("you have a score of " + score + " + " + roll + " and need " + passingScore + " to win");
 //            score += roll;
 //            return score >= passingScore;
-			return ed.explore(party, roll);
+			Reward r =  ed.explore(party, roll);
+			return r;
         }
 
         public bool checkSpecialRequirements(Party party)

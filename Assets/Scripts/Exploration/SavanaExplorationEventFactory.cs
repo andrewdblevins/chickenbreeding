@@ -25,9 +25,16 @@ public class SavanaExplorationEventFactory : BaseEventFactory
         explorationEvents = new List<ExplorationEvent>();
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Lion));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Wolf));
-        explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Elephant));
+        explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Elephant, SpeciesFactory.Species.Mouse.ToString()));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Giraffe));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Rhino));
 
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Lion, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Wolf, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Rhino, 3));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Elephant, 2, SpeciesFactory.Species.Mouse.ToString()));
+
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Lion));
+        explorationEvents.Add(babyInATree(SpeciesFactory.Species.Wolf));
     }
 }
