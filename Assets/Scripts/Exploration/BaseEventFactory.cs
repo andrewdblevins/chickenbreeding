@@ -172,7 +172,7 @@ abstract class BaseEventFactory
                 animalReward.SizeTrait = SizeFactory.createLarge();
                 break;
             case SpeciesFactory.Species.Monkey:
-                animalReward.SpeciesTrait = SpeciesFactory.createMoneky();
+                animalReward.SpeciesTrait = SpeciesFactory.createMonkey();
                 animalReward.SizeTrait = SizeFactory.createMidsized();
                 break;
             case SpeciesFactory.Species.Duck:

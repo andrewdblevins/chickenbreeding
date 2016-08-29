@@ -211,7 +211,7 @@ public class AnimalFactory : MonoBehaviour {
 
     public GameObject createMoneky()
     {
-        return createAnimal(SpeciesFactory.createMoneky(), SizeFactory.createMidsized());
+        return createAnimal(SpeciesFactory.createMonkey(), SizeFactory.createMidsized());
     }
 
     public GameObject createDuck()

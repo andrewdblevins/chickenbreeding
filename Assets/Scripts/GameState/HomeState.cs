@@ -30,7 +30,7 @@ public class HomeState : BaseState {
         {
             //Get a plot
             getSomePlot().addAnimal(AnimalFactory.Instance.createAnimal
-                (SpeciesFactory.createChicken(), SizeFactory.createTiny(), /* age: youngAdult */ 5));
+                (SpeciesFactory.createLion(), SizeFactory.createTiny(), /* age: youngAdult */ 5));
         }
     }
 
