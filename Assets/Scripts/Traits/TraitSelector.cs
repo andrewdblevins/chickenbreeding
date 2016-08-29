@@ -20,7 +20,7 @@ public static class TraitSelector
 		return 1.0f / (1.0f + Mathf.Exp(-val));
 	}
 
-	static float baseInheritance = -1.0f;
+	static float baseInheritance = -3.0f;
 	static float perAdditionalTraitChance = -1.0f;
 
 	public static List<BaseTrait> selectTraits(List<BaseTrait> mandatoryTraits) {
