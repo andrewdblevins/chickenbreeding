@@ -27,5 +27,10 @@ public class MountainExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Wolf));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Sheep));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Lion));
+
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Lion, 5));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Wolf, 5));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bear, 5));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bat, 12));
     }
 }

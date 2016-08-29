@@ -29,5 +29,9 @@ public class SavanaExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Giraffe));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Rhino));
 
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Lion, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Wolf, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Rhino, 3));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Elephant, 2, SpeciesFactory.Species.Mouse.ToString()));
     }
 }

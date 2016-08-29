@@ -36,5 +36,10 @@ class ForestExplorationEventFactory : BaseEventFactory
 		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Pig));
 		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Rabbit));
 
-	}
+
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bear, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Cat, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Fox, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Moose, 2));
+    }
 }

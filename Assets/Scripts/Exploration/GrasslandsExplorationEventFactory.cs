@@ -34,6 +34,12 @@ class GrasslandsExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Cow));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Bison));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Bee));
+
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bee, 12));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Wolf, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bison, 2));
+        explorationEvents.Add(attackedBy(SpeciesFactory.Species.Cow, 2));
+
     }
 
     public static ExplorationEvent stealEggs()

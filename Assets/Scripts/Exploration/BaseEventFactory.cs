@@ -69,6 +69,11 @@ public abstract class BaseEventFactory
         return e;
     }
 
+    protected ExplorationEvent attackedBy(SpeciesFactory.Species species, int numAttackers)
+    {
+        return attackedBy(species, numAttackers, null);
+    }
+
     protected ExplorationEvent attackedBy(SpeciesFactory.Species species, int numAttackers, string trumpOption)
     {
         ExplorationEvent e = new ExplorationEvent();
