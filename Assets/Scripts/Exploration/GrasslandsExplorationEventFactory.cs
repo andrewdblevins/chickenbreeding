@@ -35,6 +35,9 @@ class GrasslandsExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Bison));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Bee));
 
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Rabbit));
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Rabbit, 3));
+
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bee, 12));
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Wolf, 2));
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bison, 2));

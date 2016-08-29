@@ -30,7 +30,7 @@ public static class RewardImpl
 		private List<AnimalDef> animals = new List<AnimalDef>();
         protected string message;
 
-        public AnimalReward(AnimalDef animal) {
+		public AnimalReward(AnimalDef animal) {
 			animals.Add(animal);
 		}
 
