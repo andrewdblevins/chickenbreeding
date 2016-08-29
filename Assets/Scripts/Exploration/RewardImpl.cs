@@ -51,13 +51,20 @@ public static class RewardImpl
 	{
 
 		protected int foodCount;
+        protected string message;
 
-		public FoodReward (int foodCount)
+        public FoodReward (int foodCount)
 		{
 			this.foodCount = foodCount;
 		}
 
-		public void grant (Party party)
+        public FoodReward(int foodCount, string message)
+        {
+            this.foodCount = foodCount;
+            this.message = message;
+        }
+
+        public void grant (Party party)
 		{
 			if (this.foodCount > 0) {
 				GameManager.Instance.AddFood (this.foodCount);
@@ -68,7 +75,8 @@ public static class RewardImpl
 
         public override string ToString()
         {
-            return "The blood of your enemies is delicous.  You gained " + foodCount + " food";
+            if (message == null) return "The blood of your enemies is delicous.  You gained " + foodCount + " food";
+            return message;
         }
     }
 
@@ -78,9 +86,14 @@ public static class RewardImpl
 		{
 		}
 
+        public FoodPenalty(int foodCount, string message) : base(-foodCount, message)
+        {
+        }
+
         public override string ToString()
         {
-            return "You lost " + foodCount + " food";
+            if (message == null) return "You lost " + foodCount + " food";
+            return message;
         }
     }
 
