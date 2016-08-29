@@ -20,6 +20,10 @@ public static class RewardImpl
 		public void grant(Party party) {
 			//Do nothing
 		}
+
+		public string RewardText(){
+			return message;
+		}
 	}
 
 	public class AnimalReward : Reward {
@@ -45,6 +49,10 @@ public static class RewardImpl
             }
             return "Success. All of your animals survived";
         }
+
+		public string RewardText(){
+			return "Good Stuff Happens";
+		}
 	}
 
 	public class FoodReward : Reward
@@ -70,6 +78,10 @@ public static class RewardImpl
         {
             return "The blood of your enemies is delicous.  You gained " + foodCount + " food";
         }
+
+		public string RewardText(){
+			return "Good Stuff Happens";
+		}
     }
 
 	public class FoodPenalty: FoodReward
@@ -82,6 +94,10 @@ public static class RewardImpl
         {
             return "You lost " + foodCount + " food";
         }
+
+		public string RewardText(){
+			return "Bad Stuff Happens";;
+		}
     }
 
 	public class RandomAnimalPenalty : Reward
@@ -121,6 +137,10 @@ public static class RewardImpl
         {
             return resultText == null ? "One of your animals died" : resultText;
         }
+
+		public string RewardText(){
+			return "Bad Stuff Happens";;
+		}
     }
 }
 

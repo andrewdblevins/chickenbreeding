@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ExplorePanelBehavior : MonoBehaviour {
 
@@ -22,7 +23,23 @@ public class ExplorePanelBehavior : MonoBehaviour {
 		for (int i = 0; i < currentEvent.options.Count; i++) {
 			GameObject button = Instantiate (OptionButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
 			button.transform.SetParent (OptionPanel.transform);
-			button.GetComponentInChildren<Text>().text = currentEvent.options [i].description;
+
+
+			Text[] texts = button.GetComponentsInChildren<Text> ();
+				
+			texts[0].text = currentEvent.options [i].description;
+
+
+
+			List<KeyValuePair<string, int>> list = currentEvent.options[i].ToList();
+
+			string odds = ""; 
+			foreach (KeyValuePair<string, int> pair in list)
+			{
+				odds += pair.Key + ": " + pair.Value;
+			}
+			texts [1].text = odds;
+
 			button.gameObject.GetComponent<OptionButtonBehavior> ().optionNum = i;
 			button.gameObject.GetComponent<OptionButtonBehavior> ().state = state;
 
