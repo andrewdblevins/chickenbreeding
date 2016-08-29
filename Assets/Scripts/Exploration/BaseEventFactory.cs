@@ -44,17 +44,17 @@ public abstract class BaseEventFactory
         int trackingScore = animalReward.GetAttributeScore(TraitFactory.Attribute.Tracking.ToString());
 
         List<ExplorationCriteria> variableAnimalReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), int.MinValue, fightScore * 2, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), int.MinValue, fightScore * 2, new RewardImpl.RandomAnimalPenalty("The mother " + species.ToString() + " slaughters one of your animals before retreting to safety with her baby.")),
             new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 2, fightScore * 2 + 1, new RewardImpl.DoNothingReward("The " + species.ToString() + " looks kinda scary, and you back off.")),
-            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 2 + 1, fightScore * 4, new RewardImpl.AnimalReward (animalReward)),
-            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 4, int.MaxValue, new RewardImpl.AnimalReward (twoAnimals))
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 2 + 1, fightScore * 4, new RewardImpl.AnimalReward (animalReward, "You feel great about killing a mother " + species.ToString() + " and enslaving her child")),
+            new ExplorationCriteria (TraitFactory.Attribute.Fighting.ToString (), fightScore * 4, int.MaxValue, new RewardImpl.AnimalReward (twoAnimals, "You defeat the mother " + species.ToString() + " and notice another second baby hiding behind her corpse.  You capture 2 baby " + species.ToString()))
         };
 
         List<ExplorationCriteria> variableTrackingReward = new List<ExplorationCriteria>() {
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2, new RewardImpl.FoodPenalty(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()))),
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2, trackingScore * 4, new RewardImpl.FoodReward(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()))),
-            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString(), trackingScore * 4, int.MaxValue, new RewardImpl.AnimalReward (animalReward))
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty("You're not very quiet, but don't have to run faster that the " + species.ToString() + ".  You just have to run faster than the slowest animal in your party.")),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2, new RewardImpl.DoNothingReward("You escape.")),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2, trackingScore * 4, new RewardImpl.FoodReward(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()), "After you escape you find " + animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()) + " food with your keen tracking skills")),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString(), trackingScore * 4, int.MaxValue, new RewardImpl.AnimalReward (animalReward, "You manage to grab the baby " + species.ToString() + " as you walk away without the mother even noticing"))
         };
 
 
