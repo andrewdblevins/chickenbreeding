@@ -5,6 +5,16 @@ using System;
 
 public class GameManager : MonoBehaviour {
 
+    public enum ExploreRegion
+    {
+        Grassland,
+        Riverlands,
+        Forest,
+        Jungle,
+        Savana,
+        Mountain
+    }
+
 	public GameObject panel;
 	public Plot plot;
 
@@ -32,10 +42,10 @@ public class GameManager : MonoBehaviour {
 		ExplorationEventFactory.init ();
 	}
 
-    internal void goExplore()
+    internal void goExplore(ExploreRegion region)
     {
         ExploreState exploreState = new ExploreState();
-        exploreState.StartExploration(worldState);
+        exploreState.StartExploration(worldState, region);
         activeState = exploreState;
         MyEventSystem.AdvanceSeasons();
     }

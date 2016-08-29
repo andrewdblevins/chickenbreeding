@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class GoExplore : MonoBehaviour, IPointerClickHandler
+public class GoExplore : MonoBehaviour
 {
 
 	// Use this for initialization
@@ -15,8 +15,29 @@ public class GoExplore : MonoBehaviour, IPointerClickHandler
 	
 	}
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void GoExploring(string where)
     {
-        GameManager.Instance.goExplore();
+        switch (where)
+        {
+            case "forest":
+                GameManager.Instance.goExplore(GameManager.ExploreRegion.Forest);
+                break;
+            case "jungle":
+                GameManager.Instance.goExplore(GameManager.ExploreRegion.Jungle);
+                break;
+            case "grasslands":
+                GameManager.Instance.goExplore(GameManager.ExploreRegion.Grassland);
+                break;
+            case "savana":
+                GameManager.Instance.goExplore(GameManager.ExploreRegion.Savana);
+                break;
+            case "mountain":
+                GameManager.Instance.goExplore(GameManager.ExploreRegion.Mountain);
+                break;
+            case "riverlands":
+            default:
+                GameManager.Instance.goExplore(GameManager.ExploreRegion.Riverlands);
+                break;
+        }
     }
 }

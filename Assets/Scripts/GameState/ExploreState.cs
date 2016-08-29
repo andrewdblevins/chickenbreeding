@@ -10,6 +10,8 @@ public class ExploreState : BaseState {
 
     WorldState worldState;
 
+    BaseEventFactory regionFactory;
+
     //new exploration event
 
     //resolve exploration event
@@ -24,11 +26,35 @@ public class ExploreState : BaseState {
         return worldState.party;
     }
 
-    public void StartExploration(WorldState worldState)
+    public void StartExploration(WorldState worldState, GameManager.ExploreRegion region)
     {
         Debug.Log("starting exploration");
         this.worldState = worldState;
         state = State.Start;
+
+        switch (region)
+        {
+            case GameManager.ExploreRegion.Grassland:
+                regionFactory = GrasslandsExplorationEventFactory.GetInstance();
+                break;
+            case GameManager.ExploreRegion.Riverlands:
+                regionFactory = RiverlandsExplorationEventFactory.GetInstance();
+                break;
+            case GameManager.ExploreRegion.Forest:
+                regionFactory = ForestExplorationEventFactory.GetInstance();
+                break;
+            case GameManager.ExploreRegion.Jungle:
+                regionFactory = JungleExplorationEventFactory.GetInstance();
+                break;
+            case GameManager.ExploreRegion.Savana:
+                regionFactory = SavanaExplorationEventFactory.GetInstance();
+                break;
+            case GameManager.ExploreRegion.Mountain:
+                regionFactory = MountainExplorationEventFactory.GetInstance();
+                break;
+            default:
+                break;
+        }
     }
 
     public override void Step()
@@ -46,7 +72,7 @@ public class ExploreState : BaseState {
                 state = State.Continue;
                 break;
             case State.Continue:
-                currentEvent = RiverlandsExplorationEventFactory.GetInstance().getEvent(worldState);
+                currentEvent = regionFactory.getEvent(worldState);
                 for (int i = 0; i < currentEvent.options.Count; i++)
                 {
                     Debug.Log("   press " + (i + 1) + " to " + currentEvent.options[i].description);
