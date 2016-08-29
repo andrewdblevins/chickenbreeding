@@ -18,6 +18,7 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
+    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -74,8 +75,10 @@
     <Compile Include="Assets\HarvestBehavior.cs" />
     <Compile Include="Assets\Scripts\Animal.cs" />
     <Compile Include="Assets\Scripts\AnimalDef.cs" />
+    <Compile Include="Assets\Scripts\AnimalDefFactory.cs" />
     <Compile Include="Assets\Scripts\AnimalFactory.cs" />
     <Compile Include="Assets\Scripts\DraggableBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Exploration\BaseEventFactory.cs" />
     <Compile Include="Assets\Scripts\Exploration\BooleanExplorationDefinition.cs" />
     <Compile Include="Assets\Scripts\Exploration\EventCondition.cs" />
     <Compile Include="Assets\Scripts\Exploration\ExplorationCriteria.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="Assets\Scripts\Exploration\OptionButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\Exploration\Reward.cs" />
     <Compile Include="Assets\Scripts\Exploration\RewardImpl.cs" />
+    <Compile Include="Assets\Scripts\Exploration\RiverlandsExplorationEventFactory.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameState\BaseState.cs" />
     <Compile Include="Assets\Scripts\GameState\ExploreState.cs" />
