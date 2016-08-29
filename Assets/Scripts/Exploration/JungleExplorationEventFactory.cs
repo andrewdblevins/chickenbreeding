@@ -24,7 +24,7 @@ public class JungleExplorationEventFactory : BaseEventFactory
         explorationEvents = new List<ExplorationEvent>();
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Tiger));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Panda));
-        explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Elephant));
+        explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Elephant, SpeciesFactory.Species.Mouse.ToString()));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Gorilla));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Monkey));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Snake));

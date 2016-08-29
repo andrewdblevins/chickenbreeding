@@ -165,7 +165,7 @@ public class Animal : MonoBehaviour
 
     public int GetFoodRequirement()
     {
-        return def.SizeTrait.size;
+        return def.SizeTrait.size + 1;
     }
 
     public bool hasTrait(string trait)

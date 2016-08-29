@@ -36,6 +36,10 @@ public class ExplorePanelBehavior : MonoBehaviour {
 
     public void Results(Reward reward, ExploreState state)
     {
+        if (reward == null)
+        {
+            reward = new RewardImpl.DoNothingReward("You found poor tuning, nothing happens.");
+        }
         gameObject.GetComponentInChildren<Text>().text = reward.ToString();
 
         GameObject goHomeButton = Instantiate(OptionButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
