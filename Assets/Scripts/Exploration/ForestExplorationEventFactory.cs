@@ -21,8 +21,7 @@ class ForestExplorationEventFactory : BaseEventFactory
 	public override void Init()
 	{
 		explorationEvents = new List<ExplorationEvent>();
-		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Turkey));
-		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Wolf));
+		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Deer));
 		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Bear));
 		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Bee));
 		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Deer));
@@ -35,6 +34,14 @@ class ForestExplorationEventFactory : BaseEventFactory
 		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Canary));
 		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Pig));
 		explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Rabbit));
+
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Pig));
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Rabbit));
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Cat, 2));
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Deer));
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Pig, 2));
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Rabbit, 2));
+		explorationEvents.Add(rescueFromQuicksand(SpeciesFactory.Species.Cat, 3));
 
 
         explorationEvents.Add(attackedBy(SpeciesFactory.Species.Bear, 2));

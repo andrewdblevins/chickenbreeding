@@ -43,6 +43,9 @@ public class TraitFactory {
         Climb,
         Stealthy,
         Dig,
+        Delicious,
+        Marbled,
+        Fat,
     }
 
     /** This should only be referenced by data classes. */
@@ -82,6 +85,9 @@ public class TraitFactory {
         TraitFactory.createDig();
         TraitFactory.createStealthy();
         TraitFactory.createSwim();
+        TraitFactory.createMarbled();
+        TraitFactory.createDelicious();
+        TraitFactory.createFat();
 	}
 
     public static BaseTrait createStrong()
@@ -528,4 +534,79 @@ public class TraitFactory {
         return dig;
     }
 
+    public static BaseTrait createDelicious()
+    {
+        string traitString = Traits.Delicious.ToString();
+        if (instantiatedTraits.ContainsKey(traitString))
+        {
+            return instantiatedTraits[traitString];
+        }
+        BaseTrait delicious = new BaseTrait();
+        delicious.attributes.Add(Attribute.Fighting.ToString(), 0);
+        delicious.attributes.Add(Attribute.Strength.ToString(), 0);
+        delicious.attributes.Add(Attribute.Tracking.ToString(), 0);
+        delicious.attributes.Add(Attribute.Food.ToString(), 3);
+
+        //        delicious.inheritanceChance = 0.1f;
+
+        delicious.name = traitString;
+        delicious.type = traitString;
+        delicious.traitClass = null;
+
+        instantiatedTraits[traitString] = delicious;
+        return delicious;
+    }
+
+    public static BaseTrait createMarbled()
+    {
+        string traitString = Traits.Marbled.ToString();
+        if (instantiatedTraits.ContainsKey(traitString))
+        {
+            return instantiatedTraits[traitString];
+        }
+        BaseTrait marbled = new BaseTrait();
+        marbled.attributes.Add(Attribute.Fighting.ToString(), 0);
+        marbled.attributes.Add(Attribute.Strength.ToString(), 0);
+        marbled.attributes.Add(Attribute.Tracking.ToString(), 0);
+        marbled.attributes.Add(Attribute.Food.ToString(), 3);
+
+        //        marbled.inheritanceChance = 0.1f;
+
+        marbled.name = traitString;
+        marbled.type = traitString;
+        marbled.traitClass = null;
+
+        marbled.linkageMap.Add(Traits.Delicious.ToString(), 2.0f);
+        marbled.linkageMap.Add(Traits.Fat.ToString(), 2.0f);
+
+        instantiatedTraits[traitString] = marbled;
+        return marbled;
+    }
+
+    public static BaseTrait createFat()
+    {
+        string traitString = Traits.Fat.ToString();
+        if (instantiatedTraits.ContainsKey(traitString))
+        {
+            return instantiatedTraits[traitString];
+        }
+        BaseTrait fat = new BaseTrait();
+        fat.attributes.Add(Attribute.Fighting.ToString(), -2);
+        fat.attributes.Add(Attribute.Strength.ToString(), -1);
+        fat.attributes.Add(Attribute.Tracking.ToString(), -1);
+        fat.attributes.Add(Attribute.Food.ToString(), 3);
+
+        //        fat.inheritanceChance = 0.1f;
+
+        fat.name = traitString;
+        fat.type = traitString;
+        fat.traitClass = null;
+
+        fat.linkageMap.Add(Traits.Delicious.ToString(), 2.0f);
+        fat.linkageMap.Add(Traits.Marbled.ToString(), 2.0f);
+
+
+        instantiatedTraits[traitString] = fat;
+        return fat;
+    }
 }
