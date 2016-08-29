@@ -44,6 +44,10 @@ class GrasslandsExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Owl));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Chicken));
 
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Wolf));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Mouse));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Rabbit));
+
     }
 
     public static ExplorationEvent stealEggs()
