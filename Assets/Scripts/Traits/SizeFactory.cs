@@ -49,6 +49,7 @@ public class SizeFactory {
         tiny.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), 1.5f);
         tiny.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), -2.0f);
         tiny.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), 1.5f);
+		tiny.linkageMap.Add(TraitFactory.Traits.Flying.ToString(), 0.5f);
 
         tiny.linkageMap.Add(Size.Tiny.ToString(), 1.5f);
         tiny.linkageMap.Add(Size.Small.ToString(), 0.5f);
@@ -141,6 +142,9 @@ public class SizeFactory {
 		large.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), -1.0f);
 		large.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 1.0f);
 		large.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -1.0f);
+		large.linkageMap.Add(TraitFactory.Traits.Flying.ToString(), -1.0f);
+		large.linkageMap.Add(TraitFactory.Traits.Climb.ToString(), -1.0f);
+
 
         large.linkageMap.Add(Size.Midsized.ToString(), 0.5f);
         large.linkageMap.Add(Size.Large.ToString(), 1.5f);
@@ -173,6 +177,9 @@ public class SizeFactory {
 		huge.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), -2.0f);
 		huge.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 1.5f);
 		huge.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -2.0f);
+		huge.linkageMap.Add(TraitFactory.Traits.Flying.ToString(), -2.0f);
+		huge.linkageMap.Add(TraitFactory.Traits.Climb.ToString(), -2.0f);
+
 
         huge.linkageMap.Add(Size.Large.ToString(), 0.5f);
         huge.linkageMap.Add(Size.Huge.ToString(), 1.5f);
@@ -205,6 +212,11 @@ public class SizeFactory {
 		enormous.linkageMap.Add(TraitFactory.Traits.Weak.ToString(), -3.0f);
 		enormous.linkageMap.Add(TraitFactory.Traits.Slow.ToString(), 3.0f);
 		enormous.linkageMap.Add(TraitFactory.Traits.Quick.ToString(), -3.0f);
+		enormous.linkageMap.Add(TraitFactory.Traits.Flying.ToString(), -6.0f);
+		enormous.linkageMap.Add(TraitFactory.Traits.Climb.ToString(), -6.0f);
+
+
+
 
         enormous.linkageMap.Add(Size.Huge.ToString(), 0.5f);
         enormous.linkageMap.Add(Size.Enormous.ToString(), 1.5f);
