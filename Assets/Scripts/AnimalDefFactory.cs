@@ -157,7 +157,7 @@ class AnimalDefFactory
                 animalDef.SizeTrait = SizeFactory.createLarge();
                 break;
             case SpeciesFactory.Species.Monkey:
-                animalDef.SpeciesTrait = SpeciesFactory.createMoneky();
+                animalDef.SpeciesTrait = SpeciesFactory.createMonkey();
                 animalDef.SizeTrait = SizeFactory.createMidsized();
                 break;
             case SpeciesFactory.Species.Duck:
