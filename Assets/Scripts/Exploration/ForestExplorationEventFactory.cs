@@ -48,5 +48,13 @@ class ForestExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Fox));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Owl));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Canary));
+
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Wolf));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Bear));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Deer));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Cat));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Fox));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Pig));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Rabbit));
     }
 }
