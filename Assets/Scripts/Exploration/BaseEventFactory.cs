@@ -51,8 +51,8 @@ public abstract class BaseEventFactory
         };
 
         List<ExplorationCriteria> variableTrackingReward = new List<ExplorationCriteria>() {
-                        new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
-                        new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2, new RewardImpl.FoodPenalty(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()))),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), int.MinValue, trackingScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore, trackingScore * 2, new RewardImpl.FoodPenalty(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()))),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString (), trackingScore * 2, trackingScore * 4, new RewardImpl.FoodReward(animalReward.GetAttributeScore(TraitFactory.Attribute.Food.ToString()))),
             new ExplorationCriteria (TraitFactory.Attribute.Tracking.ToString(), trackingScore * 4, int.MaxValue, new RewardImpl.AnimalReward (animalReward))
         };
@@ -63,7 +63,7 @@ public abstract class BaseEventFactory
 
         if (trumpOption != null) {
             e.options.Add(
-                new ExplorationEvent.Option("Because you have " + trumpOption + ", you can scare the mom away.", TraitFactory.Attribute.Fighting.ToString(), 0, new List<AnimalDef>() { animalReward }, new List<string>() { trumpOption }));
+                new ExplorationEvent.Option("Because you have " + trumpOption + ", you can scare the mom away.", TraitFactory.Attribute.Fighting.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.DoNothingReward("Nothing interesting happens."), new List<string>() { trumpOption }));
         }
 
         return e;

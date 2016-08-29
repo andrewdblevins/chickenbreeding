@@ -62,9 +62,9 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
         e.options.Add(new ExplorationEvent.Option("Walk away.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.DoNothingReward("You walk away."), new RewardImpl.DoNothingReward("You walk away.")));
 
         e.options.Add(
-            new ExplorationEvent.Option("Because you have swim, you can reach the island and get the baby.", TraitFactory.Attribute.Fighting.ToString(), 0, new List<AnimalDef>() { animalReward }, new List<string>() { TraitFactory.Traits.Swim.ToString() }));
+            new ExplorationEvent.Option("Because you have swim, you can reach the island and get the baby.", TraitFactory.Attribute.Fighting.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Swim.ToString() }));
         e.options.Add(
-            new ExplorationEvent.Option("Because you have flying, you can reach the island and get the baby.", TraitFactory.Attribute.Fighting.ToString(), 0, new List<AnimalDef>() { animalReward }, new List<string>() { TraitFactory.Traits.Flying.ToString() }));
+            new ExplorationEvent.Option("Because you have flying, you can reach the island and get the baby.", TraitFactory.Attribute.Fighting.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Flying.ToString() }));
         return e;
     }
 
@@ -84,7 +84,27 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
         e.options.Add(new ExplorationEvent.Option("Pull the animal out.", variableStuckReward));
 
         e.options.Add(
-            new ExplorationEvent.Option("Dig the animal out.", TraitFactory.Attribute.Fighting.ToString(), 0, new List<AnimalDef>() { }, new List<string>() { TraitFactory.Traits.Dig.ToString() }));
+            new ExplorationEvent.Option("Dig the animal out.", TraitFactory.Attribute.Fighting.ToString(), 0, new RewardImpl.DoNothingReward("You get the animal free."), new RewardImpl.DoNothingReward("You get the animal free."), new List<string>() { TraitFactory.Traits.Dig.ToString() }));
+        return e;
+    }
+
+    protected ExplorationEvent fishRiver()
+    {
+        ExplorationEvent e = new ExplorationEvent();
+
+        e.description = "You see fish in the river.";
+        e.options = new List<ExplorationEvent.Option>();
+
+        int strengthScore = 10;
+        List<ExplorationCriteria> variableStuckReward = new List<ExplorationCriteria>() {
+            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), int.MinValue, strengthScore, new RewardImpl.RandomAnimalPenalty()),
+            new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), strengthScore, int.MaxValue, new RewardImpl.DoNothingReward ("You get the animal free."))
+        };
+
+        e.options.Add(new ExplorationEvent.Option("Pull the animal out.", variableStuckReward));
+
+        e.options.Add(
+            new ExplorationEvent.Option("Send in your swimming animal.", TraitFactory.Attribute.Tracking.ToString(), 10, new RewardImpl.FoodReward(12), new RewardImpl.FoodReward(4), new List<string>() { TraitFactory.Traits.Swim.ToString() }));
         return e;
     }
 }

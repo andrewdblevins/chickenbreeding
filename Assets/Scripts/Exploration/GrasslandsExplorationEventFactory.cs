@@ -56,8 +56,8 @@ class GrasslandsExplorationEventFactory : BaseEventFactory
         e.description = "You see a nest with a few eggs.  Its mother, a hugely oversized chicken, is nearby.";
         e.options = new List<ExplorationEvent.Option>() {
             new ExplorationEvent.Option("Fight the chicken", variableChickenReward),
-            new ExplorationEvent.Option("Run like the wind", TraitFactory.Attribute.Tracking.ToString(), 4, new List<AnimalDef>(), new List<string>()),
-            new ExplorationEvent.Option("Build a defensive wall", TraitFactory.Attribute.Strength.ToString(), 20, new List<AnimalDef>(), new List<string>())
+            new ExplorationEvent.Option("Run like the wind", TraitFactory.Attribute.Tracking.ToString(), 4, new RewardImpl.DoNothingReward("You run away"), new RewardImpl.RandomAnimalPenalty(), new List<string>()),
+            new ExplorationEvent.Option("Build a defensive wall", TraitFactory.Attribute.Strength.ToString(), 20, new RewardImpl.DoNothingReward("You build a wall and make the chicken pay for it."), new RewardImpl.RandomAnimalPenalty(), new List<string>())
         };
 
         return e;
