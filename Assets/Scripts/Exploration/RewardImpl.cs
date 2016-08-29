@@ -22,7 +22,7 @@ public static class RewardImpl
 		}
 
 		public string RewardText(){
-			return message;
+			return "Nothing Happens";
 		}
 	}
 
