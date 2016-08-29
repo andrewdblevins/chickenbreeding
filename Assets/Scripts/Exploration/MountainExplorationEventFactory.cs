@@ -37,5 +37,12 @@ public class MountainExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.BaldEagle));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Lion));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Bat));
+
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Bat));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Bear));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.BaldEagle));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Wolf));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Sheep));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Lion));
     }
 }

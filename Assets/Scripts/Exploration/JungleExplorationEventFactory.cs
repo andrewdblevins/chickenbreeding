@@ -39,5 +39,8 @@ public class JungleExplorationEventFactory : BaseEventFactory
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Monkey));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Panda));
         explorationEvents.Add(babyInATree(SpeciesFactory.Species.Tiger));
+
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Tiger));
+        explorationEvents.Add(findACave(SpeciesFactory.Species.Snake));
     }
 }
