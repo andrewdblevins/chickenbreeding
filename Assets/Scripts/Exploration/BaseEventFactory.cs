@@ -69,7 +69,7 @@ public abstract class BaseEventFactory
         return e;
     }
 
-	protected ExplorationEvent rescueFromQuicksand(SpeciesFactory.Species species, int numAttackers) {
+	protected ExplorationEvent rescueFromQuicksand(SpeciesFactory.Species species, int numAttackers=1) {
 		ExplorationEvent e = new ExplorationEvent();
 
 		AnimalDef animalReward = AnimalDefFactory.CreateDefForSpecies(species);
