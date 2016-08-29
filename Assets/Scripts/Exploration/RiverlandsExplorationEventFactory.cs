@@ -25,7 +25,7 @@ class RiverlandsExplorationEventFactory : BaseEventFactory
     public override void Init()
     {
         explorationEvents = new List<ExplorationEvent>();
-        explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Alligator));
+        explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Alligator, SpeciesFactory.Species.Chicken.ToString()));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Frog));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Lobster));
         explorationEvents.Add(animalBabyFightMother(SpeciesFactory.Species.Turtle));
