@@ -195,5 +195,31 @@ public abstract class BaseEventFactory
             new ExplorationEvent.Option("Dig through the rubble.", TraitFactory.Attribute.Tracking.ToString(), 0, new RewardImpl.AnimalReward(animalReward), new RewardImpl.AnimalReward(animalReward), new List<string>() { TraitFactory.Traits.Dig.ToString() }));
         return e;
     }
+
+	protected ExplorationEvent getLost(SpeciesFactory.Species species)
+	{
+		ExplorationEvent e = new ExplorationEvent();
+
+		e.options = new List<ExplorationEvent.Option>();
+
+		int TrackingScore = 10;
+		List<ExplorationCriteria> variableStuckReward = new List<ExplorationCriteria>() {
+			new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), int.MinValue, TrackingScore, new RewardImpl.FoodPenalty(5)),
+			new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), TrackingScore, 2*TrackingScore, new RewardImpl.DoNothingReward ("You catch your bearings")),
+			new ExplorationCriteria (TraitFactory.Attribute.Strength.ToString (), 2*TrackingScore, int.MaxValue, new RewardImpl.FoodReward (5))
+		};
+
+		e.options.Add(new ExplorationEvent.Option("Find your way out", variableStuckReward));
+
+		e.options.Add(
+			new ExplorationEvent.Option("Send out your flyer", TraitFactory.Attribute.Fighting.ToString(), 0, new RewardImpl.DoNothingReward("From high up in the air, your winged creature sees the way forward"), new RewardImpl.DoNothingReward("From high up in the air, your winged creature sees the way forward"), new List<string>() { TraitFactory.Traits.Flying.ToString() }));
+
+		e.options.Add(
+			new ExplorationEvent.Option("Send your climber up a tree", TraitFactory.Attribute.Fighting.ToString(), 0, new RewardImpl.DoNothingReward("From high up in the tree your creature sees the way forward"), new RewardImpl.DoNothingReward("From the top of the tree your creature sees the way forward"), new List<string>() { TraitFactory.Traits.Climb.ToString() }));
+		
+
+		return e;
+	}
+
 }
 
